@@ -11,21 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229144241) do
+ActiveRecord::Schema.define(version: 20160314185734) do
 
-  create_table "instructors", id: false, force: :cascade do |t|
-    t.integer "id",              limit: 4,   null: false
-    t.string  "instructor_name", limit: 100
-    t.string  "email",           limit: 254
-    t.string  "subject_name",    limit: 50
+  create_table "instructors", force: :cascade do |t|
+    t.integer  "instructor_id",   limit: 4
+    t.string   "instructor_name", limit: 255
+    t.string   "email",           limit: 255
+    t.string   "subject_name",    limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  add_index "instructors", ["id"], name: "index_instructors_on_id", unique: true, using: :btree
-
   create_table "sections", id: false, force: :cascade do |t|
-    t.integer "id",            limit: 4,  null: false
-    t.string  "section_name",  limit: 25
-    t.integer "instructor_id", limit: 4
+    t.integer  "id",            limit: 4,  null: false
+    t.string   "section_name",  limit: 50
+    t.integer  "instructor_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "sections", ["id"], name: "index_sections_on_id", unique: true, using: :btree
