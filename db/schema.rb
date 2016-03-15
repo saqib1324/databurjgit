@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314185734) do
+ActiveRecord::Schema.define(version: 20160315220547) do
 
   create_table "instructors", force: :cascade do |t|
     t.integer  "instructor_id",   limit: 4
@@ -22,17 +22,15 @@ ActiveRecord::Schema.define(version: 20160314185734) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "sections", id: false, force: :cascade do |t|
-    t.integer  "id",            limit: 4,  null: false
+  create_table "sections", force: :cascade do |t|
+    t.integer  "section_id",    limit: 4,  null: false
     t.string   "section_name",  limit: 50
-    t.integer  "instructor_id", limit: 4
+    t.integer  "instructor_id", limit: 4,  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "sections", ["id"], name: "index_sections_on_id", unique: true, using: :btree
-
-  create_table "students", id: false, force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.integer  "tracking_id",     limit: 4,   null: false
     t.string   "father_name",     limit: 255
@@ -46,6 +44,11 @@ ActiveRecord::Schema.define(version: 20160314185734) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "students", ["tracking_id"], name: "index_students_on_tracking_id", unique: true, using: :btree
+  create_table "users", force: :cascade do |t|
+    t.string   "username",        limit: 25
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
 end

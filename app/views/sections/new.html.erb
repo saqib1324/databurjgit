@@ -16,11 +16,11 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label 'tracking id' %><br>
+    <%= f.label :tracking_id %><br>
     <%= f.text_field :tracking_id %>
   </div>
   <div class="field">
-    <%= f.label 'father name' %><br>
+    <%= f.label :father_name %><br>
     <%= f.text_field :father_name %>
   </div>
   <div class="field">
@@ -48,10 +48,18 @@
   </div>
   
   <div class="field">
-    <%= f.label 'mailing address' %><br>
+    <%= f.label :mailing_address %><br>
     <%= f.text_field:mailing_address  %>
   </div>
- 
+  <div class="field">
+    <%= f.label :mailing_address %><br>
+    <%= f.text_field:created_at  %>
+  </div>
+  <div class="field">
+    <%= f.label :mailing_address %><br>
+    <%= f.text_field:updated_at %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

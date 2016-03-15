@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  volunteer_id: 1
+  name: MyString
+  email: MyString
+
+two:
+  volunteer_id: 1
+  name: MyString
+  email: MyString

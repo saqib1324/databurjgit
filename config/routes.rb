@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  #get 'instructors/index' 
- # match ':controller(/:action(/:id))', :via => [:get, :post]
+  get 'welcome/admin_index' => 'welcome#admin_index' 
  #get 'students/index'
   resources :instructors
   resources :students
+  resources :sections
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'welcome#index'
+  root 'users#login'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
@@ -59,4 +59,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  match ':controller(/:action(/:id))', :via => [:get, :post]
 end

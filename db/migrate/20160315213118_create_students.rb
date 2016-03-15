@@ -1,6 +1,6 @@
 class CreateStudents < ActiveRecord::Migration
   def up
-    create_table :students, :id => false do |t|
+    create_table :students do |t|
       t.string "name"
       t.integer :tracking_id, :null => false
       t.string "father_name"
@@ -13,7 +13,6 @@ class CreateStudents < ActiveRecord::Migration
       
       t.timestamps null: false
     end
-    add_index :students, :tracking_id, :unique => true
   end
   def down
     drop_table :students

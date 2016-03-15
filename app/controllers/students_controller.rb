@@ -16,19 +16,21 @@ class StudentsController < ApplicationController
         format.html { redirect_to students_path, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
+     #   redirect_to new_student_path
         format.html { render :new }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+        format.json {  render json: @student.errors, status: :unprocessable_entity }
       end
     end
 
    end
    def show
-    
+    @student=Student.find(params[:id])
    end
    def edit
+     @student=Student.find(params[:id])
    end
    def update
-
+      @student=Student.find(params[:id])
         respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -40,16 +42,15 @@ class StudentsController < ApplicationController
     end
    end
    def destroy
-              @instructor.destroy
+    @student=Student.find(params[:id])
+              @student.destroy
     respond_to do |format|
-      format.html { redirect_to instructors_url, notice: 'Instructor was successfully destroyed.' }
+      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
     end
 
  
    end
-   
-   private
    
    
   private

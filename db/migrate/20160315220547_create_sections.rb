@@ -1,9 +1,9 @@
 class CreateSections < ActiveRecord::Migration
   def up
-    create_table :sections, :id => false do |t|
-      t.integer :id, :null => false
+    create_table :sections do |t|
+      t.integer :section_id, :null => false
       t.string "section_name" , :limit => 50
-      t.integer "instructor_id"
+      t.integer "instructor_id", :null => false
        # t.column :id, 'int(11) PRIMARY KEY'
       # t.primary_key :section_id
       # t.integer "position"
@@ -12,7 +12,6 @@ class CreateSections < ActiveRecord::Migration
       # t.text "content"
       t.timestamps null: false
     end
-    add_index :sections, :id, :unique => true
   end
   def down
     drop_table :sections
