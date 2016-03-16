@@ -15,7 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
-<body>
+<body background = "photo_bg.jpg">
 	<div class="container">
 		<div class="top">
 			<h1 id="title" class="hidden"><span id="logo">Data<span><b>Burj</b></span></span></h1>
@@ -28,12 +28,14 @@
             <table>
                 <tr>
                     <td><%= label_tag(:username) %></td>
-                    <td><%= text_field_tag(:username) %></td>
+                    <td><%= text_field_tag(:username)  %></td>
                 </tr>
                 <tr>
-                    <td><%= label_tag(:password) %></td>
-                    <td><%= text_field_tag(:password) %></td>
-                </tr>
+                	<td><%= label_tag(:password) %></td>
+					<!--<td><%= text_field_tag(:password) %></td>-->
+					<!--f.text_field :password-->
+					<td><%= text_field_tag(:password)   %></td>
+				</tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td><%= submit_tag("Log In") %></td>
