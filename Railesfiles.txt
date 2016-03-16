@@ -1,0 +1,96 @@
+Create new Project:
+rails new proj_name –d mysql
+Bundles and Gems:
+gem install bundler
+cd project_folder
+bundle install 
+GIT:
+git init
+git remote add origin (link to repo)
+git add.
+git remote rm origin (remove)
+git add -A
+git commit –m “start”
+git push
+Running a SQL server:
+mysql-ctl start
+mysql-ctl stop
+creating root user
+mysqladmin –u root password ‘_password_’   (admin creation)
+or
+mysql –u root -p (login)
+
+then
+https://docs.c9.io/docs/setting-up-mysql
+go to config->database.yml and write username and password.
+
+Accessing a Project:
+run the server by rails s –b $IP –p $PORT
+access it via URL
+Controller,Model,View:
+rails generate controller contr-name action-name (action name is optional and you can also give multiple actions).
+Routes:
+get “demo/index”  means
+match “demo/index”,
+	:to => “demo#index”,
+	:via => :get
+	Default route
+match ‘controller(/:action(/:id)), :via => get
+Embedding Ruby in erb:
+<% code %> only executes the code
+<%= code %> displays the result of code
+URLs:
+<a href=”/demo/hello”>Hello page </a>
+or
+<%= link_to(‘text’,{:controller=>”demo”,:action=>”hello”}) %>
+
+Database:
+1 table = 1 model
+Model name singular, table name plural
+4 mySQL commands
+SHOW DATABASES;
+CREATE DATABASE db_name; (written in yml file)
+USE db_name;
+DROP DATABASE db_name;
+SHOW TABLES;
+SHOW FIELDS FROM table_name;
+Database Migration:
+rails generate migration mgr_name (that could be anything)
+Rake db:create
+Rake db:migrate (every time you make some change, you need to run this.)
+Creating new User for mySQL and giving permissions to access:
+CREATE USER 'custom'@'localhost' IDENTIFIED BY 'password';
+#GRANT ALL PRIVILIGES ON db_name.* TO 'custom'@'localhost';
+GRANT ALL ON db_name.* TO 'custom'@'localhost' IDENTIFIED BY 'password';
+
+SHOW GRANTS FOR ‘username’@’localhost’;
+YML:
+YML means this file is in YAML format 
+YAML ain’t markup language;
+
+
+1.	Rails generate model volunteers name:string etc (this will create a model and a migration)
+2.	Rake db:migrate (table added to database)
+3.	Rake db:rollback (table deleted from database)
+4.	Manually create controller and views
+5.	For one set of views, one controller
+6.	Set routes. First function will be called in controller and then page code will run when we’ll type URL
+7.	User.create(username: "databurj",password: "windows787!")
+How to create a copy of project
+1.	Clone github
+2.	Bundle install
+3.	Mysql-ctl start
+4.	Mysqladmin –u root password ‘bharwa007’
+5.	Mysql –u root –p
+6.	Create database databurjproject_development (in SQL terminal)
+7.	Rake db:migrate
+8.	Rake db:seed
+9.	Login to databurj using following credentials username: databurj password: windows787!
+
+
+
+
+
+
+
+

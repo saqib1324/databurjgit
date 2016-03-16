@@ -25,6 +25,17 @@ class StudentsController < ApplicationController
    end
    def show
     @student=Student.find(params[:id])
+    respond_to do |format|
+        format.html
+        format.pdf do
+            pdf=Prawn::Document.new
+            pdf.text "Hello World"+@student.name
+        
+            send_data pdf.render, filename: "#{@student.name}.pdf", type: "application/pdf", disposition: "inline"
+        end
+    end
+            
+        
    end
    def edit
      @student=Student.find(params[:id])
