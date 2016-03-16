@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   # layout false
-  skip_before_action :require_login, :only => [:index,:attempt_login, :login]
+  skip_before_action :require_login, :only => [:attempt_login, :login]
   def index
       
   end
 
   def login
+    if session[:id]!=nil
+      redirect_to(:action => 'index')
+    end
     
   end
   
