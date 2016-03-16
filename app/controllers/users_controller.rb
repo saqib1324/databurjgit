@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # layout false
+  skip_before_action :require_login, :only => [:index,:attempt_login, :login]
   def index
       
   end
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
     end
     if authorized_user
       flash[:notice] = "You are now logged in"
+      session[:id] = authorized_user.id
       redirect_to(:action => 'index')
     else
       flash[:notice] = "Invalid username/Password combination."
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
   end
   def logout
     flash[:notice]="Logged out"
+    session[:id] = nil
     redirect_to(:action => "login")
   end
 
