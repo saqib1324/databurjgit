@@ -8,7 +8,7 @@ class CreateStudents < ActiveRecord::Migration
       t.column "SEX", 'CHAR(1)'
       t.string "city"
       t.string "email"
-      t.integer "phone_number", :limit => 11
+      t.string "phone_number"
       t.string "mailing_address"
       
       t.timestamps null: false
