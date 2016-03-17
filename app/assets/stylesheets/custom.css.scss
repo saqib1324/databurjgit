@@ -1,0 +1,16 @@
+$navbar-default-bg: #993300;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logosa{
+    float: left;
+    font-size: 2em;
+    color: #fff;
+    letter-spacing: 0px;
+    font-weight: bold;
+}
+.navbar-default .navbar-nav > li > a{
+    color: #fff;
+    font-size: 1.25em;
+}

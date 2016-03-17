@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
     
+ # before_action :require_login
 
    def new
         @student = Student.new

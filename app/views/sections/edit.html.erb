@@ -1,68 +1,32 @@
 <h1>editing</h1>
-<%= form_for(@student) do |f| %>
-  <% if @student.errors.any? %>
+
+<%= form_for(@section) do |f| %>
+  <% if @section.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this instructor from being saved:</h2>
+      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this instructor from being saved:</h2>
 
       <ul>
-      <% @student.errors.full_messages.each do |message| %>
+      <% @section.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label "Section Id" %><br>
+    <%= f.text_field :section_id %>
   </div>
   <div class="field">
-    <%= f.label :tracking_id %><br>
-    <%= f.text_field :tracking_id %>
+    <%= f.label "Section Name" %><br>
+    <%= f.text_field :section_name %>
   </div>
   <div class="field">
-    <%= f.label :father_name %><br>
-    <%= f.text_field :father_name %>
-  </div>
-  <div class="field">
-    <%= f.label :DOB %><br>
-    <%= f.text_field :DOB %>
-  </div>
-  <div class="field">
-    <%= f.label :SEX %><br>
-    <%= f.text_field :SEX %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :City %><br>
-    <%= f.text_field :city %>
-  </div>  
-  
-  <div class="field">
-    <%= f.label :Email %><br>
-    <%= f.text_field :email %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :Phone %><br>
-    <%= f.text_field :phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :mailing_address %><br>
-    <%= f.text_field:mailing_address  %>
-  </div>
-  <div class="field">
-    <%= f.label :mailing_address %><br>
-    <%= f.text_field:created_at  %>
-  </div>
-  <div class="field">
-    <%= f.label :mailing_address %><br>
-    <%= f.text_field:updated_at %>
+    <%= f.label "Instructor ID" %><br>
+    <%= f.text_field :instructor_id %>
   </div>
   
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-

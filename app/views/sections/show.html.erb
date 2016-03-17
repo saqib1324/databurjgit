@@ -1,50 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Student:</strong>
-  <%= @student.name %>
+  <strong>Section ID:</strong>
+  <%= @section.section_id %>
 </p>
 
 <p>
-  <strong>Tracking ID:</strong>
-  <%= @student.tracking_id %>
+  <strong>Section Name:</strong>
+  <%= @section.section_name %>
 </p>
 
 <p>
-  <strong>Father Name:</strong>
-  <%= @student.father_name %>
-</p>
-
-<p>
-  <strong>DOB:</strong>
-  <%= @student.DOB %>
-</p>
-
-<p>
-  <strong>SEX:</strong>
-  <%= @student.SEX %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @student.city %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @student.email %>
-</p>
-<p>
-  <strong>Phone:</strong>
-  <%= @student.phone_number %>
-</p>
-<p>
-  <strong>Mailing Address:</strong>
-  <%= @student.mailing_address %>
+  <strong>Instructor ID:</strong>
+  <%= @section.instructor_id %>
 </p>
 
 
 
-
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>

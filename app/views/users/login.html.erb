@@ -16,38 +16,52 @@
 </head>
 
 <body background = "photo_bg.jpg">
+	<center>
 	<div class="container">
 		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Data<span><b>Burj</b></span></span></h1>
+			<h1 id="title"><span id="logo">Data<span><b>Burj</b></span></span></h1>
 		</div>
+		
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
 				<h2>Log In</h2>
 			</div>
             <%= form_tag(:action => 'attempt_login' ) do %>
+            
             <table>
+            	<center>
                 <tr>
-                    <td><%= label_tag(:username) %></td>
-                    <td><%= text_field_tag(:username)  %></td>
+                	
+                    <label for="username">Username</label>
+					<br/>
+					
+                 	<!--#<br></br>-->
+                 	<!--<%= label_tag(:username) %>-->
+                    <center><%= text_field_tag(:username)  %></center>
+                    
                 </tr>
                 <tr>
-                	<td><%= label_tag(:password) %></td>
-					<!--<td><%= text_field_tag(:password) %></td>-->
-					<!--f.text_field :password-->
-					<td><%= text_field_tag(:password)   %></td>
+                	<label for="password">Password</label>
+					<br/>
+					<center><%= password_field_tag(:password) %></center>
 				</tr>
+				
                 <tr>
-                    <td>&nbsp;</td>
-                    <td><%= submit_tag("Log In") %></td>
+
+                    <center><%= submit_tag("Log In") %></center>
                 </tr>
+                </center>
             </table>
-            <% end %>
+            
+            <!--<% end %>-->
             <% if flash[:notice] %>
     			<div class="notice"><%= flash[:notice] %></div>
   			<% end %>
 			<a href="#"><p class="small">Forgot your password?</p></a>
 		</div>
-	</div>
+		
+		</div>
+	</center>
 </body>
 
 <script>

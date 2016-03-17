@@ -3,4 +3,6 @@
 Rails.application.config.session_store :cookie_store, key: '_databurjproject_session'
  Databurjproject::Application.config.session_store :cookie_store, 
     :key => '_databurjproject_session', 
-    :expire_after => 2.minutes
+    :expire_after => 05.minute
+    
+    

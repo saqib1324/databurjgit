@@ -2,14 +2,14 @@ class SectionsController < ApplicationController
     
 
    def new
-        @sections = Section.new
+        @section = Section.new
    end
    def index
        @sections=Section.all
    end
    def create
     @section = Section.new(section_params)
-    @section.id=Section_params[:tracking_id]
+   # @section.id=Section_params[:tracking_id]
    # @instructor.save
     respond_to do |format|
       if @section.save
