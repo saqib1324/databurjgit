@@ -16,8 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function() {
-	$('[data-toggle="offcanvas"]').click(function() {
-		$('#side-menu').toggleClass('hidden-xs');
-	});
-});
+// $(document).ready(function() {
+// 	$('[data-toggle="offcanvas"]').click(function() {
+// 		$('#side-menu').toggleClass('hidden-xs');
+// 	});
+// });
