@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+h1{
+	color:#fff;
+}
 html, body {
 	font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background-color: #f3f3f4;
@@ -19,7 +21,7 @@ html, body {
 }
 
 #side-menu h1 {
-	color: #1f3647;
+	color: #fff;
 	text-align: center;
 	margin: 10px 0px;
 	font-size: 25px;
