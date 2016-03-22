@@ -8,14 +8,14 @@
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/animate.css">
+	<!--<link rel="stylesheet" href="css/animate.css">-->
 	<!-- Custom Stylesheet -->
-	<link rel="stylesheet" href="css/style.css">
+	<!--<link rel="stylesheet" href="css/style.css">-->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
 </head>
 
-<body background = "photo_bg.jpg">
+<body background = "3d.jpg">
 	<center>
 	<div class="container">
 		<div class="top">
@@ -46,10 +46,9 @@
 					<center><%= password_field_tag(:password) %></center>
 				</tr>
 				
-                <tr>
 
                     <center><%= submit_tag("Log In") %></center>
-                </tr>
+                
                 </center>
             </table>
             
@@ -57,7 +56,8 @@
             <% if flash[:notice] %>
     			<div class="notice"><%= flash[:notice] %></div>
   			<% end %>
-			<a href="#"><p class="small">Forgot your password?</p></a>
+			<!--<a href="#"><p class="small">Forgot your password?</p></a>-->
+			
 		</div>
 		
 		</div>

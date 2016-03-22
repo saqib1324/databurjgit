@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/admin_index' => 'welcome#admin_index'
+  match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users/index' => 'users#index'
  #get 'students/index'
   resources :instructors

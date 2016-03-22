@@ -1,8 +1,11 @@
+# Given(/^I should be at "([^"]*)" $/) do |page|
+#   # Write code here that turns the phrase above into concrete actions
+#     visit path_to(page)
+# end
 Given(/^I should be at the Login page$/) do
   # Write code here that turns the phrase above into concrete actions
     visit "https://seproject-databurj.c9users.io/"
 end
-
 When (/^I fill in ".*?" with ".*?" $/) do |field,text|
     fill_in(field, with: text)
 end

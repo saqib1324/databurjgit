@@ -21,7 +21,7 @@
               
                 <!--<span class="glyphicon glyphicon-th" aria-hidden="true">-->
                 <!--<span class="hidden-sm hidden-xs">Dashboard</span>-->
-                <%= link_to "Dashboard", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>
+                <span><%= link_to "Dashboard", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>
               
             </li>
             <li class="link">
@@ -33,8 +33,8 @@
               <ul class="collapse collapseable" id="collapse-post">
                 <li>
                   <!--<a href="new-article.html">Add Students</a>-->
-                  <%= link_to 'Add Students', new_student_path %>
-
+                  <!--<%= link_to 'Add Students', new_student_path %>-->
+                  <a href="#"><%= link_to 'Add Students', new_student_path %></a>
                 </li>
                 <li>
                   <%= link_to 'View Students', students_path %>
