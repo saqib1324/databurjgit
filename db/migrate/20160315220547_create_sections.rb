@@ -1,9 +1,9 @@
 class CreateSections < ActiveRecord::Migration
   def up
     create_table :sections do |t|
-      t.integer :section_id, :null => false
+      t.string :section_id, :null => false
       t.string "section_name" , :limit => 50
-      t.integer "instructor_id", :null => false
+      t.string "instructor_id", :null => false
        # t.column :id, 'int(11) PRIMARY KEY'
       # t.primary_key :section_id
       # t.integer "position"

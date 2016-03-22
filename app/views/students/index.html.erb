@@ -30,10 +30,10 @@
         <td><%= student.email%></td>
         <td><%= student.phone_number%></td>
         <td><%= student.mailing_address%></td>
-        <td><%= link_to 'show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </t>
+        <td><%= link_to 'Show', student,:style => "margin-right: 5px;" %></td>
+        <td><%= link_to ' Edit ', edit_student_path(student),:style => "margin-right: 5px;" %></td>
+        <td><%= link_to ' Destroy ', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

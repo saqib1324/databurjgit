@@ -2,7 +2,7 @@ class CreateStudents < ActiveRecord::Migration
   def up
     create_table :students do |t|
       t.string "name"
-      t.integer :tracking_id, :null => false
+      t.string :tracking_id, :null => false
       t.string "father_name"
       t.string "DOB"
       t.column "SEX", 'CHAR(1)'

@@ -27,22 +27,31 @@ go to config->database.yml and write username and password.
 Accessing a Project:
 run the server by rails s –b $IP –p $PORT
 access it via URL
+####################################
+
 Controller,Model,View:
 rails generate controller contr-name action-name (action name is optional and you can also give multiple actions).
+
 Routes:
 get “demo/index”  means
 match “demo/index”,
 	:to => “demo#index”,
 	:via => :get
 	Default route
+
+General route:
 match ‘controller(/:action(/:id)), :via => get
+
+###########################
 Embedding Ruby in erb:
 <% code %> only executes the code
-<%= code %> displays the result of code
+<%= code %> displays the result of code (ruby code)
 URLs:
 <a href=”/demo/hello”>Hello page </a>
 or
 <%= link_to(‘text’,{:controller=>”demo”,:action=>”hello”}) %>
+
+#########################
 
 Database:
 1 table = 1 model
@@ -76,7 +85,11 @@ YAML ain’t markup language;
 5.	For one set of views, one controller
 6.	Set routes. First function will be called in controller and then page code will run when we’ll type URL
 7.	User.create(username: "databurj",password: "windows787!")
+
+############################################
+
 How to create a copy of project
+
 1.	Clone github
 2.	Bundle install
 3.	Mysql-ctl start
@@ -87,10 +100,12 @@ How to create a copy of project
 8.	Rake db:seed
 9.	Login to databurj using following credentials username: databurj password: windows787!
 
+#############################################
 
+To Do List:
 
-
-
-
-
-
+If a user is logged in, he cannot see a login page (redirect to dashboard)
+dashboard look on every page
+'add new element' forms must have good look
+Association of models
+BDD and TDD
