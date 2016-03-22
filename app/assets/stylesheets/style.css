@@ -149,3 +149,40 @@ p.small {
   -webkit-animation-duration: 1s;
   -webkit-animation-delay: 1s;
 }
+
+.button-link {
+	margin: 15px;
+	/*margin-right: 15px;*/
+	color: blue;
+}
+.tables-heading {
+	color:#D5DDE5;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 3px solid #343a45;
+  font-size:15px;
+  font-weight: 100 ;
+  padding:24px;
+  /*padding-right: 50px;*/
+  /*padding-left: 50px;*/
+ 
+  text-align:center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+  /*width: 300px;*/
+    /*margin: 40px;*/
+
+}
+
+.table-fill {
+background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 150px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;	
+}
