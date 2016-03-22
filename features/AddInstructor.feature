@@ -14,7 +14,7 @@ Background: some instructors have been added to the Instructors table
     |  4 | 3             | butt            | butt@lums.edu.pk | balochi      |
     |  5 | 4             | lol             | lol@lums.edu.pk  | pushto       |
     
-    And I am on the Instructors home page
+    And I am on the Databurj home page
     
 Scenario: Add new instructor
   Given I am on the Databurj home page

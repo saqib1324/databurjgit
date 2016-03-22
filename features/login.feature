@@ -9,4 +9,4 @@ Scenario: Login to databurj with valid user id and password
   When I fill in "Username" with "databurj"
   And I fill in "Password" with "windows787!"
   And I click on "Log In"
-  Then I should see the title "databurjproject"
+  Then I should be on the home page
