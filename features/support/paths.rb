@@ -19,6 +19,12 @@ module NavigationHelpers
       root_path
     when /the Databurj home page/
       users_path
+    when /the Students home page/
+      students_path
+    when /the New Student page/
+      new_student_path
+    
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

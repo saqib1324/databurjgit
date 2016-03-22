@@ -17,11 +17,12 @@
         <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
           <h1><span>Data<span><b>Burj</b></span></span></h1>
           <ul>
-            <li class="link settings-btn">
-              <a href="index.html">
-                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Dashboard</span>
-              </a>
+            <li class="link settings-btn" aria-hidden = "true">
+              
+                <!--<span class="glyphicon glyphicon-th" aria-hidden="true">-->
+                <!--<span class="hidden-sm hidden-xs">Dashboard</span>-->
+                <%= link_to "Dashboard", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>
+              
             </li>
 
             <li class="link">
@@ -160,9 +161,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
+                <ul class="pull-left">
+                  <li id="welcome" class="hidden-xs"><p id="notice"><%= notice %></p></li>
+                </ul>
                 </nav>
               </div>
-
+              
+              
+                
+              
               <div class="col-md-7">
                 <ul class="pull-right">
                   <li id="welcome" class="hidden-xs">DataBurj administrator area</li>

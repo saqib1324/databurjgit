@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'welcome/admin_index' => 'welcome#admin_index' 
+  get 'welcome/admin_index' => 'welcome#admin_index'
+  # get 'users/index' => 'users#index'
  #get 'students/index'
   resources :instructors
   resources :students

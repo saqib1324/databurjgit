@@ -17,13 +17,13 @@
         <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
           <h1><span>Data<span><b>Burj</b></span></span></h1>
           <ul>
-            <li class="link settings-btn">
-              <a href="index.html">
-                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Dashboard</span>
-              </a>
+            <li class="link settings-btn" aria-hidden = "true">
+              
+                <!--<span class="glyphicon glyphicon-th" aria-hidden="true">-->
+                <!--<span class="hidden-sm hidden-xs">Dashboard</span>-->
+                <%= link_to "Dashboard", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>
+              
             </li>
-
             <li class="link">
               <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -192,75 +192,50 @@
                 <div class="admin-content-con">
                   <header class="clearfix">
                     <h5 class="pull-left">Articles</h5>
-                    <a class="btn btn-xs btn-primary pull-right" href="#" role="button">Create new article</a>
+                     <%= link_to "Add new Student", new_student_path, :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
                   </header>
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>title</th>
-                        <th>replies</th>
-                        <th>date</th>
-                        <th>actions</th>
+                        <th>Name</th>
+                        <th>Tracking ID</th>
+                        <th>DOB</th>
+                        <th>Sex</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>My first post of many to come...</td>
-                        <td>20</td>
-                        <td>2 days ago</td>
-                        <td>
-                          <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>
-                          <a class="btn btn-xs btn-primary" href="#" role="button">view</a>
-                          <a class="btn btn-xs btn-danger" href="#" role="button">del</a>
-                        </td>
-                      </tr>
+
+                      <!--<tr>-->
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.tracking_id %></td>
+          <td><%= student.DOB %></td>
+          <td><%= student.SEX%></td>
+          <td><%= student.city%></td>
+          <td><%= student.phone_number%></td>
+       
+                        <!--<td>My first post of many to come...</td>-->
+                        <!--<td>20</td>-->
+                        <!--<td>2 days ago</td>-->
+          <td>
+            <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-xs btn-warning', :role => "button" %>
+            <%= link_to 'View', student, :class => 'btn btn-xs btn-primary', :role => "button" %>
+            <%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button" %>
+            
+            <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+            <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+            <!--<a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          </td>
+        </tr>
+      <% end %>                      
                       
-                      
-                      <tr>
-                        <td>My first post of many to come...</td>
-                        <td>20</td>
-                        <td>2 days ago</td>
-                        <td>
-                          <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>
-                          <a class="btn btn-xs btn-primary" href="#" role="button">view</a>
-                          <a class="btn btn-xs btn-danger" href="#" role="button">del</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>My first post of many to come...</td>
-                        <td>20</td>
-                        <td>2 days ago</td>
-                        <td>
-                          <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>
-                          <a class="btn btn-xs btn-primary" href="#" role="button">view</a>
-                          <a class="btn btn-xs btn-danger" href="#" role="button">del</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>My first post of many to come...</td>
-                        <td>20</td>
-                        <td>2 days ago</td>
-                        <td>
-                          <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>
-                          <a class="btn btn-xs btn-primary" href="#" role="button">view</a>
-                          <a class="btn btn-xs btn-danger" href="#" role="button">del</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>My first post of many to come...</td>
-                        <td>20</td>
-                        <td>2 days ago</td>
-                        <td>
-                          <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>
-                          <a class="btn btn-xs btn-primary" href="#" role="button">view</a>
-                          <a class="btn btn-xs btn-danger" href="#" role="button">del</a>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
-                  <div class="clearfix">
-                    <a href="#" class="pull-right text-link">view all articles</a>
-                  </div>
                 </div>
               </div>
             </div>
