@@ -14,7 +14,7 @@ Background: some Students have been added to the Students table
     
 Scenario: Add new instructor
   Given I am on the Students home Page
-  When I follow "Add new Student"
+  When I press "Add new Student"
   Then I should be on the New Student page
   When I fill in "tracking_id" with "9978"
   And I fill in "name" with "sohail"

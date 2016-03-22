@@ -225,7 +225,7 @@
           <td>
             <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-xs btn-warning', :role => "button" %>
             <%= link_to 'View', student, :class => 'btn btn-xs btn-primary', :role => "button" %>
-            <%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button" %>
+            <%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-xs btn-danger', :role => "button" %>
             
             <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
             <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->

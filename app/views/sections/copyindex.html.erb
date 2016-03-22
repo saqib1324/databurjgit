@@ -1,0 +1,34 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Section id</th>
+      <th>Section name</th>
+      <th>Instructor id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sections.each do |section| %>
+      <tr>
+        <td><%= section.section_id %></td>
+        <td><%= section.section_name %></td>
+        <td><%= section.instructor_id %></td>
+        <td><%= link_to 'Show', section,:style => "margin-right: 5px;" %></td>
+        <td><%= link_to 'Edit', edit_section_path(section),:style => "margin-right: 5px;" %></td>
+        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </t>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Section', new_section_path %>
+<br><h3><%= link_to 'Log Out', :controller => 'users', :action => 'logout' %></h3>

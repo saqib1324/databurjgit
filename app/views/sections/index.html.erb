@@ -1,32 +1,267 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
 
-<h1>Listing Sections</h1>
+    <!-- Bootstrap -->
+    <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">-->
 
-<table>
-  <thead>
-    <tr>
-      <th>Section id</th>
-      <th>Section name</th>
-      <th>Instructor id</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  </head>
+  <body>
+    <div class="container-fluid display-table">
+      <div class="row display-table-row">
+        <!-- side menu -->
+        <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
+          <h1><span>Data<span><b>Burj</b></span></span></h1>
+          <ul>
+            <li class="link settings-btn" aria-hidden = "true">
+              
+                <!--<span class="glyphicon glyphicon-th" aria-hidden="true">-->
+                <!--<span class="hidden-sm hidden-xs">Dashboard</span>-->
+                <%= link_to "Dashboard", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>
+              
+            </li>
+            <li class="link">
+              <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Students</span>
+                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
+              </a>
+              <ul class="collapse collapseable" id="collapse-post">
+                <li>
+                  <!--<a href="new-article.html">Add Students</a>-->
+                  <%= link_to 'Add Students', new_student_path %>
 
-  <tbody>
-    <% @sections.each do |section| %>
-      <tr>
-        <td><%= section.section_id %></td>
-        <td><%= section.section_name %></td>
-        <td><%= section.instructor_id %></td>
-        <td><%= link_to 'Show', section,:style => "margin-right: 5px;" %></td>
-        <td><%= link_to 'Edit', edit_section_path(section),:style => "margin-right: 5px;" %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </t>
-    <% end %>
-  </tbody>
-</table>
+                </li>
+                <li>
+                  <%= link_to 'View Students', students_path %>
 
-<br>
+                  <!--<a href="articles.html">View Students</a>-->
+                
+                </li>
+                <li>
+                  <%= link_to 'Update Students', students_path %>
 
-<%= link_to 'New Section', new_section_path %>
-<br><h3><%= link_to 'Log Out', :controller => 'users', :action => 'logout' %></h3>
+                  <!--<a href="articles.html">Update Students</a>-->
+                
+                </li>
+                <li>
+                  <!--<a href="articles.html">Delete Students</a>-->
+                  <%= link_to 'Delete Students', students_path %>
+
+                </li>
+              </ul>
+            </li>
+
+            <li class="link">
+              <a href="#collapse-comments" data-toggle="collapse" aria-controls="collapse-comments">
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Instructors</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-comments">
+                <li>
+                  <!--<a href= instructors_path >Add Instructors</a>-->
+                  <%= link_to 'Add Instructors', new_instructor_path %>
+                  
+                </li>
+
+                <li>
+                  <!--<a href="approved.html">View Instructors-->
+                  <%= link_to (raw('View Instructors<span class="label label-warning pull-right hidden-xs hidden-sm"></span>')), instructors_path %>
+
+                    <!--<span class="label label-warning pull-right hidden-xs hidden-sm"></span> -->
+                  <!--</a>-->
+                </li>
+                <li>
+                  <%= link_to (raw('Update Instructors<span class="label label-warning pull-right hidden-xs hidden-sm"></span>')), instructors_path %>
+
+                  <!--<a href="approved.html">Update Instructors-->
+                  <!--  <span class="label label-warning pull-right hidden-xs hidden-sm"></span>-->
+                  <!--</a>-->
+                </li>
+                <li>
+                  <%= link_to (raw('Delete Instructors<span class="label label-warning pull-right hidden-xs hidden-sm"></span>')), instructors_path %>
+
+                  <!--<a href="approved.html">Delete Instructors-->
+                  <!--  <span class="label label-warning pull-right hidden-xs hidden-sm"></span>-->
+                  <!--</a>-->
+                </li>
+              </ul>
+            </li>
+            
+            <li class="link">
+              <a href="#collapse-sections" data-toggle="collapse" aria-controls="collapse-sections">
+                <!--<span class="glyphicon glyphicon-group"></span>-->
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Sections</span>
+                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
+              </a>
+              <ul class="collapse collapseable" id="collapse-sections">
+                <li>
+                  <!--<a href="new-article.html">Add Sections</a>-->
+                  <%= link_to 'Add Sections', new_section_path %>
+                </li>
+                <li>
+                  <!--<a href="articles.html">View Sections</a>-->
+                  <%= link_to 'View Sections', sections_path %>
+                
+                </li>
+                <li>
+                  <!--<a href="articles.html">Update Sections</a>-->
+                  <%= link_to 'Update Sections', sections_path %>
+                
+                </li>
+                <li>
+                  <!--<a href="articles.html">Delete Sections</a>-->
+                  <%= link_to 'Delete Sections', sections_path %>
+                
+                </li>
+              </ul>
+            </li>
+            
+
+            <li class="link">
+              <a href="commenters.html">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Attendance</span>
+              </a>
+            </li>
+
+            <li class="link">
+              <a href="tags.html">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Undertakings</span>
+              </a>
+            </li>
+
+            <li class="link active">
+              <a href="settings.html">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- main content area -->
+        
+        <!---->
+        <div class="col-md-10 col-sm-11 display-table-cell valign-top">
+          <div class="row">
+            <header id="nav-header" class="clearfix">
+              <div class="col-md-5">
+                <nav class="navbar-default pull-left">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </nav>
+              </div>
+
+              <div class="col-md-7">
+                <ul class="pull-right">
+                  <li id="welcome" class="hidden-xs">DataBurj administrator area</li>
+
+                  <li class="fixed-width">
+                    <a href="#">
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <!--<a class="logout"><%= link_to "log out", :controller => 'users', :action => 'logout' %></a>-->
+                    <!--<a href="#" class="logout">-->
+                      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                      <a class="logout"><%= link_to "Log out", :controller => 'users', :action => 'logout' %></a>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </div>
+
+
+          <div id="dashboard-con">
+            <div>
+              <div class="dashboard-left-cell">
+                <div class="admin-content-con">
+                  <header class="clearfix">
+                    <h5 class="pull-left">Articles</h5>
+                     <%= link_to "Add new Section", new_section_path, :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+                  </header>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Section ID</th>
+                        <th>Section Name</th>
+                        <th>Instructor ID</th>
+                        <th>Actions</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <!--<tr>-->
+      <% @sections.each do |section| %>
+        <tr>
+          <td><%= section.section_id %></td>
+          <td><%= section.section_name %></td>
+          <td><%= section.instructor_id %> </td>
+                        <!--<td>My first post of many to come...</td>-->
+                        <!--<td>20</td>-->
+                        <!--<td>2 days ago</td>-->
+          <td>
+            <%= link_to 'Edit', edit_section_path(section), :class => 'btn btn-xs btn-warning', :role => "button" %>
+            <%= link_to 'View', section, :class => 'btn btn-xs btn-primary', :role => "button" %>
+            <%= link_to 'Delete', section, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
+            
+            <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+            <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+            <!--<a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          </td>
+        </tr>
+      <% end %>                      
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+
+          <div class="row">
+            <footer id="admin-footer" class="clearfix">
+              <div class="pull-left"><b>Copyright </b>&copy; 2016</div>
+              <div class="pull-right"><a href = "https://www.facebook.com/groups/1717841335126709/" target="_blank">DataBurj Developers</a></div>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--<script src="../vendor/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>-->
+    <!--<script src="js/default.js"></script>-->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

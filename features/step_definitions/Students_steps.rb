@@ -6,10 +6,10 @@ Given(/^the following Students exist:$/) do |students_table|
     end
 end
 
-When(/^I follow "([^"]*)"$/) do |arg1|
-    # Write code here that turns the phrase above into concrete actions
-    click_link(arg1)
-end
+# When(/^I follow "([^"]*)"$/) do |arg1|
+#     # Write code here that turns the phrase above into concrete actions
+#     click_link(arg1)
+# end
 
 When(/^I press "([^"]*)"$/) do |button|
     # Write code here that turns the phrase above into concrete actions
