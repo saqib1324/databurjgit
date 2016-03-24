@@ -53,5 +53,3 @@ test:
 #   username: databurjproject
 #   password: <%= ENV['DATABURJPROJECT_DATABASE_PASSWORD'] %>
 
-cucumber:
-  <<: *defaults

@@ -14,15 +14,13 @@ Background: some instructors have been added to the Instructors table
     |  4 | 3             | butt            | butt@lums.edu.pk | balochi      |
     |  5 | 4             | lol             | lol@lums.edu.pk  | pushto       |
     
-    And I am on the Databurj home page
     
 Scenario: Add new instructor
-  Given I am on the Databurj home page
-  When I follow "Add Instructors"
-  Then I should be on Create New Instructor page
-  When I fill in "Instructor id" with "9978"
-  And I fill in "Name" with "Saqib"
-  And I fill in "Mail" with "Saqib@mail.com"
-  And I fill in "Subject" with "English"
+  Given I am on the the New Instructor page
+  When I fill in "instructor_instructor_id" with "9978"
+  And I fill in "instructor_instructor_name" with "Saqib"
+  And I fill in "instructor_email" with "Saqib@mail.com"
+  And I fill in "instructor_subject_name" with "English"
   And I press "Create Instructor"
-  Then I should be on View Instructors page
+  Then I should be on the Instructors home page
+  And I should see "Saqib"

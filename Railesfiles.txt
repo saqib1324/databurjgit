@@ -100,12 +100,23 @@ How to create a copy of project
 8.	Rake db:seed
 9.	Login to databurj using following credentials username: databurj password: windows787!
 
+
+#############################################
+git repo link: 
+https://github.com/databurj/databurjgit
+
+###############################################
+stop server from everywhere: kill -INT $(cat tmp/pids/server.pid)
+
+
 #############################################
 
 To Do List:
 
 If a user is logged in, he cannot see a login page (redirect to dashboard)
-dashboard look on every page
 'add new element' forms must have good look
 Association of models
 BDD and TDD
+pdf download and upload optional
+excel download (data from tables of students)
+addition of fields in student table: secndry phone number, marks/percntge, monthly income

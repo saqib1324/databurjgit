@@ -17,18 +17,23 @@ module NavigationHelpers
       '/'
     when /the New Student page/
       new_student_path
+    when /the New Instructor page/
+      new_instructor_path
+    when /the New Section page/
+      new_section_path
     when /the home page/
-      root_path
+      users/index
     when /the Login page/
       root_path
     when /the Databurj home page/
       users_path
     when /the Students home page/
       students_path
-    
-      # :controller => 'students', :action => 'new'
-      # new_student
-    
+    when /the Instructors home page/
+      instructors_path
+    when /the Sections home page/
+      sections_path
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

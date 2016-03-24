@@ -7,7 +7,9 @@ body {
 	margin: 0;
 	color: #666;
 }
-
+.vakhri{
+	color: #1ab394;
+}
 /* Typography */
 h1#title {
 	font-family: 'Roboto Slab', serif;
@@ -106,14 +108,14 @@ p.small {
 	outline: none;
 	border-color: #1ab394;
 	transition: 0.5s;
-	color: #1ab394;
+	color: black;
 }
 
 .login-box button {
 	margin-top: 0px;
 	border: 0;
 	border-radius: 2px;
-	color: white;
+	color: #1ab394;
 	padding: 10px;
 	text-transform: uppercase;
 	font-weight: 400;
