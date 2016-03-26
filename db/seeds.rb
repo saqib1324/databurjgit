@@ -16,4 +16,4 @@
 # instructors_list.each do |instructor|
 #  Instructor.create!(instructor)
 # end
-# User.create!(:username => 'databurj', :password => 'windows787!')
+User.create!(:username => 'databurj', :password => 'windows787!')
