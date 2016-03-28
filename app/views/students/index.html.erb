@@ -184,7 +184,8 @@
                 <div class="admin-content-con">
                   <header class="clearfix">
                     <h5 class="pull-left">Articles</h5>
-                     <%= link_to "Add new Student", new_student_path, :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+                      <%= link_to "Add new Student", new_student_path, :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+                       <%= link_to "Download Excel",:action => 'export'  %> 
                   </header>
                   <table class="table table-striped">
                     <thead>
@@ -210,29 +211,28 @@
           <td><%= student.SEX%></td>
           <td><%= student.city%></td>
           <td><%= student.phone_number%></td>
-       
-                        <!--<td>My first post of many to come...</td>-->
-                        <!--<td>20</td>-->
-                        <!--<td>2 days ago</td>-->
           <td>
             <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-xs btn-warning', :role => "button" %>
             <%= link_to 'View', student, :class => 'btn btn-xs btn-primary', :role => "button" %>
             <%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-xs btn-danger', :role => "button" %>
-            
-            <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
-            <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
-            <!--<a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
           </td>
         </tr>
       <% end %>                      
-                      
+      
+      <%= form_tag :controller => :students, :action => :export do %>
+        <%= submit_tag "Download in Excel", class: "btn btn-success", id: "export" %>
+      <% end %>
+      <%= form_tag :controller => :students, :action => :import, :multipart => true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import" %>
+      <% end %>
+                
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
             
-
           <div class="row">
             <footer id="admin-footer" class="clearfix">
               <div class="pull-left"><b>Copyright </b>&copy; 2016</div>

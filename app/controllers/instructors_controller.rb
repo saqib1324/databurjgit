@@ -2,10 +2,26 @@ class InstructorsController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # GET /instructors.json
+  require "axlsx"
   def index
     @instructors = Instructor.all
   end
-
+  def import
+    Instructor.import(params[:file])
+    # redirect_to students_path, notice: "Students imported."
+  end
+  def export
+      package = Axlsx::Package.new
+      workbook = package.workbook
+      workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+        sheet.add_row ["Instructor Id", "Instructor Name", "Email", "Subject Name", "Username"]
+        @instructors=Instructor.all
+        @instructors.each do |st|
+          sheet.add_row [st.instructor_id, st.instructor_name, st.email, st.subject_name, st.username]
+        end
+      end
+      send_data package.to_stream.read, :filename => "instructors.xlsx"
+  end
   # GET /instructors/1
   # GET /instructors/1.json
   def show
@@ -70,7 +86,7 @@ class InstructorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instructor_params
-      params.require(:instructor).permit(:instructor_id, :instructor_name, :email, :subject_name )
+      params.require(:instructor).permit(:instructor_id, :instructor_name, :email, :subject_name, :username, :password )
     end
  
  

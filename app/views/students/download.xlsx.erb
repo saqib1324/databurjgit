@@ -1,0 +1,9 @@
+package = Axlsx::Package.new
+workbook = package.workbook
+workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+  sheet.add_row ["First Name"] 
+  @students=Student.all
+  @students.each do |st|
+    sheet.add_row [st.name]
+  end
+end

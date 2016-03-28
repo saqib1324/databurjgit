@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+
+    <!-- Bootstrap -->
+    <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">-->
+
+  </head>
+  <body>
+    <div class="container-fluid display-table">
+      <div class="row display-table-row">
+        <!-- side menu -->
+        <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
+          <h1><span>Data<span><b>Burj</b></span></span></h1>
+          <ul>
+            <li class="link settings-btn">
+              <a href=" ">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Dashboard</span>
+                <!--<span class="hidden-sm hidden-xs">
+                <%= link_to 'Dashboard', users_path %> </span>-->
+              </a>
+              
+            </li>
+
+            <li class="link">
+              <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Students</span>
+                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
+              </a>
+              <ul class="collapse collapseable" id="collapse-post">
+                <li>
+                  <!--<a href="new-article.html">Add Students</a>-->
+                  <%= link_to 'View Students', users_path(:admin => "students_view") %>
+
+                </li>
+                <li>
+                  <%= link_to 'Add Students', users_path(:admin => "students_add") %>
+
+                  <!--<a href="articles.html">View Students</a>-->
+                
+                </li>
+
+
+
+
+              </ul>
+            </li>
+
+            <li class="link">
+              <a href="#collapse-comments" data-toggle="collapse" aria-controls="collapse-comments">
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Instructors</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-comments">
+                <li>
+                  <!--<a href= instructors_path >Add Instructors</a>-->
+                  <%= link_to (raw('View Instructors<span class="label label-warning pull-right hidden-xs hidden-sm"></span>')), instructors_path %>
+
+
+<!--View Instructors-->
+                </li>
+
+                <li>
+                  <!--<a href="approved.html">View Instructors-->
+                  <%= link_to 'Add Instructors', users_path( :admin => "instructors_add" %>
+
+                    <!--<span class="label label-warning pull-right hidden-xs hidden-sm"></span> -->
+                  <!--</a>-->
+                </li>
+
+              </ul>
+            </li>
+            
+            <li class="link">
+              <a href="#collapse-sections" data-toggle="collapse" aria-controls="collapse-sections">
+                <!--<span class="glyphicon glyphicon-group"></span>-->
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Sections</span>
+                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
+              </a>
+              <ul class="collapse collapseable" id="collapse-sections">
+                <li>
+                  <!--<a href="new-article.html">Add Sections</a>-->
+                  <%= link_to 'View Sections', users_path( :admin => "sections_view")  %>
+
+                </li>
+                <li>
+                  <!--<a href="articles.html">View Sections</a>-->
+                  <%= link_to 'Add Sections', users_path( :admin => "sections_add") %>
+
+                </li>
+
+
+              </ul>
+            </li>
+            
+
+            <li class="link">
+              <a href=" ">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Attendance</span>
+              </a>
+            </li>
+
+            <li class="link">
+              <a href=" ">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Undertakings</span>
+              </a>
+            </li>
+
+            <li class="link active">
+              <a href=" ">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- main content area -->
+        <div class="col-md-10 col-sm-11 display-table-cell valign-top">
+          <div class="row">
+            <header id="nav-header" class="clearfix">
+              <div class="col-md-5">
+                <nav class="navbar-default pull-left">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </nav>
+              </div>
+
+              <div class="col-md-7">
+                <ul class="pull-right">
+                  <li id="welcome" class="hidden-xs">DataBurj administrator area</li>
+
+                  <li class="fixed-width">
+                    <a href="#">
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <!--<a class="logout"><%= link_to "log out", :controller => 'users', :action => 'logout' %></a>-->
+                    <!--<a href="#" class="logout">-->
+                      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                      <a class="logout"><%= link_to "Log out", :controller => 'users', :action => 'logout' %></a>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </div>
+
+
+<!--##################################################################################################-->
+<% if @link == "sections_add" %>
+<h3>this is sections add portion</h3>
+<% end %>
+<!--#################################################################################################-->
+<% if @link == "instructors_add" %>
+<h3> this is indtructors add portion</h3>
+<% end %>
+<!--#################################################################################################-->
+<% if @link == "students_add" %>
+<h3> this is students add portion</h3>
+<% end %>
+
+
+<!--################################################################################-->
+<% if @link == "instructors_view" %>
+
+<h3> this is ins view portion</h3>
+<% end %>
+
+
+
+
+<!--################################################################################-->
+
+<% if @link == "students_view" %>
+
+<h3> this is students view portion</h3>
+
+<% end %>
+
+
+
+    <!--###############################################################################-->
+<% if @link == "sections_view" %>
+<h3> this is sections viwe portion</h3>
+
+<% end %>
+<!--#################################################################################################-->
+          <!--<div id="dashboard-con">-->
+          <!--  <div>-->
+          <!--    <div class="dashboard-left-cell">-->
+          <!--      <div class="admin-content-con">-->
+          <!--        <header class="clearfix">-->
+          <!--          <h5 class="pull-left">Articles</h5>-->
+          <!--          <a class="btn btn-xs btn-primary pull-right" href="#" role="button">Create new article</a>-->
+          <!--        </header>-->
+          <!--        <table class="table table-striped">-->
+          <!--          <thead>-->
+          <!--            <tr>-->
+          <!--              <th>title</th>-->
+          <!--              <th>replies</th>-->
+          <!--              <th>date</th>-->
+          <!--              <th>actions</th>-->
+          <!--            </tr>-->
+          <!--          </thead>-->
+          <!--          <tbody>-->
+          <!--            <tr>-->
+          <!--              <td>My first post of many to come...</td>-->
+          <!--              <td>20</td>-->
+          <!--              <td>2 days ago</td>-->
+          <!--              <td>-->
+          <!--                <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+          <!--                <a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+          <!--                <a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          <!--              </td>-->
+          <!--            </tr>-->
+                      
+                      
+          <!--            <tr>-->
+          <!--              <td>My first post of many to come...</td>-->
+          <!--              <td>20</td>-->
+          <!--              <td>2 days ago</td>-->
+          <!--              <td>-->
+          <!--                <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+          <!--                <a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+          <!--                <a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          <!--              </td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td>My first post of many to come...</td>-->
+          <!--              <td>20</td>-->
+          <!--              <td>2 days ago</td>-->
+          <!--              <td>-->
+          <!--                <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+          <!--                <a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+          <!--                <a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          <!--              </td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td>My first post of many to come...</td>-->
+          <!--              <td>20</td>-->
+          <!--              <td>2 days ago</td>-->
+          <!--              <td>-->
+          <!--                <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+          <!--                <a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+          <!--                <a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          <!--              </td>-->
+          <!--            </tr>-->
+          <!--            <tr>-->
+          <!--              <td>My first post of many to come...</td>-->
+          <!--              <td>20</td>-->
+          <!--              <td>2 days ago</td>-->
+          <!--              <td>-->
+          <!--                <a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
+          <!--                <a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
+          <!--                <a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
+          <!--              </td>-->
+          <!--            </tr>-->
+          <!--          </tbody>-->
+          <!--        </table>-->
+          <!--        <div class="clearfix">-->
+          <!--          <a href="#" class="pull-right text-link">view all articles</a>-->
+          <!--        </div>-->
+          <!--      </div>-->
+          <!--    </div>-->
+          <!--  </div>-->
+            
+
+          <div class="row">
+            <footer id="admin-footer" class="clearfix">
+              <div class="pull-left"><b>Copyright </b>&copy; 2016</div>
+              <div class="pull-right"><a href = "https://www.facebook.com/groups/1717841335126709/" target="_blank">DataBurj Developers</a></div>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--<script src="../vendor/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>-->
+    <!--<script src="js/default.js"></script>-->
+  </body>
+</html>

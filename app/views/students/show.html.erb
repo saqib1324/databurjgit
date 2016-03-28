@@ -37,11 +37,27 @@
   <strong>Phone:</strong>
   <%= @student.phone_number %>
 </p>
+
+<p>
+  <strong>Secondary Phone:</strong>
+  <%= @student.secondary_phone_number %>
+</p>
+
+
 <p>
   <strong>Mailing Address:</strong>
   <%= @student.mailing_address %>
 </p>
 
+
+<p>
+  <strong>username:</strong>
+  <%= @student.username %>
+</p>
+<p>
+  <strong>Pass:</strong>
+  <%= @student.password_digest %>
+</p>
 
 <p><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf") %></p>
 

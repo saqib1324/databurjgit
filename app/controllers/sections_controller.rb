@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-    
+    require "axlsx"
 
    def new
         @section = Section.new
@@ -7,6 +7,24 @@ class SectionsController < ApplicationController
    def index
        @sections=Section.all
    end
+    def import
+      Section.import(params[:file])
+      # redirect_to students_path, notice: "Students imported."
+    end
+  def export
+      package = Axlsx::Package.new
+      workbook = package.workbook
+      workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+        sheet.add_row ["Section Id", "Section Name", "Instructor Id"]
+        @sections=Section.all
+        @sections.each do |st|
+          sheet.add_row [st.section_id, st.section_name, st.instructor_id]
+        end
+      end
+      send_data package.to_stream.read, :filename => "sections.xlsx"
+  end
+
+
    def create
     @section = Section.new(section_params)
    # @section.id=Section_params[:tracking_id]

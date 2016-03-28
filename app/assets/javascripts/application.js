@@ -21,3 +21,18 @@
 // 		$('#side-menu').toggleClass('hidden-xs');
 // 	});
 // });
+// $(document).ready(function(){
+//     setTimeout(function() {
+//         $('#notice_wrapper').fadeOut("slow", function(){
+//             $(this).remove();
+//         });
+//     }, 1500);
+// });
+
+$(document).ready(function() {
+ setTimeout(function(){
+  $('#notice_wrapper').fadeOut(("slow"), function() {
+   $(this).remove();
+  });
+ }, 4000);
+});

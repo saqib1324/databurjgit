@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users/index' => 'users#index'
  #get 'students/index'
-  resources :instructors
-  resources :students
-  resources :sections
+  resources :instructors do
+    collection { post :import }
+  end
+  resources :students do
+    collection { post :import }
+  end
+  resources :sections do
+    collection { post :import }
+  end
   get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

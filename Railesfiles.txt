@@ -113,10 +113,43 @@ stop server from everywhere: kill -INT $(cat tmp/pids/server.pid)
 
 To Do List:
 
+Sohail:
+flash notice fix krdo bhai (har page per 'flash notice' hona chaiye, ta ke late nazar na aye)
+addition of fields in student table: secndry phone number, marks/percntge, monthly income
+front-end of 'add instructor', 'add section', 'instructor_index'
+pdf download and upload optional
+
+
+Owais:
+
+Association of models
+Disable routing and model validations
+
+
+
+Solved: instructors wala masla hal
+
+Saqib:
+
+hiding views from users_path
+BDD and TDD
+Later for Saqib:
+Since, we are only using users_path for admin, any other link must not work like datburj.com/students or databurj.com/instructors
 If a user is logged in, he cannot see a login page (redirect to dashboard)
 'add new element' forms must have good look
-Association of models
-BDD and TDD
-pdf download and upload optional
-excel download (data from tables of students)
-addition of fields in student table: secndry phone number, marks/percntge, monthly income
+
+Solved: excel download (data from tables of students)
+
+
+
+
+
+
+
+
+Later To DO list:
+
+1. implement each and every validation on input form. 
+2. excel upload/download
+3. filters on enteries
+

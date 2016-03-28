@@ -9,7 +9,10 @@ class CreateStudents < ActiveRecord::Migration
       t.string "city"
       t.string "email"
       t.string "phone_number"
+      t.string "secondary_phone_number"
       t.string "mailing_address"
+      t.string "username"
+      t.string "password_digest"
       
       t.timestamps null: false
     end
