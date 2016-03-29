@@ -6,10 +6,6 @@ class InstructorsController < ApplicationController
   def index
     @instructors = Instructor.all
   end
-  def import
-    Instructor.import(params[:file])
-    # redirect_to students_path, notice: "Students imported."
-  end
   def export
       package = Axlsx::Package.new
       workbook = package.workbook
@@ -22,23 +18,18 @@ class InstructorsController < ApplicationController
       end
       send_data package.to_stream.read, :filename => "instructors.xlsx"
   end
-  # GET /instructors/1
-  # GET /instructors/1.json
   def show
       @instructor=Instructor.find(params[:id])
   end
   def new
     @instructor = Instructor.new
   end
-
-  # GET /instructors/1/edit
   def edit
-      @instructor=Instructor.find(params[:id])
-      
+    @instructor=Instructor.find(params[:id])
   end
   def update
-      @instructor=Instructor.find(params[:id])
-        respond_to do |format|
+    @instructor=Instructor.find(params[:id])
+    respond_to do |format|
       if @instructor.update(instructor_params)
         format.html { redirect_to @instructor, notice: 'Instructor was successfully updated.' }
         format.json { render :show, status: :ok, location: @instructor }
@@ -52,21 +43,15 @@ class InstructorsController < ApplicationController
       @instructor=Instructor.find(params[:id])
   end
   def destroy
-      @instructor=Instructor.find(params[:id])
-       @instructor.destroy
+    @instructor=Instructor.find(params[:id])
+    @instructor.destroy
     respond_to do |format|
       format.html { redirect_to instructors_url, notice: 'An Instructor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-    
-     
-
-  # POST /instructors
-  # POST /instructors.json
   def create
     @instructor = Instructor.new(instructor_params)
-   # @instructor.save
     respond_to do |format|
       if @instructor.save
         format.html { redirect_to instructors_path, notice: 'Instructor was successfully created.' }
