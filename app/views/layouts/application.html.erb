@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-
-
+              <% unless params[:action] == 'login' %>
+                      <% if flash[:notice] %>
+                      <div id = "notice_wrapper" >
+                      <p class = "notice pull-right"><%= flash[:notice] %></p>
+                      </div>
+                    <% end %>
+                <% end %>
 <html>
 <head>
   <title>Databurjproject</title>

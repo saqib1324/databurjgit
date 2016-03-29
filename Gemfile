@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0'
 # for excel download
 # gem 'roo', "2.3.2"
 # gem 'axlsx', '~> 2.0'
-gem 'roo', '~> 2.3.1'
+
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git'
 # gem "axlsx_rails"
 # Use Uglifier as compressor for JavaScript assets

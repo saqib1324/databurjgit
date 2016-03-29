@@ -29,7 +29,9 @@ class StudentsController < ApplicationController
     @student.id=student_params[:tracking_id]
     respond_to do |format|
       if @student.save
-        format.html { redirect_to students_path, notice: 'Student was successfully created.' }
+        flash[:notice] = 'Student was successfully created.'
+        format.html { redirect_to students_path}
+          
         format.json { render :show, status: :created, location: @student }
       else
      #   redirect_to new_student_path
@@ -70,7 +72,8 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
               @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.html { redirect_to students_url}
+      flash[:notice] = 'Student was successfully destroyed.'
       format.json { head :no_content }
     end
 

@@ -18,8 +18,8 @@
 
 #notice_wrapper{
     position: absolute;
-    top: 70px;
-    left: 850px;
+    top: 10px;
+    left: 250px;
     width: 100;
     z-index: 999;
     /*background: #1ab394 0.05;*/
@@ -29,9 +29,9 @@
 
 }
 .notice{
-    padding: 2rem 5rem;
+    padding: 1rem 3rem;
     text-align: center;
-    /*margin: 0;*/
+    /*margin: auto;*/
     font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
