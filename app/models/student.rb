@@ -31,7 +31,6 @@ class Student < ActiveRecord::Base
     end
     def self.open_spreadsheet(file)
        Roo::Excelx.new(file.path, packed: false, file_warning: :ignore)
-
     end     
     # def self.open_spreadsheet(file)
     #   case File.extname(file.original_filename)
