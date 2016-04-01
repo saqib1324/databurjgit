@@ -130,6 +130,8 @@ student form editings:
 4. username should be unique
 5. password should be visible
 6. Add matric marks and percentage fields
+7. change date of birth type to string
+8. Add section field 
 
 Owais:
 

@@ -47,9 +47,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-# production:
-#   <<: *default
-#   database: databurjproject_production
-#   username: databurjproject
-#   password: <%= ENV['DATABURJPROJECT_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: databurjproject_production
+  username: databurjproject
+  password: <%= ENV['DATABURJPROJECT_DATABASE_PASSWORD'] %>
 
