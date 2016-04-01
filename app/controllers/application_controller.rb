@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   require 'csv'
   protect_from_forgery with: :null_session
   
-  # before_action :require_login
+   before_action :require_login
   private
  
   def require_login

@@ -40,10 +40,11 @@ class UsersController < ApplicationController
   
   
   def student_index
-      @found3 = params[:found2]
+      # @found3 = params[:found2]
 
     if params[:std]=="student_profile"
       @link = "student_profile"
+      @student=Student.find(session[:id])
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
       
@@ -84,6 +85,7 @@ class UsersController < ApplicationController
             if authorized_user
               flash[:notice] = "Welcome! You are LoggedIn"
               session[:id] = authorized_user.id
+              $restrict = 'admin'
               redirect_to(:action => 'index')
               return
             end
@@ -94,6 +96,7 @@ class UsersController < ApplicationController
               if student_id
                 flash[:notice] = "Welcome! You are LoggedIn"
                 session[:id] = student_id
+                $restrict = 'student'
                 redirect_to(:action => 'student_index')
                 return
               end
@@ -104,6 +107,7 @@ class UsersController < ApplicationController
               if instructor_id
                 flash[:notice] = "Welcome! You are LoggedIn"
                 session[:id] = instructor_id
+                $restrict = 'instructor'
                 redirect_to(:action => 'instructor_index')
                 return
               end 

@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     
- # before_action :require_login
+ before_action :restrict_entry
   require "axlsx"
   def new
     @student = Student.new
@@ -81,6 +81,7 @@ class StudentsController < ApplicationController
     def set_student
       @student = Student.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params

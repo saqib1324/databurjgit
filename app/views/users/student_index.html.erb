@@ -96,8 +96,12 @@
 
 <% if @link == "student_profile" %>
 Add student's profile information here
-
-
+  <% if @student %>
+  in condition
+    <%= @student.name %>
+    <%= @student.DOB %>
+    <%= @student.city %>
+  <% end %>
 
 <% end %>
 
