@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   # layout false
   skip_before_action :require_login, :only => [:attempt_login, :login]
-
+  
+  # before_action :restrict_entry, :except => [:student_index, :instructor_index]
+  # before_action :restrict_entry2, :except => [:instructor_index]
+  
+  # before_action :for_student, :only => [:student_index, :attempt_login, :login, :logout ]
+  # before_action :for_instructor, :only => [:instructor_index, :attempt_login, :login, :logout ]
+ 
   def index
     if params[:admin]=="dashboard"
       @link="a"
@@ -32,6 +38,9 @@ class UsersController < ApplicationController
     elsif params[:admin] == "instructor_edit"
       @link = "instructor_edit"
       @instructor = Instructor.find(params[:id])
+    elsif params[:admin] == "section_edit"
+      @link = "section_edit"
+      @section = Section.find(params[:id])
 
     end
     
@@ -49,6 +58,9 @@ class UsersController < ApplicationController
       # @found3=Student.find(params[:found2])
       
     end
+  end
+  def instructor_index
+    
   end
 
   def login
@@ -123,5 +135,50 @@ class UsersController < ApplicationController
     session[:id] = nil
     redirect_to(:action => "login")
   end
+    def restrict_entry
+      if $restrict == 'admin'
+        return true
+      else
+        flash[:notice] = "You are not authorized to view this page"
+        if $restrict== 'student'
+          redirect_to :action => 'student_index'
+          return false
+        else
+          redirect_to :action => 'instructor_index'
+          return false
+        end
+      end 
+    end
+    
+    
+    def for_student
+      if $restrict == 'student'
+        return true
+      else
+        flash[:notice] = "You are not authorized to view this page"
+        # redirect_to :root
+        if $restrict== 'instructor'
+            redirect_to :action => 'instructor_index'
+            return false
+        else
+            redirect_to :action => 'index'
+            return false
+        end
+      end
+    end
 
+    def for_instructor
+      if $restrict == 'instructor'
+        return true
+      else
+        flash[:notice] = "You are not authorized to view this page"
+        if $restrict== 'student'
+          redirect_to :action => 'student_index'
+          return false
+        else
+          redirect_to :action => 'index'
+          return false
+        end
+      end
+    end
 end

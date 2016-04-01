@@ -8,8 +8,8 @@ class Section < ActiveRecord::Base
        end
     end
     
-    validates :section_id, presence: true, length: { minimum: 1 }, numericality: { only_integer: true}
-    validates :instructor_id, presence: true, length: { minimum: 1 }, numericality: { only_integer: true}
+    validates :section_id, presence: true, length: { minimum: 1 }
+    validates :instructor_id, presence: true, length: { minimum: 1 }
     validates :section_name, presence: true
 
 end

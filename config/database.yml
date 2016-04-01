@@ -51,7 +51,7 @@ production:
   <<: *defaults
   adapter: postgresql
   database: databurjproject_production
-  username: root
-  password: bharwa007
+  username: 17100189@lums.edu.pk
+  password: windows787!
   # password: <%= ENV['DATABURJPROJECT_DATABASE_PASSWORD'] %>
 

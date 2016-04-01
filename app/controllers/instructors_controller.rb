@@ -2,6 +2,8 @@ class InstructorsController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # GET /instructors.json
+  # before_action :restrict_entry
+  
   require "axlsx"
   def index
     @instructors = Instructor.all
@@ -31,7 +33,7 @@ class InstructorsController < ApplicationController
     @instructor=Instructor.find(params[:id])
     respond_to do |format|
       if @instructor.update(instructor_params)
-        format.html { redirect_to @instructor, notice: 'Instructor was successfully updated.' }
+        format.html { redirect_to users_path(admin: "instructors_view"), notice: 'Instructor was successfully updated.' }
         format.json { render :show, status: :ok, location: @instructor }
       else
         format.html { render :edit }
@@ -73,8 +75,16 @@ class InstructorsController < ApplicationController
     def instructor_params
       params.require(:instructor).permit(:instructor_id, :instructor_name, :email, :subject_name, :username, :password )
     end
- 
- 
- 
+    
+    def restrict_entry
+      if $restrict == 'instructor' || $restrict == 'admin'
+        return true
+      else
+        flash[:notice] = "You are not authorized to view this page"
+        redirect_to :controller => 'users', :action => 'instructor_index'
+        return false
+      end 
+    end
+    
 end
 

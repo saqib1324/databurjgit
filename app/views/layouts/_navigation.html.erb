@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
     <head>
-
-<!--<script src="dist/sweetalert.min.js"></script> -->
-<!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">-->
-<!--   <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />-->
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>-->
-
-  </head>
+    </head>
   <body>
     <div class="container-fluid display-table">
       <div class="row display-table-row">
@@ -91,7 +85,7 @@
                 </li>
                 <li>
                   <!--<a href="new-article.html">Add Sections</a>-->
-                  <%= link_to 'Add Sections', users_path(:admin => "sections_add") %>
+                  <%= link_to 'Add Sections', users_path(:admin => "section_add") %>
                 </li>
                 
                 
@@ -166,349 +160,297 @@
 
 
 <% if @link == "student_add" %>
-
-
-
-
-
-      <div id="content">
-            <header>
-              <h3 class="page_title">Add new student</h3>
-            </header>
-            <div class="content-inner">
-              <div class="form-wrapper">
-
-                  <%= bootstrap_form_for Student.new do |f| %>
-                    <%= f.errors_on :name %>
-                    <%= f.text_field :name, label: "Name", :required => true%>
-                    <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
-                    <%= f.text_field :father_name, label: 'Father Name', :required => true %>
-                    <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
-                    <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
-                    <%= f.text_field :city, label: 'City' %>
-                    <%= f.email_field :email, label: 'Email Address' %>
-                    <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
-                    <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
-                    <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
-                    <%= f.text_field :username, label: 'Username', :required => true  %>
-                    <%= f.text_field :password, label: 'Password', :required => true  %>
-
-                  
-
-
-                  <div class="clearfix btn btn-primary" type = "submit">
-                    <!--<button type="submit" class="btn btn-primary pull-right">Save / Publish</button>-->
-                    <%= f.submit  %>
-                    <% end %>
-                  </div>
-                  
-                </form>
-              </div>
-            </div>
-          </div>  
-
-
+  <div id="content">
+    <header>
+      <h3 class="page_title">Add new student</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+        <%= bootstrap_form_for Student.new do |f| %>
+          <%= f.errors_on :name %>
+          <%= f.text_field :name, label: "Name", :required => true%>
+          <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
+          <%= f.text_field :father_name, label: 'Father Name', :required => true %>
+          <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
+          <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
+          <%= f.text_field :city, label: 'City' %>
+          <%= f.email_field :email, label: 'Email Address' %>
+          <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
+          <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
+          <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
+          <%= f.text_field :username, label: 'Username', :required => true  %>
+          <%= f.text_field :password, label: 'Password', :required => true  %>
+          <div class="clearfix btn btn-primary" type = "submit">
+            <%= f.submit  %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <% end %>
-
 
 <% if @link == "instructor_add" %>
-<h4>this inst add</h4>
-
-
-
-
-      <div id="content">
-            <header>
-              <h3 class="page_title">Add New Instructor</h3>
-            </header>
-            <div class="content-inner">
-              <div class="form-wrapper">
-
-                  <%= bootstrap_form_for Student.new do |f| %>
-                    <%= f.errors_on :name %>
-                    <%= f.text_field :name, label: "Name", :required => true%>
-                    <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
-                    <%= f.text_field :father_name, label: 'Father Name', :required => true %>
-                    <%= f.date_field :DOB, label: 'Date of Birth', :required => true %>
-                    <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
-                    <%= f.text_field :city, label: 'City' %>
-                    <%= f.email_field :email, label: 'Email Address' %>
-                    <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
-                    <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
-                    <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
-                    <%= f.text_field :username, label: 'Username', :required => true  %>
-                    <%= f.text_field :password, label: 'Password', :required => true  %>
-
-                  <div class = "btn btn-primary">
-                    <%= f.submit %>
-                    <% end %>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>  
-
+  <div id="content">
+    <header>
+      <h3 class="page_title">Add new instructor</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+        <%= bootstrap_form_for Instructor.new do |f| %>
+          <%= f.errors_on :instructor_name %>
+          <%= f.text_field :instructor_name, label: "Name", :required => true%>
+          <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
+          <%= f.email_field :email, label: 'Email Address' %>
+          <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
+          <%= f.text_field :subject_name, label: 'Subject Name'  %>
+          <%= f.text_field :username, label: 'Username', :required => true  %>
+          <%= f.text_field :password, label: 'Password', :required => true  %>
+          <div class="clearfix btn btn-primary" type = "submit">
+            <%= f.submit  %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-
 
 <% if @link == "section_add" %>
-<h4>this sectionn add</h4>
+  <div id="content">
+    <header>
+      <h3 class="page_title">Add new Section</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+        <%= bootstrap_form_for Section.new do |f| %>
+          <%= f.errors_on :section_name %>
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
+          <%= f.text_field :section_id, label: 'Section ID', :required => true %>
+          <div class="clearfix btn btn-primary" type = "submit">
+            <%= f.submit %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <% end %>
-
 
 <% if @link == "students_view" %>
-
-          <div id="dashboard-con">
-            <div>
-              <div class="dashboard-left-cell">
-                <div class="admin-content-con">
-                  <header class="clearfix">
-                    <strong><h5 class="pull-left page_title">All Students</h5></strong>
-                   
-
-
-                    <div class = "divider pull-right">
-                          <%= form_tag :controller => :students, :action => :export do %>
-                            <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
-                          <% end %> 
-                      
-                    </div>
-
-                    <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-                  </header>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Tracking ID</th>
-                        <th>DOB</th>
-                        <th>Sex</th>
-                        <th>City</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <!--<tr>-->
-      <% @students.each do |student| %>
-        <tr>
-          <td><%= student.name %></td>
-          <td><%= student.tracking_id %></td>
-          <td><%= student.DOB %></td>
-          <td><%= student.SEX%></td>
-          <td><%= student.city%></td>
-          <td><%= student.phone_number%></td>
-       
-                        <!--<td>My first post of many to come...</td>-->
-                        <!--<td>20</td>-->
-                        <!--<td>2 days ago</td>-->
-          <td>
-            <%= link_to 'Edit', users_path( :id => student.id ,  :admin => "student_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
-<%= link_to 'View', student, :class => 'btn btn-xs btn-primary', :role => "button" %>
-<%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {
-  confirm: 'Are you sure you want to delete this?'} %>
-
-          </td>
-        </tr>
-      <% end %> 
-      
-
-                
-                      
-                    </tbody>
-                  </table>
-      <!--<%= form_tag import_students_path, multipart: true do %>-->
-      <!--  <%= file_field_tag :file %>-->
-      <!--  <%= submit_tag "Import" %>-->
-      <!--<% end %>-->
-                </div>
-              </div>
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <strong><h5 class="pull-left page_title">All Students</h5></strong>
+            <div class = "divider pull-right">
+              <%= form_tag :controller => :students, :action => :export do %>
+                <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
+              <% end %> 
             </div>
-            
-
-
-
+            <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Tracking ID</th>
+                <th>DOB</th>
+                <th>Sex</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @students.each do |student| %>
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= student.tracking_id %></td>
+                  <td><%= student.DOB %></td>
+                  <td><%= student.SEX%></td>
+                  <td><%= student.city%></td>
+                  <td><%= student.phone_number%></td>
+                  <td>
+                    <%= link_to 'Edit', users_path(:id => student.id,:admin => "student_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'View', student, :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+                  </td>
+                </tr>
+              <% end %> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-
 
 <% if @link == "instructors_view" %>
-
-          <div id="dashboard-con">
-            <div>
-              <div class="dashboard-left-cell">
-                <div class="admin-content-con">
-                  <header class="clearfix">
-                    <h5 class="pull-left page_title">All Instructors</h5>
-                    <div class = "divider pull-right">
-                      <%= form_tag :controller => :instructors, :action => :export do %>
-                        <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
-                      <% end %> 
-                  
-                      </div>
-                                     <%= link_to "Add new Instructor", users_path(:admin => "instructor_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-                                  </header>
-                                  <table class="table table-striped">
-                                    <thead>
-                                      <tr>
-                                        <th>Instructor ID</th>
-                                        <th>Instructor Name</th>
-                                        <th>Email</th>
-                                        <th>Subject Name</th>
-                
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                
-                                      <!--<tr>-->
-                      <% @instructors.each do |instructor| %>
-                        <tr>
-                          <td><%= instructor.instructor_id %></td>
-                          <td><%= instructor.instructor_name %></td>
-                          <td><%= instructor.email %> </td>
-                          <td><%= instructor.subject_name %> </td>
-                                        <!--<td>My first post of many to come...</td>-->
-                                        <!--<td>20</td>-->
-                                        <!--<td>2 days ago</td>-->
-                          <td>
-                            <%= link_to 'Edit', users_path( :id => instructor.id ,  :admin => "instructor_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
-                            <%= link_to 'View', instructor, :class => 'btn btn-xs btn-primary', :role => "button" %>
-                            <%= link_to 'Delete', instructor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
-                            
-                            <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
-                            <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
-                            <!--<a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
-                          </td>
-                        </tr>
-                      <% end %>                      
-                                
-                                    </tbody>
-                                  </table>
-                      <!--<%= form_tag import_instructors_path, multipart: true do %>-->
-                      <!--  <%= file_field_tag :file %>-->
-                      <!--  <%= submit_tag "Import" %>-->
-                      <!--<% end %>-->
-                </div>
-              </div>
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left page_title">All Instructors</h5>
+            <div class = "divider pull-right">
+              <%= form_tag :controller => :instructors, :action => :export do %>
+                <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
+              <% end %>
             </div>
+            <%= link_to "Add new Instructor", users_path(:admin => "instructor_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Instructor ID</th>
+                <th>Instructor Name</th>
+                <th>Email</th>
+                <th>Subject Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @instructors.each do |instructor| %>
+                <tr>
+                  <td><%= instructor.instructor_id %></td>
+                  <td><%= instructor.instructor_name %></td>
+                  <td><%= instructor.email %> </td>
+                  <td><%= instructor.subject_name %> </td>
+                  <td>
+                    <%= link_to 'Edit', users_path( :id => instructor.id ,  :admin => "instructor_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'View', instructor, :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', instructor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
+                  </td>
+                </tr>
+              <% end %>                      
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <% if @link == "sections_view" %>
-
-          <div id="dashboard-con">
-            <div>
-              <div class="dashboard-left-cell">
-                <div class="admin-content-con">
-                  <header class="clearfix">
-                    <h5 class="pull-left">All Sections</h5>
-                     <%= link_to "Add new Section", new_section_path, :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-                  </header>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Section ID</th>
-                        <th>Section Name</th>
-                        <th>Instructor ID</th>
-                        <th>Actions</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <!--<tr>-->
-      <% @sections.each do |section| %>
-        <tr>
-          <td><%= section.section_id %></td>
-          <td><%= section.section_name %></td>
-          <td><%= section.instructor_id %> </td>
-                        <!--<td>My first post of many to come...</td>-->
-                        <!--<td>20</td>-->
-                        <!--<td>2 days ago</td>-->
-          <td>
-            <%= link_to 'Edit', edit_section_path(section), :class => 'btn btn-xs btn-warning', :role => "button" %>
-            <%= link_to 'View', section, :class => 'btn btn-xs btn-primary', :role => "button" %>
-            <%= link_to 'Delete', section, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
-            
-            <!--<a class="btn btn-xs btn-warning" href="#" role="button">edit</a>-->
-            <!--<a class="btn btn-xs btn-primary" href="#" role="button">view</a>-->
-            <!--<a class="btn btn-xs btn-danger" href="#" role="button">del</a>-->
-          </td>
-        </tr>
-      <% end %>                      
-      <%= form_tag :controller => :sections, :action => :export do %>
-        <%= submit_tag "Download in Excel", class: "btn btn-success", id: "export" %>
-      <% end %>                
-                    </tbody>
-                  </table>
-      <%= form_tag import_sections_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import" %>
-      <% end %>
-                </div>
-              </div>
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left">All Sections</h5>
+            <div class = "divider pull-right">
+              <%= form_tag :controller => :instructors, :action => :export do %>
+                <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
+              <% end %>
             </div>
+            <%= link_to "Add new Section", users_path(:admin => "section_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Section ID</th>
+                <th>Section Name</th>
+                <th>Instructor ID</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @sections.each do |section| %>
+                <tr>
+                  <td><%= section.section_id %></td>
+                  <td><%= section.section_name %></td>
+                  <td><%= section.instructor_id %> </td>
+                  <td>
+                    <%= link_to 'Edit', users_path(:id => section , :admin => "section_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'View', section, :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', section, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
+                  </td>
+                </tr>
+              <% end %>                
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
-<!--#################-->
-<% if @link == "sections_update" %>
 
-
-
-
-
+<% if @link == "section_edit" %>
+  <div id="content">
+    <header>
+      <h3 class="page_title">Update a Section</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+        <%= bootstrap_form_for @section do |f| %>
+          <%= f.errors_on :section_name %>
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
+          <%= f.text_field :section_id, label: 'Section ID', :required => true %>
+          <div class="clearfix btn btn-primary" type = "submit">
+            <%= f.submit  %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-
 
 <% if @link == "student_edit" %>
-
-
-
-
-      <div id="content">
-            <header>
-              <h3 class="page_title">Edit student</h3>
-            </header>
-            <div class="content-inner">
-              <div class="form-wrapper">
-
-                  <%= bootstrap_form_for @student do |f| %>
-                    <%= f.errors_on :name %>
-                    <%= f.text_field :name, label: "Name", :required => true%>
-                    <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
-                    <%= f.text_field :father_name, label: 'Father Name', :required => true %>
-                    <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
-                    <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
-                    <%= f.text_field :city, label: 'City' %>
-                    <%= f.email_field :email, label: 'Email Address' %>
-                    <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
-                    <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
-                    <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
-                    <%= f.text_field :username, label: 'Username', :required => true  %>
-                    
-
-                  
-
-
-                  <div class="clearfix btn btn-primary" type = "submit">
-                    <!--<button type="submit" class="btn btn-primary pull-right">Save / Publish</button>-->
-                    <%= f.submit  %>
-                    <% end %>
-                  </div>
-                  
-                </form>
-              </div>
+  <div id="content">
+    <header>
+      <h3 class="page_title">Edit student</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+          <%= bootstrap_form_for @student do |f| %>
+            <%= f.errors_on :name %>
+            <%= f.text_field :name, label: "Name", :required => true%>
+            <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
+            <%= f.text_field :father_name, label: 'Father Name', :required => true %>
+            <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
+            <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
+            <%= f.text_field :city, label: 'City' %>
+            <%= f.email_field :email, label: 'Email Address' %>
+            <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
+            <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
+            <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
+            <%= f.text_field :username, label: 'Username', :required => true  %>
+            <div class="clearfix btn btn-primary" type = "submit">
+              <%= f.submit  %>
+              <% end %>
             </div>
-          </div>  
-
-
+        </form>
+      </div>
+    </div>
+  </div>  
 <% end %>
 
 <% if @link == "instructor_edit" %>
-
-Just copy and paste "instructor_add" to "instructor_edit" (When Uzair is done with instructor_add)
-
-
+  <div id="content">
+    <header>
+      <h3 class="page_title">Edit an instructor</h3>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+        <%= bootstrap_form_for @instructor do |f| %>
+          <%= f.errors_on :instructor_name %>
+          <%= f.text_field :instructor_name, label: "Name", :required => true%>
+          <%= f.text_field :instructor_id, label: 'Instructor ID' %>
+          <%= f.email_field :email, label: 'Email Address' %>
+          <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
+          <%= f.text_field :subject_name, label: 'Subject Name'  %>
+          <%= f.text_field :username, label: 'Username', :required => true  %>
+          <div class="clearfix btn btn-primary" type = "submit">
+            <%= f.submit  %>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 
@@ -525,11 +467,7 @@ Just copy and paste "instructor_add" to "instructor_edit" (When Uzair is done wi
       </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!--<script src="../vendor/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>-->
-    <!--<script src="js/default.js"></script>-->
+
   </body>
 </html>
 

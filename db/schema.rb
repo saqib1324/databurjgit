@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160315220547) do
     t.string   "instructor_id",   limit: 255
     t.string   "instructor_name", limit: 255
     t.string   "email",           limit: 255
+    t.string   "phone_number",    limit: 255
     t.string   "subject_name",    limit: 255
     t.string   "username",        limit: 255
     t.string   "password_digest", limit: 255

@@ -4,10 +4,10 @@ class CreateInstructors < ActiveRecord::Migration
       t.string :instructor_id
       t.string :instructor_name
       t.string :email
+      t.string :phone_number
       t.string :subject_name
       t.string :username
       t.string :password_digest
-
       t.timestamps null: false
     end
   end

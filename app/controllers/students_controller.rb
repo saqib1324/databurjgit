@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     
- before_action :restrict_entry
+# before_action :restrict_entry
   require "axlsx"
   def new
     @student = Student.new
@@ -89,11 +89,11 @@ class StudentsController < ApplicationController
     end
   
     def restrict_entry
-      if $restrict == 'student'
+      if $restrict == 'student' || $restrict == 'admin'
         return true
       else
         flash[:notice] = "You are not authorized to view this page"
-        redirect_to :controller => 'users', :action => 'student_index'
+        redirect_to :controller => 'users', :action => 'student_index' 
         return false
       end 
     end
