@@ -114,34 +114,47 @@ stop server from everywhere: kill -INT $(cat tmp/pids/server.pid)
 To Do List:
 
 Sohail:
-flash notice fix krdo bhai (har page per 'flash notice' hona chaiye, ta ke late nazar na aye)
+if we need to add columns in database model, so do it now, and finalize it first
+in 'add student' Name field should have length at least 3
+phone number length must be 15 in bootstrap_form (because it is written in model validation)
+
+
+Solved: flash notice fix krdo bhai (har page per 'flash notice' hona chaiye, ta ke late nazar na aye)
 addition of fields in student table: secndry phone number, marks/percntge, monthly income
 front-end of 'add instructor', 'add section', 'instructor_index'
 pdf download and upload optional
-
+student form editings:
+1. tracking id uniquness validation removal
+2. gender hona chahiye condition
+3. phone number should be string
+4. username should be unique
+5. password should be visible
+6. Add matric marks and percentage fields
 
 Owais:
 
 Association of models
-Disable routing and model validations
+Fix routing of links like (show, edit)and enable all model validations (which should also be implemented in form)
 
 
 
 Solved: instructors wala masla hal
 
 Saqib:
-
-hiding views from users_path
+the password field is not downloaded while downloading excel of instructors 
+excel link in sections is not working
+has_secure_password is written in seciton.rb also 
+Uncomment timeout and login check on all pages  which you commented while writing test code
+admin can only visit databurj.com/users, student can only visit databurj.com/users/student_index and instructor can only visit databurj.com/users/instructor_index
 BDD and TDD
+
+
 Later for Saqib:
-Since, we are only using users_path for admin, any other link must not work like datburj.com/students or databurj.com/instructors
 If a user is logged in, he cannot see a login page (redirect to dashboard)
 'add new element' forms must have good look
 
+Solved: Student login, instructor login
 Solved: excel download (data from tables of students)
-
-
-
 
 
 
@@ -153,3 +166,7 @@ Later To DO list:
 2. excel upload/download
 3. filters on enteries
 
+
+List before completing:
+4. Our app will also work when following commands are  commented in routes.rb
+resources 

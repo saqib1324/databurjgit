@@ -4,6 +4,7 @@ class StudentsController < ApplicationController
   require "axlsx"
   def new
     @student = Student.new
+    # redirect_to users_path(:admin => "students_view")
   end
   def index
    @students=Student.all
@@ -26,7 +27,8 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         flash[:notice] = 'Student was successfully created.'
-        format.html { redirect_to students_path}
+        # <%= link_to 'View Students', users_path(:admin => "students_view") %>
+        format.html { redirect_to users_path(:admin => "students_view")}
         format.json { render :show, status: :created, location: @student }
       else
      #   redirect_to new_student_path
@@ -54,7 +56,7 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
       respond_to do |format|
         if @student.update(student_params)
-          format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+          format.html { redirect_to users_path(:admin => "students_view"), notice: 'Student was successfully updated.' }
           format.json { render :show, status: :ok, location: @student }
         else
           format.html { render :edit }
@@ -66,10 +68,13 @@ class StudentsController < ApplicationController
     @student=Student.find(params[:id])
               @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url}
+      # format.html { redirect_to students_url}
+      format.html { redirect_to url_for(:controller => :users, :action => :index, :admin => "students_view") }
+      
       flash[:notice] = 'Student was successfully destroyed.'
       format.json { head :no_content }
     end
+
   end
   private
     # Use callbacks to share common setup or constraints between actions.

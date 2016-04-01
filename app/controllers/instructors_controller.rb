@@ -46,7 +46,7 @@ class InstructorsController < ApplicationController
     @instructor=Instructor.find(params[:id])
     @instructor.destroy
     respond_to do |format|
-      format.html { redirect_to instructors_url, notice: 'An Instructor was successfully destroyed.' }
+      format.html { redirect_to url_for(:controller => :users, :action => :index, :admin => "instructors_view"), notice: 'An Instructor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

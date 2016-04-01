@@ -9,21 +9,30 @@ class UsersController < ApplicationController
     if params[:admin]=="students_view"
       @link= "students_view"
       @students= Student.all
+      
     elsif params[:admin]=="sections_view"
       @sections=Section.all
       @link = "sections_view"
     elsif params[:admin]=="instructors_view"
-    # params[:admin]="s"
       @instructors=Instructor.all
       @link = "instructors_view"
       
       
-    elsif params[:admin] == "students_add"
-      @link = "students_add"
-    elsif params[:admin] == "instructors_add"
-      @link = "instructors_add"
-    elsif params[:admin]=="sections_add"
-       @link = "sections_add"
+    elsif params[:admin] == "student_add"
+      @link = "student_add"
+    elsif params[:admin] == "instructor_add"
+      @link = "instructor_add"
+    elsif params[:admin]=="section_add"
+       @link = "section_add"
+ 
+ 
+    elsif params[:admin] == "student_edit"
+      @link = "student_edit"
+      @student= Student.find(params[:id])
+    elsif params[:admin] == "instructor_edit"
+      @link = "instructor_edit"
+      @instructor = Instructor.find(params[:id])
+
     end
     
   
