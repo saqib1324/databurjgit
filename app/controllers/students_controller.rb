@@ -88,7 +88,13 @@ class StudentsController < ApplicationController
       params.require(:student).permit( :name, :tracking_id, :father_name, :DOB, :SEX, :city, :email, :phone_number, :secondary_phone_number, :mailing_address, :username, :password)
     end
   
-  
-  
-    
+    def restrict_entry
+      if $restrict == 'student'
+        return true
+      else
+        flash[:notice] = "You are not authorized to view this page"
+        redirect_to :controller => 'users', :action => 'student_index'
+        return false
+      end 
+    end
 end
