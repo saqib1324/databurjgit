@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @students= Student.order(params[:sort])
       
     elsif params[:admin]=="sections_view"
-      @sections=Section.order(params[:sort])
+      @sections=Section.order(params[:sort] , " " , params[:direction])
       @link = "sections_view"
     elsif params[:admin]=="instructors_view"
       @instructors=Instructor.order(params[:sort])

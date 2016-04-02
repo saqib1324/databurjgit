@@ -208,7 +208,7 @@
                 <th><%= link_to "Tracking ID",:sort => "tracking_id", :admin => "students_view"  %></th>
                 <th><%= link_to "Father Name", :sort => "father_name", :admin => "students_view"  %></th>
                 <th><%= link_to "DOB", :sort => "DOB", :admin => "students_view"  %></th>
-                <th><%= link_to "Sex", :sort => "SEX", :admin => "students_view"  %></th>
+                <th><%= link_to "SEX", :sort => "SEX", :admin => "students_view"  %></th>
                 <th><%= link_to "City", :sort => "city", :admin => "students_view"  %></th>
                 <th><%= link_to "Phone", :sort => "phone_number", :admin => "students_view" %></th>
                 <th>Actions</th>
@@ -268,7 +268,27 @@
   </div>  
 <% end %>
 <% if @link == "student_view" %>
-this is student's detailed viewport
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <strong><h3 class="pull-left page_title"><%= @student.name %>'s details</h3></strong>
+            <div class = "divider pull-right">
+            <%= link_to "All Students", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+          </header>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
+
+      </div>
+    </div>
+  </div>
 <% end %>
 <!--################################ INSTRUCTORS #############################################-->
 <% if @link == "instructor_add" %>
@@ -407,9 +427,13 @@ this is student's detailed viewport
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><%= link_to "Section ID",:sort => "section_id",:admin => "sections_view"%></th>
-                <th><%= link_to "Section Name",:sort => "section_name",:admin => "sections_view"%></th>
-                <th><%= link_to "Instructor ID",:sort => "instructor_id",:admin => "sections_view"%></th>
+                <th><%= sortable "section_id", "Section ID","sections_view" %></th>
+                <th><%= sortable "section_name","Section Name","sections_view" %></th>
+                <th><%= sortable "instructor_id","Instructor ID","sections_view" %></th>
+                <!--<th>Actions</th>-->
+                <!--<th><%= link_to "Section ID",:sort => "section_id",:admin => "sections_view"%></th>-->
+                <!--<th><%= link_to "Section Name",:sort => "section_name",:admin => "sections_view"%></th>-->
+                <!--<th><%= link_to "Instructor ID",:sort => "instructor_id",:admin => "sections_view"%></th>-->
                 <th>Actions</th>
               </tr>
             </thead>
