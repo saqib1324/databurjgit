@@ -14,13 +14,13 @@ class UsersController < ApplicationController
     end
     if params[:admin]=="students_view"
       @link= "students_view"
-      @students= Student.all
+      @students= Student.order(params[:sort])
       
     elsif params[:admin]=="sections_view"
-      @sections=Section.all
+      @sections=Section.order(params[:sort])
       @link = "sections_view"
     elsif params[:admin]=="instructors_view"
-      @instructors=Instructor.all
+      @instructors=Instructor.order(params[:sort])
       @link = "instructors_view"
       
       
@@ -41,7 +41,9 @@ class UsersController < ApplicationController
     elsif params[:admin] == "section_edit"
       @link = "section_edit"
       @section = Section.find(params[:id])
-
+    elsif params[:admin] == "student_view"
+      @link = "student_view"
+      @student=Student.find(params[:id])
     end
     
   

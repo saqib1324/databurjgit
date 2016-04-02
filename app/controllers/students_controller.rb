@@ -7,7 +7,13 @@ class StudentsController < ApplicationController
     # redirect_to users_path(:admin => "students_view")
   end
   def index
-   @students=Student.all
+    if params[:sort]
+      @students=Student.order(params[:sort])
+      redirect_to users_path(:admin => "students_view")
+    else
+      @students = Student.all
+      redirect_to users_path(:admin => "students_view")
+    end
   end
   def export
     package = Axlsx::Package.new
