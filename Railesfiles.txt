@@ -128,11 +128,9 @@ student form editings:
 2. gender hona chahiye condition
 3. phone number should be string
 4. username should be unique
-5. password should be visible
 6. Add matric marks and percentage fields
-7. change date of birth type to string
-8. Add section field 
-
+8. Add section field
+9. name should be atleast 3 chars
 Owais:
 
 Association of models
@@ -149,7 +147,7 @@ has_secure_password is written in seciton.rb also
 Uncomment timeout and login check on all pages  which you commented while writing test code
 admin can only visit databurj.com/users, student can only visit databurj.com/users/student_index and instructor can only visit databurj.com/users/instructor_index
 BDD and TDD
-
+add instructor routing and make front end
 
 Later for Saqib:
 If a user is logged in, he cannot see a login page (redirect to dashboard)

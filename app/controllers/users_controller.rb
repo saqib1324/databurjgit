@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # layout false
+  
   skip_before_action :require_login, :only => [:attempt_login, :login]
   
   # before_action :restrict_entry, :except => [:student_index, :instructor_index]
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       @students= Student.order(params[:sort])
       
     elsif params[:admin]=="sections_view"
-      @sections=Section.order(params[:sort] , " " , params[:direction])
+      @sections=Section.order(params[:sort])
       @link = "sections_view"
     elsif params[:admin]=="instructors_view"
       @instructors=Instructor.order(params[:sort])
@@ -62,7 +63,13 @@ class UsersController < ApplicationController
     end
   end
   def instructor_index
-    
+    if params[:ins]=="instructor_profile"
+      @link = "instructor_profile"
+      @instructor=Instructor.find(session[:id])
+      # @found3 = params[:found2]
+      # @found3=Student.find(params[:found2])
+      
+    end
   end
 
   def login

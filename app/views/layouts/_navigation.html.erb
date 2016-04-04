@@ -14,10 +14,6 @@
         <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
           <h1><span>Data<span><b>Burj</b></span></span></h1>
           <ul>
-            <!--<li class="link settings-btn" aria-hidden = "true">-->
-              
-                <!--<span class="glyphicon glyphicon-th" aria-hidden="true">-->
-                <!--<span class="hidden-sm hidden-xs">Dashboard</span>-->
             <!--    <%= link_to "Dashboards", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>-->
               
             <!--</li>-->
@@ -158,18 +154,20 @@
 <!--################################## STUDENTS #############################################-->
 
 <% if @link == "student_add" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
-      <h3 class="page_title">Add new student</h3>
+      <strong><class="page_title">Add new student</strong>
+      <%= link_to "Return Without Saving", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
     </header>
     <div class="content-inner">
       <div class="form-wrapper">
         <%= bootstrap_form_for Student.new do |f| %>
           <%= f.errors_on :name %>
           <%= f.text_field :name, label: "Name", :required => true%>
-          <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
+          <%= f.text_field :tracking_id, label: 'NOP Tracking ID', :required => true %>
           <%= f.text_field :father_name, label: 'Father Name', :required => true %>
-          <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
+          <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
           <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
           <%= f.text_field :city, label: 'City' %>
           <%= f.email_field :email, label: 'Email Address' %>
@@ -178,7 +176,7 @@
           <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
           <%= f.text_field :username, label: 'Username', :required => true  %>
           <%= f.text_field :password, label: 'Password', :required => true  %>
-          <div class="clearfix btn btn-primary" type = "submit">
+          <div class="clearfix" type = "submit">
             <%= f.submit  %>
             <% end %>
           </div>
@@ -188,29 +186,34 @@
   </div>
 <% end %>
 <% if @link == "students_view" %>
-  <div id="dashboard-con">
-    <div>
-      <div class="dashboard-left-cell">
-        <div class="admin-content-con">
-          <header class="clearfix">
+ <div class = "animated fadeIn">
+    <div id="dashboard-con">
+      <div>
+        <div class="dashboard-left-cell">
+          <div class="admin-content-con">
+            <header class="clearfix">
             <strong><h5 class="pull-left page_title">All Students</h5></strong>
-            <div class = "divider pull-right">
-              <%= form_tag :controller => :students, :action => :export do %>
+              <div class = "divider pull-right">
+                <%= form_tag :controller => :students, :action => :export do %>
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
-              <% end %> 
-            </div>
-            <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-          </header>
-          <table class="table table-striped">
+                <% end %> 
+              </div>
+              <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+            </header>
+            <table class="table table-striped">
             <thead>
               <tr>
-                <th><%= link_to "Name", :sort => "name", :admin => "students_view" %></th>
-                <th><%= link_to "Tracking ID",:sort => "tracking_id", :admin => "students_view"  %></th>
-                <th><%= link_to "Father Name", :sort => "father_name", :admin => "students_view"  %></th>
-                <th><%= link_to "DOB", :sort => "DOB", :admin => "students_view"  %></th>
-                <th><%= link_to "SEX", :sort => "SEX", :admin => "students_view"  %></th>
-                <th><%= link_to "City", :sort => "city", :admin => "students_view"  %></th>
-                <th><%= link_to "Phone", :sort => "phone_number", :admin => "students_view" %></th>
+                
+                <th><%=  link_to :sort => "name", :admin => "students_view" do %>
+                <strong><font size="4"> Names </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                <th><%=  link_to :sort => "tracking_id", :admin => "students_view" do %>
+                <strong><font size="4"> Tracking ID </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+
+                <th>Father Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>City</th>
+                <th>Phone Number</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -237,11 +240,15 @@
       </div>
     </div>
   </div>
+  </div>
+
 <% end %>
 <% if @link == "student_edit" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
-      <h3 class="page_title">Edit student</h3>
+      <strong><class="page_title">Edit <%= @student.name %>'s Information</strong>
+      <%= link_to "Return Without Saving", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
     </header>
     <div class="content-inner">
       <div class="form-wrapper">
@@ -250,7 +257,7 @@
             <%= f.text_field :name, label: "Name", :required => true%>
             <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
             <%= f.text_field :father_name, label: 'Father Name', :required => true %>
-            <%= f.date_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in mm-dd-yyyy pattern" %>
+            <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
             <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
             <%= f.text_field :city, label: 'City' %>
             <%= f.email_field :email, label: 'Email Address' %>
@@ -265,33 +272,40 @@
         </form>
       </div>
     </div>
-  </div>  
+  </div> 
 <% end %>
 <% if @link == "student_view" %>
-  <div id="dashboard-con">
-    <div>
-      <div class="dashboard-left-cell">
-        <div class="admin-content-con">
-          <header class="clearfix">
-            <strong><h3 class="pull-left page_title"><%= @student.name %>'s details</h3></strong>
-            <div class = "divider pull-right">
-            <%= link_to "All Students", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-          </header>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %>
-
+  <div class = "animated fadeIn">
+    <div id="dashboard-con">
+      <div>
+        <div class="dashboard-left-cell">
+          <div class="admin-content-con">
+            <header class="clearfix">
+              <strong><h3 class="pull-left page_title"><%= @student.name %>'s details</h3></strong>
+              <div class = "divider pull-right">
+               <%= link_to "All Students", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+            </header>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %><hr/>
+              <strong>Tracking ID:</strong>&nbsp;&nbsp;&nbsp;<%= @student.tracking_id %><hr/>
+              <strong>Father's Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.father_name %><hr/>
+              <strong>Date of Birth:</strong>&nbsp;&nbsp;&nbsp;<%= @student.DOB %><hr/>
+              <strong>Gender:</strong>&nbsp;&nbsp;&nbsp;<%= @student.SEX %><hr/>
+              <strong>City:</strong>&nbsp;&nbsp;&nbsp;<%= @student.city %><hr/>
+              <strong>Email Address:</strong>&nbsp;&nbsp;&nbsp;<%= @student.email %><hr/>
+              <strong>Phone number:</strong>&nbsp;&nbsp;&nbsp;<%= @student.phone_number %><hr/>
+              <strong>Secondary Phone number:</strong>&nbsp;&nbsp;&nbsp;<%= @student.secondary_phone_number %><hr/>
+              <strong>Mailing Address:</strong>&nbsp;&nbsp;&nbsp;<%= @student.mailing_address %><hr/>
+              <strong>DataBurj Username:</strong>&nbsp;&nbsp;&nbsp;<%= @student.username %>
+              <!--<strong>Phone no:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %><hr/>-->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  
 <% end %>
 <!--################################ INSTRUCTORS #############################################-->
 <% if @link == "instructor_add" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
       <h3 class="page_title">Add new instructor</h3>
@@ -307,7 +321,7 @@
           <%= f.text_field :subject_name, label: 'Subject Name'  %>
           <%= f.text_field :username, label: 'Username', :required => true  %>
           <%= f.text_field :password, label: 'Password', :required => true  %>
-          <div class="clearfix btn btn-primary" type = "submit">
+          <div class="clearfix" type = "submit">
             <%= f.submit  %>
             <% end %>
           </div>
@@ -315,8 +329,10 @@
       </div>
     </div>
   </div>
+  </div>
 <% end %>
 <% if @link == "instructors_view" %>
+ <div class = "animated fadeIn">
   <div id="dashboard-con">
     <div>
       <div class="dashboard-left-cell">
@@ -362,8 +378,10 @@
       </div>
     </div>
   </div>
+  </div>
 <% end %>
 <% if @link == "instructor_edit" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
       <h3 class="page_title">Edit an instructor</h3>
@@ -386,9 +404,11 @@
       </div>
     </div>
   </div>
+  </div>
 <% end %>
 <!--#################################### SECTIONS ##################################################-->
 <% if @link == "section_add" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
       <h3 class="page_title">Add new Section</h3>
@@ -400,7 +420,7 @@
           <%= f.text_field :section_name, label: "Section Name", :required => true%>
           <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
           <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <div class="clearfix btn btn-primary" type = "submit">
+          <div class="clearfix" type = "submit">
             <%= f.submit %>
             <% end %>
           </div>
@@ -408,15 +428,18 @@
       </div>
     </div>
   </div>
+  </div>
 <% end %>
 
 <% if @link == "sections_view" %>
+ <div class = "animated fadeIn">
   <div id="dashboard-con">
     <div>
       <div class="dashboard-left-cell">
         <div class="admin-content-con">
           <header class="clearfix">
             <h5 class="pull-left">All Sections</h5>
+
             <div class = "divider pull-right">
               <%= form_tag :controller => :instructors, :action => :export do %>
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
@@ -427,13 +450,9 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><%= sortable "section_id", "Section ID","sections_view" %></th>
-                <th><%= sortable "section_name","Section Name","sections_view" %></th>
-                <th><%= sortable "instructor_id","Instructor ID","sections_view" %></th>
-                <!--<th>Actions</th>-->
-                <!--<th><%= link_to "Section ID",:sort => "section_id",:admin => "sections_view"%></th>-->
-                <!--<th><%= link_to "Section Name",:sort => "section_name",:admin => "sections_view"%></th>-->
-                <!--<th><%= link_to "Instructor ID",:sort => "instructor_id",:admin => "sections_view"%></th>-->
+                <th><%= link_to "Section ID",:sort => "section_id",:admin => "sections_view"%></th>
+                <th><%= link_to "Section Name",:sort => "section_name",:admin => "sections_view"%></th>
+                <th><%= link_to "Instructor ID",:sort => "instructor_id",:admin => "sections_view"%></th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -456,9 +475,11 @@
       </div>
     </div>
   </div>
+  </div>
 <% end %>
 
 <% if @link == "section_edit" %>
+ <div class = "animated fadeIn">
   <div id="content">
     <header>
       <h3 class="page_title">Update a Section</h3>
@@ -477,6 +498,7 @@
         </form>
       </div>
     </div>
+  </div>
   </div>
 <% end %>
 

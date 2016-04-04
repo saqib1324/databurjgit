@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160315220547) do
 
   create_table "students", force: :cascade do |t|
     t.string   "name",                   limit: 255
-    t.string   "tracking_id",            limit: 255, null: false
+    t.string   "tracking_id",            limit: 255
     t.string   "father_name",            limit: 255
     t.string   "DOB",                    limit: 255
     t.string   "SEX",                    limit: 1

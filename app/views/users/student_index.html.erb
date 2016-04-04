@@ -14,7 +14,7 @@
           <h1><span>Data<span><b>Burj</b></span></span></h1>
           <ul>
             <li class="link settings-btn">
-              <a href=" ">
+              <a href="/users/student_index ">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
                 <!--<%= link_to 'Dashboard', users_path %> </span>-->
@@ -90,17 +90,41 @@
               </div>
             </header>
     </div>
+
 <!--######################################################-->
 
 
 
 <% if @link == "student_profile" %>
-Add student's profile information here
+
   <% if @student %>
-  in condition
-    <%= @student.name %>
-    <%= @student.DOB %>
-    <%= @student.city %>
+<div class = "animated fadeIn">
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <strong><h3 class="pull-left page_title"><%= @student.name %>'s details</h3></strong>
+            <div class = "divider pull-right">
+            <%= link_to "All Students", users_path( :admin => "students_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+          </header>
+              <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %><hr/>
+              <strong>Tracking ID:</strong>&nbsp;&nbsp;&nbsp;<%= @student.tracking_id %><hr/>
+              <strong>Father's Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.father_name %><hr/>
+              <strong>Date of Birth:</strong>&nbsp;&nbsp;&nbsp;<%= @student.DOB %><hr/>
+              <strong>Gender:</strong>&nbsp;&nbsp;&nbsp;<%= @student.SEX %><hr/>
+              <strong>City:</strong>&nbsp;&nbsp;&nbsp;<%= @student.city %><hr/>
+              <strong>Email Address:</strong>&nbsp;&nbsp;&nbsp;<%= @student.email %><hr/>
+              <strong>Phone number:</strong>&nbsp;&nbsp;&nbsp;<%= @student.phone_number %><hr/>
+              <strong>Secondary Phone number:</strong>&nbsp;&nbsp;&nbsp;<%= @student.secondary_phone_number %><hr/>
+              <strong>Mailing Address:</strong>&nbsp;&nbsp;&nbsp;<%= @student.mailing_address %><hr/>
+              <strong>DataBurj Username:</strong>&nbsp;&nbsp;&nbsp;<%= @student.username %>
+              <!--<strong>Phone no:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %><hr/>-->
+      </div>
+    </div>
+  </div>
+
+</div>
   <% end %>
 
 <% end %>

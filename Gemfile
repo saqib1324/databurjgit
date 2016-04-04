@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 5.0'
 # for excel download
 # gem 'roo', "2.3.2"
 # gem 'axlsx', '~> 2.0'
-
+gem "animate-rails"
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git'
 # gem "axlsx_rails"
 # Use Uglifier as compressor for JavaScript assets
@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'prawn'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
