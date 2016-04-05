@@ -14,7 +14,7 @@ class SectionsController < ApplicationController
         sheet.add_row ["Section Id", "Section Name", "Instructor Id"]
         @sections=Section.all
         @sections.each do |st|
-          sheet.add_row [st.section_id, st.section_name, st.instructor_id]
+          sheet.add_row [st.section_id, st.section_name, st.room_location]
         end
       end
       send_data package.to_stream.read, :filename => "sections.xlsx"
@@ -70,7 +70,7 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:section_id, :section_name, :instructor_id)
+      params.require(:section).permit(:section_id, :section_name, :room_location)
     end
   
   

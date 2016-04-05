@@ -1,4 +1,5 @@
 class Section < ActiveRecord::Base
+    has_many :students
     def self.to_csv(options = {})
        CSV.generate(options) do |csv|
            csv << column_names
@@ -9,7 +10,7 @@ class Section < ActiveRecord::Base
     end
     
     validates :section_id, presence: true, length: { minimum: 1 }
-    validates :instructor_id, presence: true, length: { minimum: 1 }
+    validates :room_location, presence: true, length: { minimum: 1 }
     validates :section_name, presence: true
 
 end

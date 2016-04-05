@@ -124,7 +124,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <h3>lollll</h3>lol
+                   
                   </button>
                 </nav>
               </div>
@@ -166,11 +166,11 @@
           <%= f.errors_on :name %>
           <%= f.text_field :name, label: "Name", :required => true%>
           <%= f.text_field :tracking_id, label: 'NOP Tracking ID', :required => true %>
-          <%= f.select :section, [["Select:"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
+          <%= f.select :section, [["Select:", "?"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
           <%= f.text_field :father_name, label: 'Father Name', :required => true %>
           <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
-          <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
-          <%= f.number_field :matric_percentage, label: "Matric Percentage", :required => true %>
+          <%= f.select :SEX,[["Select:", "?"],["Male", "M"], ["Female", "F"]],{ label: "Gender" },{ class: "selectpicker" }    %>
+          <%= f.text_field :matric_percentage, label: "Matric Percentage", :required => true %>
           <%= f.number_field :monthly_income, label: "Monthly income", :required => true %>
           <%= f.text_field :city, label: 'City' %>
           <%= f.email_field :email, label: 'Email Address' %>
@@ -379,7 +379,7 @@
                   <td><%= instructor.subject_name %> </td>
                   <td>
                     <%= link_to 'Edit', users_path( :id => instructor.id ,  :admin => "instructor_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
-                    <%= link_to 'View', users_path(:admin => "instructors_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'View', users_path(:admin => "instructors_notice"), :class => 'btn btn-xs btn-primary', :role => "button" %>
                     <%= link_to 'Delete', instructor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
                   </td>
                 </tr>
@@ -430,9 +430,10 @@
       <div class="form-wrapper">
         <%= bootstrap_form_for Section.new do |f| %>
           <%= f.errors_on :section_name %>
-          <%= f.text_field :section_name, label: "Section Name", :required => true%>
-          <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
           <%= f.text_field :section_id, label: 'Section ID', :required => true %>
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :room_location, label: 'Room Location', :required => true %>
+          
           <div class="clearfix" type = "submit">
             <%= f.submit %>
             <% end %>
@@ -463,9 +464,9 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><%= link_to "Section ID",:sort => "section_id",:admin => "sections_view"%></th>
-                <th><%= link_to "Section Name",:sort => "section_name",:admin => "sections_view"%></th>
-                <th><%= link_to "Instructor ID",:sort => "instructor_id",:admin => "sections_view"%></th>
+                <th>Section ID</th>
+                <th>Section Name</th>
+                <th>Room Location</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -474,7 +475,7 @@
                 <tr>
                   <td><%= section.section_id %></td>
                   <td><%= section.section_name %></td>
-                  <td><%= section.instructor_id %> </td>
+                  <td><%= section.room_location %> </td>
                   <td>
                     <%= link_to 'Edit', users_path(:id => section , :admin => "section_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
                     <%= link_to 'View', section, :class => 'btn btn-xs btn-primary', :role => "button" %>
@@ -501,10 +502,11 @@
       <div class="form-wrapper">
         <%= bootstrap_form_for @section do |f| %>
           <%= f.errors_on :section_name %>
-          <%= f.text_field :section_name, label: "Section Name", :required => true%>
-          <%= f.text_field :instructor_id, label: 'Instructor ID', :required => true %>
           <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <div class="clearfix btn btn-primary" type = "submit">
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :room_location, label: 'Room Location', :required => true %>
+          
+          <div class="clearfix" type = "submit">
             <%= f.submit  %>
             <% end %>
           </div>
@@ -530,4 +532,3 @@
 
   </body>
 </html>
-

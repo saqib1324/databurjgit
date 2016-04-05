@@ -18,7 +18,11 @@ class UsersController < ApplicationController
     if params[:admin]=="students_view"
       @link= "students_view"
       @students= Student.order(params[:sort])
+    elsif params[:admin] == "instructors_notice"
       
+      @instructors=Instructor.order(params[:sort])
+      @link = "instructors_view"
+      flash[:notice] = "Nothing more to show"
     elsif params[:admin]=="sections_view"
       @sections=Section.order(params[:sort])
       @link = "sections_view"
@@ -47,6 +51,8 @@ class UsersController < ApplicationController
     elsif params[:admin] == "student_view"
       @link = "student_view"
       @student=Student.find(params[:id])
+    
+      
     end
     
   
