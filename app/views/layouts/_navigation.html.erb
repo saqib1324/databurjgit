@@ -166,9 +166,12 @@
           <%= f.errors_on :name %>
           <%= f.text_field :name, label: "Name", :required => true%>
           <%= f.text_field :tracking_id, label: 'NOP Tracking ID', :required => true %>
+          <%= f.select :section, [["Select:"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
           <%= f.text_field :father_name, label: 'Father Name', :required => true %>
           <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
           <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
+          <%= f.number_field :matric_percentage, label: "Matric Percentage", :required => true %>
+          <%= f.number_field :monthly_income, label: "Monthly income", :required => true %>
           <%= f.text_field :city, label: 'City' %>
           <%= f.email_field :email, label: 'Email Address' %>
           <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
@@ -205,15 +208,18 @@
               <tr>
                 
                 <th><%=  link_to :sort => "name", :admin => "students_view" do %>
-                <strong><font size="4"> Names </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                <strong><font size="3"> Name </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
                 <th><%=  link_to :sort => "tracking_id", :admin => "students_view" do %>
-                <strong><font size="4"> Tracking ID </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
-
-                <th>Father Name</th>
-                <th>DOB</th>
+                <strong><font size="3"> Tracking ID </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "matric_percentage", :admin => "students_view" do %>
+                <strong><font size="3"> Matric %age </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "monthly_income", :admin => "students_view" do %>
+                <strong><font size="3"> Income </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "section", :admin => "students_view" do %>
+                <strong><font size="3"> Section </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                
                 <th>Gender</th>
                 <th>City</th>
-                <th>Phone Number</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -222,11 +228,11 @@
                 <tr>
                   <td><%= student.name %></td>
                   <td><%= student.tracking_id %></td>
-                  <td><%= student.father_name %></td>
-                  <td><%= student.DOB %></td>
+                  <td><%= student.matric_percentage %></td>
+                  <td><%= student.monthly_income %></td>
+                  <td><%= student.section %></td>
                   <td><%= student.SEX%></td>
                   <td><%= student.city%></td>
-                  <td><%= student.phone_number%></td>
                   <td>
                     <%= link_to 'Edit', users_path(:id => student.id,:admin => "student_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
                     <%= link_to 'View', users_path(:id => student.id,:admin => "student_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
@@ -256,16 +262,19 @@
             <%= f.errors_on :name %>
             <%= f.text_field :name, label: "Name", :required => true%>
             <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
+            <%= f.select :section, [["Select:"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
             <%= f.text_field :father_name, label: 'Father Name', :required => true %>
             <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
             <%= f.select :SEX, [["Select:"],["Male", "M"], ["Female", "F"]], { label: "Gender" },{ class: "selectpicker" } %>
+            <%= f.number_field :matric_percentage, label: "Matric Percentage", :required => true %>
+            <%= f.number_field :monthly_income, label: "Monthly income", :required => true %>
             <%= f.text_field :city, label: 'City' %>
             <%= f.email_field :email, label: 'Email Address' %>
             <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
             <%= f.text_field :secondary_phone_number, label: 'Secondary Phone Number', :required => true %>
             <%= f.text_field :mailing_address, label: 'Mailing Address'  %>
             <%= f.text_field :username, label: 'Username', :required => true  %>
-            <div class="clearfix btn btn-primary" type = "submit">
+            <div class="clearfix" type = "submit">
               <%= f.submit  %>
               <% end %>
             </div>
@@ -287,8 +296,11 @@
             </header>
               <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.name %><hr/>
               <strong>Tracking ID:</strong>&nbsp;&nbsp;&nbsp;<%= @student.tracking_id %><hr/>
+              <strong>Section:</strong>&nbsp;&nbsp;&nbsp;<%= @student.section %><hr/>
               <strong>Father's Name:</strong>&nbsp;&nbsp;&nbsp;<%= @student.father_name %><hr/>
               <strong>Date of Birth:</strong>&nbsp;&nbsp;&nbsp;<%= @student.DOB %><hr/>
+              <strong>Matric Percentage:</strong>&nbsp;&nbsp;&nbsp;<%= @student.matric_percentage %><hr/>
+              <strong>Monthly Income:</strong>&nbsp;&nbsp;&nbsp;<%= @student.monthly_income %><hr/>
               <strong>Gender:</strong>&nbsp;&nbsp;&nbsp;<%= @student.SEX %><hr/>
               <strong>City:</strong>&nbsp;&nbsp;&nbsp;<%= @student.city %><hr/>
               <strong>Email Address:</strong>&nbsp;&nbsp;&nbsp;<%= @student.email %><hr/>
@@ -349,11 +361,11 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><%= link_to "Instructor ID", :sort => "instructor_id",:admin => "instructors_view"%></th>
-                <th><%= link_to "Instructor Name", :sort => "instructor_name",:admin => "instructors_view"%></th>
-                <th><%= link_to "Email", :sort => "email",:admin => "instructors_view"%></th>
-                <th><%= link_to "Phone Number", :sort => "phone_number",:admin => "instructors_view"%></th>
-                <th><%= link_to "Subject Name", :sort => "subject_name",:admin => "instructors_view"%></th>
+                <th>Instructor ID</th>
+                <th>Instructor Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Subject Name</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -367,7 +379,7 @@
                   <td><%= instructor.subject_name %> </td>
                   <td>
                     <%= link_to 'Edit', users_path( :id => instructor.id ,  :admin => "instructor_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
-                    <%= link_to 'View', instructor, :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'View', users_path(:admin => "instructors_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
                     <%= link_to 'Delete', instructor, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
                   </td>
                 </tr>
@@ -384,7 +396,8 @@
  <div class = "animated fadeIn">
   <div id="content">
     <header>
-      <h3 class="page_title">Edit an instructor</h3>
+      <strong><class="page_title">Edit an instructor</strong>
+      <%= link_to "Return Without Saving", users_path( :admin => "instructors_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
     </header>
     <div class="content-inner">
       <div class="form-wrapper">
@@ -396,7 +409,7 @@
           <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
           <%= f.text_field :subject_name, label: 'Subject Name'  %>
           <%= f.text_field :username, label: 'Username', :required => true  %>
-          <div class="clearfix btn btn-primary" type = "submit">
+          <div class="clearfix" type = "submit">
             <%= f.submit  %>
             <% end %>
           </div>

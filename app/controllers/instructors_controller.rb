@@ -56,7 +56,7 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.new(instructor_params)
     respond_to do |format|
       if @instructor.save
-        format.html { redirect_to instructors_path, notice: 'Instructor was successfully created.' }
+        format.html { redirect_to users_path(admin: "instructors_view"), notice: 'Instructor was successfully created.' }
         format.json { render :show, status: :created, location: @instructor }
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class InstructorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instructor_params
-      params.require(:instructor).permit(:instructor_id, :instructor_name, :email, :subject_name, :username, :password )
+      params.require(:instructor).permit(:instructor_id, :phone_number, :instructor_name, :email, :subject_name, :username, :password )
     end
     
     def restrict_entry

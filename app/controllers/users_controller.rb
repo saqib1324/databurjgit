@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   # layout false
   
   skip_before_action :require_login, :only => [:attempt_login, :login]
+  # load_and_authorize_resource
+  
   
   # before_action :restrict_entry, :except => [:student_index, :instructor_index]
   # before_action :restrict_entry2, :except => [:instructor_index]
@@ -57,6 +59,7 @@ class UsersController < ApplicationController
     if params[:std]=="student_profile"
       @link = "student_profile"
       @student=Student.find(session[:id])
+      # unauthorized! if cannot? :read, @instructor
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
       
@@ -107,6 +110,7 @@ class UsersController < ApplicationController
               flash[:notice] = "Welcome! You are LoggedIn"
               session[:id] = authorized_user.id
               $restrict = 'admin'
+              $user_role = 'admin'
               redirect_to(:action => 'index')
               return
             end
@@ -118,6 +122,7 @@ class UsersController < ApplicationController
                 flash[:notice] = "Welcome! You are LoggedIn"
                 session[:id] = student_id
                 $restrict = 'student'
+                $user_role = 'student'
                 redirect_to(:action => 'student_index')
                 return
               end
@@ -129,6 +134,7 @@ class UsersController < ApplicationController
                 flash[:notice] = "Welcome! You are LoggedIn"
                 session[:id] = instructor_id
                 $restrict = 'instructor'
+                $user_role = 'instructor'
                 redirect_to(:action => 'instructor_index')
                 return
               end 
@@ -144,6 +150,8 @@ class UsersController < ApplicationController
     session[:id] = nil
     redirect_to(:action => "login")
   end
+  
+  
     def restrict_entry
       if $restrict == 'admin'
         return true

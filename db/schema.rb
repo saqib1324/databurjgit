@@ -36,10 +36,13 @@ ActiveRecord::Schema.define(version: 20160315220547) do
   create_table "students", force: :cascade do |t|
     t.string   "name",                   limit: 255
     t.string   "tracking_id",            limit: 255
+    t.float    "matric_percentage",      limit: 24
+    t.integer  "monthly_income",         limit: 4
+    t.string   "SEX",                    limit: 1
+    t.string   "section",                limit: 1
+    t.string   "city",                   limit: 255
     t.string   "father_name",            limit: 255
     t.string   "DOB",                    limit: 255
-    t.string   "SEX",                    limit: 1
-    t.string   "city",                   limit: 255
     t.string   "email",                  limit: 255
     t.string   "phone_number",           limit: 255
     t.string   "secondary_phone_number", limit: 255

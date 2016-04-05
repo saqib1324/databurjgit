@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       else
         return true
       end
+      
      # if :key==nil
       #  redirect_to :root
       #end

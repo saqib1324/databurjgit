@@ -9,6 +9,7 @@ gem 'rails_12factor'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
+
 # for excel download
 # gem 'roo', "2.3.2"
 # gem 'axlsx', '~> 2.0'
@@ -34,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'prawn'
+gem 'cancan'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Use Unicorn as the app server

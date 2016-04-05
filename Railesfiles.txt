@@ -125,12 +125,8 @@ front-end of 'add instructor', 'add section', 'instructor_index'
 pdf download and upload optional
 student form editings:
 1. tracking id uniquness validation removal
-2. gender hona chahiye condition
-3. phone number should be string
-4. username should be unique
-6. Add matric marks and percentage fields
-8. Add section field
-9. name should be atleast 3 chars
+2. gender and section  hona chahiye condition
+
 Owais:
 
 Association of models
