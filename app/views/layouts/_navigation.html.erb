@@ -166,6 +166,7 @@
           <%= f.errors_on :name %>
           <%= f.text_field :name, label: "Name", :required => true%>
           <%= f.text_field :tracking_id, label: 'NOP Tracking ID', :required => true %>
+           <!--<%= f.text_field :section, label: "Section", :required => true %>-->
           <%= f.select :section, [["Select:", "?"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
           <%= f.text_field :father_name, label: 'Father Name', :required => true %>
           <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
@@ -429,9 +430,9 @@
     <div class="content-inner">
       <div class="form-wrapper">
         <%= bootstrap_form_for Section.new do |f| %>
-          <%= f.errors_on :section_name %>
+          <%= f.errors_on :section %>
           <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :section, label: "Section Name", :required => true%>
           <%= f.text_field :room_location, label: 'Room Location', :required => true %>
           
           <div class="clearfix" type = "submit">
@@ -474,7 +475,7 @@
               <% @sections.each do |section| %>
                 <tr>
                   <td><%= section.section_id %></td>
-                  <td><%= section.section_name %></td>
+                  <td><%= section.section %></td>
                   <td><%= section.room_location %> </td>
                   <td>
                     <%= link_to 'Edit', users_path(:id => section , :admin => "section_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
@@ -501,9 +502,9 @@
     <div class="content-inner">
       <div class="form-wrapper">
         <%= bootstrap_form_for @section do |f| %>
-          <%= f.errors_on :section_name %>
+          <%= f.errors_on :section %>
           <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <%= f.text_field :section_name, label: "Section Name", :required => true%>
+          <%= f.text_field :section, label: "Section Name", :required => true%>
           <%= f.text_field :room_location, label: 'Room Location', :required => true %>
           
           <div class="clearfix" type = "submit">

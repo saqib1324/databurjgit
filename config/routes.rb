@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   end
   resources :sections do
     collection { post :import }
+    resources :students
   end
   get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  
   root 'users#login'
 
   # You can have the root of your site routed with "root"

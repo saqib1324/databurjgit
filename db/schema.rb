@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160315220547) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "section_id",    limit: 255, null: false
-    t.string   "section_name",  limit: 50
+    t.string   "section",       limit: 50
     t.string   "room_location", limit: 255, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160315220547) do
     t.float    "matric_percentage",      limit: 24
     t.integer  "monthly_income",         limit: 4
     t.string   "SEX",                    limit: 1
-    t.string   "section",                limit: 1
+    t.string   "section",                limit: 255
     t.string   "city",                   limit: 255
     t.string   "father_name",            limit: 255
     t.string   "DOB",                    limit: 255

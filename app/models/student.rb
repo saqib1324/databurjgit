@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
-    belongs_to :section
+    belongs_to :sections
+    # validates :section, :presence => true
     has_secure_password
     def self.authenticate(user,pass)
         student = Student.find_by_username(user)

@@ -11,6 +11,6 @@ class Section < ActiveRecord::Base
     
     validates :section_id, presence: true, length: { minimum: 1 }
     validates :room_location, presence: true, length: { minimum: 1 }
-    validates :section_name, presence: true
+    validates :section, presence: true
 
 end

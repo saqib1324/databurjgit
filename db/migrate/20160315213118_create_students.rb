@@ -6,7 +6,10 @@ class CreateStudents < ActiveRecord::Migration
       t.float "matric_percentage"
       t.integer "monthly_income"
       t.column "SEX", 'CHAR(1)'
-      t.column "section", 'CHAR(1)'
+      t.string "section", foreign_key: true
+      
+      # t.references :section, index: true, foreign_key: true 
+
       t.string "city"
       t.string "father_name"
       t.string "DOB"

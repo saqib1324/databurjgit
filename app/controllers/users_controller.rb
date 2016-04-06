@@ -2,15 +2,12 @@ class UsersController < ApplicationController
   # layout false
   
   skip_before_action :require_login, :only => [:attempt_login, :login]
-  # load_and_authorize_resource
+
   
-  
-  # before_action :restrict_entry, :except => [:student_index, :instructor_index]
-  # before_action :restrict_entry2, :except => [:instructor_index]
-  
-  # before_action :for_student, :only => [:student_index, :attempt_login, :login, :logout ]
-  # before_action :for_instructor, :only => [:instructor_index, :attempt_login, :login, :logout ]
- 
+  before_action :restrict_entry, :only => [:index]
+  before_action :for_student, :only => [:student_index]
+  before_action :for_instructor, :only => [:instructor_index]
+
   def index
     if params[:admin]=="dashboard"
       @link="a"
