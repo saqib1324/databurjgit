@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   # layout false
   
   skip_before_action :require_login, :only => [:attempt_login, :login]
-
-  
   before_action :restrict_entry, :only => [:index]
   before_action :for_student, :only => [:student_index]
   before_action :for_instructor, :only => [:instructor_index]
@@ -15,11 +13,16 @@ class UsersController < ApplicationController
     if params[:admin]=="students_view"
       @link= "students_view"
       @students= Student.order(params[:sort])
+      elsif params[:admin]=="settings"
+      @link = "settings"
     elsif params[:admin] == "instructors_notice"
       
       @instructors=Instructor.order(params[:sort])
       @link = "instructors_view"
       flash[:notice] = "Nothing more to show"
+    elsif params[:admin] == "section_view"
+      @link = "section_view"
+      # @students = Student.find(params[:id])
     elsif params[:admin]=="sections_view"
       @sections=Section.order(params[:sort])
       @link = "sections_view"
@@ -48,7 +51,7 @@ class UsersController < ApplicationController
     elsif params[:admin] == "student_view"
       @link = "student_view"
       @student=Student.find(params[:id])
-    
+      # @students = Student.find(params[:id])
       
     end
     
@@ -58,14 +61,17 @@ class UsersController < ApplicationController
   
   def student_index
       # @found3 = params[:found2]
-
+    
     if params[:std]=="student_profile"
       @link = "student_profile"
       @student=Student.find(session[:id])
+    elsif params[:std]=="std_settings"
+      @link = "std_settings"
+      @student = Student.find(session[:id])
       # unauthorized! if cannot? :read, @instructor
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
-      
+    
     end
   end
   def instructor_index

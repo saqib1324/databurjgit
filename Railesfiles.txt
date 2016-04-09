@@ -117,7 +117,7 @@ Sohail:
 if we need to add columns in database model, so do it now, and finalize it first
 in 'add student' Name field should have length at least 3
 phone number length must be 15 in bootstrap_form (because it is written in model validation)
-
+accomodate newly added student fields in excel download and student's view
 
 Solved: flash notice fix krdo bhai (har page per 'flash notice' hona chaiye, ta ke late nazar na aye)
 addition of fields in student table: secndry phone number, marks/percntge, monthly income

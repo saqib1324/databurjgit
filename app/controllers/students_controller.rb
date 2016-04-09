@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
   end
   def create
     @student = Student.new(student_params)
-    @student.id=student_params[:tracking_id]
+    # @student.id=student_params[:tracking_id]
     respond_to do |format|
       if @student.save
         flash[:notice] = 'Student was successfully created.'

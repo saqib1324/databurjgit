@@ -61,34 +61,23 @@
               <ul class="collapse collapseable" id="collapse-comments">
                 <li><%= link_to 'View Instructors', users_path(:admin => "instructors_view")%></li>
                 <li><%= link_to 'Add Instructors', users_path(:admin => "instructor_add") %></li>
-                
-
               </ul>
             </li>
             
             <li class="link">
               <a href="#collapse-sections" data-toggle="collapse" aria-controls="collapse-sections">
-                <!--<span class="glyphicon glyphicon-group"></span>-->
                 <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Sections</span>
-                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
               </a>
               <ul class="collapse collapseable" id="collapse-sections">
                 <li>
-                  <!--<a href="articles.html">View Sections</a>-->
                   <%= link_to 'View Sections',  users_path(:admin => "sections_view") %>
-                
                 </li>
                 <li>
-                  <!--<a href="new-article.html">Add Sections</a>-->
                   <%= link_to 'Add Sections', users_path(:admin => "section_add") %>
                 </li>
-                
-                
               </ul>
             </li>
-            
-
             <li class="link">
               <a href="commenters.html">
                 <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
@@ -101,19 +90,14 @@
                 <span class="hidden-sm hidden-xs">Undertakings</span>
               </a>
             </li>
-
             <li class="link active">
-              <a href="settings.html">
+              <a href="/users?admin=settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Settings</span>
               </a>
             </li>
           </ul>
         </div>
-
-        <!-- main content area -->
-        
-        <!---->
         <div class="col-md-10 col-sm-11 display-table-cell valign-top">
           <div class="row">
             <header id="nav-header" class="clearfix">
@@ -124,20 +108,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                   
                   </button>
                 </nav>
               </div>
               <div class="col-md-7">
                 <ul class="pull-right">
                   <li id="welcome" class="hidden-xs">DataBurj administrator area</li>
-
                   <li class="fixed-width">
                     <a href="#">
-
                     </a>
                   </li>
-
                   <li>
                       <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                       <a class="logout"><%= link_to "Log out", :controller => 'users', :action => 'logout' %></a>
@@ -394,30 +374,30 @@
   </div>
 <% end %>
 <% if @link == "instructor_edit" %>
- <div class = "animated fadeIn">
-  <div id="content">
-    <header>
-      <strong><class="page_title">Edit an instructor</strong>
-      <%= link_to "Return Without Saving", users_path( :admin => "instructors_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
-    </header>
-    <div class="content-inner">
-      <div class="form-wrapper">
-        <%= bootstrap_form_for @instructor do |f| %>
-          <%= f.errors_on :instructor_name %>
-          <%= f.text_field :instructor_name, label: "Name", :required => true%>
-          <%= f.text_field :instructor_id, label: 'Instructor ID' %>
-          <%= f.email_field :email, label: 'Email Address' %>
-          <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
-          <%= f.text_field :subject_name, label: 'Subject Name'  %>
-          <%= f.text_field :username, label: 'Username', :required => true  %>
-          <div class="clearfix" type = "submit">
-            <%= f.submit  %>
-            <% end %>
-          </div>
-        </form>
+<div class = "animated fadeIn">
+    <div id="content">
+      <header>
+        <strong><class="page_title">Edit an instructor</strong>
+        <%= link_to "Return Without Saving", users_path( :admin => "instructors_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+      </header>
+      <div class="content-inner">
+        <div class="form-wrapper">
+          <%= bootstrap_form_for @instructor do |f| %>
+            <%= f.errors_on :instructor_name %>
+            <%= f.text_field :instructor_name, label: "Name", :required => true%>
+            <%= f.text_field :instructor_id, label: 'Instructor ID' %>
+            <%= f.email_field :email, label: 'Email Address' %>
+            <%= f.text_field :phone_number, label: 'Phone Number', :required => true %>
+            <%= f.text_field :subject_name, label: 'Subject Name'  %>
+            <%= f.text_field :username, label: 'Username', :required => true  %>
+            <div class="clearfix" type = "submit">
+              <%= f.submit  %>
+              <% end %>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 <% end %>
 <!--#################################### SECTIONS ##################################################-->
@@ -479,7 +459,7 @@
                   <td><%= section.room_location %> </td>
                   <td>
                     <%= link_to 'Edit', users_path(:id => section , :admin => "section_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
-                    <%= link_to 'View', section, :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'View', users_path(:id => section, :admin => "section_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
                     <%= link_to 'Delete', section, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger', :role => "button" %>
                   </td>
                 </tr>
@@ -492,7 +472,9 @@
   </div>
   </div>
 <% end %>
-
+<% if @link == "section_view" %>
+  <h5>here all students of this section should be listed nicely please</h5>
+<% end %>
 <% if @link == "section_edit" %>
  <div class = "animated fadeIn">
   <div id="content">
@@ -517,7 +499,36 @@
   </div>
   </div>
 <% end %>
+<% if @link == "settings" %>
+            <div id="content">
+	            <header class="clearfix">
+	              <h3 class="page_title">Change your password</h3>
+	            </header>
 
+	            <div class="content-inner">
+	              <div class="row">
+	              	<div class="col-md-6">
+	              		<form>
+	              			<div class="settings-row">
+	              				<h5>Current Password</h5>
+	              				<div class="form-group">
+
+	              				</div>
+	              				<h5>New Password</h5>
+	              				<div class="form-group">
+	              					<input type="text" id="input" class="form-control"required="required" title="">
+	              				</div>
+	              				<h5>Confirm new Password</h5>
+	              				<div class="form-group">
+	              					<input type="text" id="input" class="form-control"required="required" title="">
+	              				</div>
+	              			</div>
+	              			<button type="submit" class="btn btn-primary">Save Changes</button>
+	              		</form>
+	              	</div>
+	              </div>
+	            </div>
+<% end %>
 <!--################################################################################################-->
 
           <div class="row">
