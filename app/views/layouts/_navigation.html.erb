@@ -15,13 +15,10 @@
           <h1><span>Data<span><b>Burj</b></span></span></h1>
           <ul>
             <!--    <%= link_to "Dashboards", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>-->
-              
-            <!--</li>-->
             <li class="link settings-btn">
               <a href="/users">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
-                <!--<span class="hidden-sm hidden-xs">
                 <!--<%= link_to 'Dashboard', users_path(:admin => "dashboard") %> </span>-->
               </a>
               
@@ -32,24 +29,14 @@
               <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Students</span>
-                <!--<span class="label label-success pull-right hidden-xs hidden-sm">20</span>-->
               </a>
               <ul class="collapse collapseable" id="collapse-post">
                 <li>
                   <%= link_to 'View Students', users_path(:admin => "students_view") %>
-
-                  <!--<a href="articles.html">View Students</a>-->
-                
                 </li>
                 <li>
-                  <!--<a href="new-article.html">Add Students</a>-->
                   <%= link_to 'Add Students', users_path( :admin => "student_add" ) %>
-
                 </li>
-
-                
-                
-                
               </ul>
             </li>
 
@@ -176,7 +163,17 @@
         <div class="dashboard-left-cell">
           <div class="admin-content-con">
             <header class="clearfix">
-            <strong><h5 class="pull-left page_title">All Students</h5></strong>
+              <div class = "divider pull-left">
+                <%= form_tag users_path, :method => 'get' do %>
+                  <p>
+                    <%= text_field_tag :search, params[:search] %>
+                    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>
+                  </p>
+                <% end %>
+              </div>
+              <strong><h5 class="pull-left page_title">All Students</h5></strong>
+              
+              
               <div class = "divider pull-right">
                 <%= form_tag :controller => :students, :action => :export do %>
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>

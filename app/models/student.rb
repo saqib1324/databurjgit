@@ -18,7 +18,11 @@ class Student < ActiveRecord::Base
            end
        end
     end
-    
+    def self.search(search)
+        if search
+            find(:all, :conditions => ['name LIKE ?', "%#{search}%"])   
+        end
+    end
     validates :name, presence: true, length: { minimum: 3 }
     # validates :tracking_id, presence: true
     validates :SEX, length: { maximum: 1}

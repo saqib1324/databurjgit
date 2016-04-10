@@ -56,6 +56,7 @@ p.small {
 /* Layout */
 .container {
 	margin: 0;
+	width: 100%;
 }
 
 .top {

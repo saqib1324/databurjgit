@@ -10,9 +10,18 @@ class UsersController < ApplicationController
     if params[:admin]=="dashboard"
       @link="a"
     end
-    if params[:admin]=="students_view"
+    if params[:search]
       @link= "students_view"
       @students= Student.order(params[:sort])
+    end
+    if params[:admin]=="students_view"
+      @link= "students_view"
+      if params[:search]
+        @students= Student.order(params[:sort])
+        # @students= Student.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+      else
+          @students= Student.order(params[:sort])
+      end
       elsif params[:admin]=="settings"
       @link = "settings"
     elsif params[:admin] == "instructors_notice"
