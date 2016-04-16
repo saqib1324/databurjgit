@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :students do
+    collection { post :import }
   end
   resources :sections do
     collection { post :import }

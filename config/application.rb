@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 require 'csv'
+require 'iconv'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -24,5 +25,6 @@ module Databurjproject
     # config.serve_static_files= true
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.initialize_on_precompile = false
+    config.middleware.use Rack::TempfileReaper
   end
 end

@@ -11,7 +11,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 
 # for excel download
-# gem 'roo', "2.3.2"
+gem 'roo', "2.3.2"
+gem 'iconv'
 # gem 'axlsx', '~> 2.0'
 gem "animate-rails"
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git'
@@ -69,4 +70,6 @@ group :test, :development do
   gem 'database_cleaner'        # to clear Cucumber’s test database between runs
   gem 'capybara'        # lets Cucumber pretend to be a web browser
   gem 'launchy'         # a useful debugging aid for user stories
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
 end

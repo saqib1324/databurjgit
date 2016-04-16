@@ -164,11 +164,15 @@
           <div class="admin-content-con">
             <header class="clearfix">
               <div class = "divider pull-left">
-                <%= form_tag users_path, :method => 'get' do %>
-                  <p>
-                    <%= text_field_tag :search, params[:search] %>
-                    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>
-                  </p>
+                <!--<%= form_tag users_path, :method => 'get' do %>-->
+                <!--  <p>-->
+                <!--    <%= text_field_tag :search, params[:search] %>-->
+                <!--    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>-->
+                <!--  </p>-->
+                <!--<% end %>-->
+                <%= form_tag import_students_path, multipart: true do %>
+                  <%= file_field_tag :file %>
+                  <%= submit_tag "Import" %>
                 <% end %>
               </div>
               <strong><h5 class="pull-left page_title">All Students</h5></strong>
@@ -334,6 +338,10 @@
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
               <% end %>
             </div>
+            <%= form_tag import_instructors_path, multipart: true do %>
+              <%= file_field_tag :file %>
+              <%= submit_tag "Import" %>
+            <% end %>
             <%= link_to "Add new Instructor", users_path(:admin => "instructor_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
           </header>
           <table class="table table-striped">
@@ -437,6 +445,10 @@
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
               <% end %>
             </div>
+            <%= form_tag import_sections_path, multipart: true do %>
+              <%= file_field_tag :file %>
+              <%= submit_tag "Import" %>
+            <% end %>
             <%= link_to "Add new Section", users_path(:admin => "section_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
           </header>
           <table class="table table-striped">

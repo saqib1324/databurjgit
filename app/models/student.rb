@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+    require 'roo'
     belongs_to :sections
     # validates :section, :presence => true
     has_secure_password
@@ -18,10 +19,24 @@ class Student < ActiveRecord::Base
            end
        end
     end
-    def self.search(search)
-        if search
-            find(:all, :conditions => ['name LIKE ?', "%#{search}%"])   
-        end
+    def self.import(file)
+      spreadsheet = open_spreadsheet(file)
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        student = find_by_id(row["tracking_id"]) || new
+        student.attributes = row.to_hash.slice(*row.to_hash.keys)
+        student.save!
+      end
+    end
+    
+    def self.open_spreadsheet(file)
+      case File.extname(file.original_filename)
+      when ".csv" then Csv.new(file.path, nil, :ignore)
+      when ".xls" then Excel.new(file.path, nil, :ignore)
+      when ".xlsx" then Roo::Excelx.new(file.path, packed: nil, file_warning: :ignore)
+      else raise "Unknown file type: #{file.original_filename}"
+      end
     end
     validates :name, presence: true, length: { minimum: 3 }
     # validates :tracking_id, presence: true

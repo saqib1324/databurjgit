@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  # layout false
-  
+
   skip_before_action :require_login, :only => [:attempt_login, :login]
   before_action :restrict_entry, :only => [:index]
   before_action :for_student, :only => [:student_index]
@@ -63,14 +62,9 @@ class UsersController < ApplicationController
       # @students = Student.find(params[:id])
       
     end
-    
-  
   end
-  
-  
+
   def student_index
-      # @found3 = params[:found2]
-    
     if params[:std]=="student_profile"
       @link = "student_profile"
       @student=Student.find(session[:id])
@@ -80,7 +74,6 @@ class UsersController < ApplicationController
       # unauthorized! if cannot? :read, @instructor
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
-    
     end
   end
   def instructor_index
@@ -89,16 +82,13 @@ class UsersController < ApplicationController
       @instructor=Instructor.find(session[:id])
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
-      
     end
   end
 
   def login
     if session[:id]!=nil
       redirect_to(:action => 'index')
-      
     end
-    
   end
   
   # def attempt_login
@@ -119,48 +109,48 @@ class UsersController < ApplicationController
   # end
   
   
-    def attempt_login
-      if params[:username].present? && params[:password].present?
-          found_user = User.where(:username => params[:username]).first
-          if found_user
-            authorized_user = found_user.authenticate(params[:password])
-            if authorized_user
+  def attempt_login
+    if params[:username].present? && params[:password].present?
+        found_user = User.where(:username => params[:username]).first
+        if found_user
+          authorized_user = found_user.authenticate(params[:password])
+          if authorized_user
+            flash[:notice] = "Welcome! You are LoggedIn"
+            session[:id] = authorized_user.id
+            $restrict = 'admin'
+            $user_role = 'admin'
+            redirect_to(:action => 'index')
+            return
+          end
+        end
+        found_student = Student.where(:username => params[:username]).first
+          if found_student
+            student_id = Student.authenticate( params[:username],params[:password])
+            if student_id
               flash[:notice] = "Welcome! You are LoggedIn"
-              session[:id] = authorized_user.id
-              $restrict = 'admin'
-              $user_role = 'admin'
-              redirect_to(:action => 'index')
+              session[:id] = student_id
+              $restrict = 'student'
+              $user_role = 'student'
+              redirect_to(:action => 'student_index')
               return
             end
           end
-          found_student = Student.where(:username => params[:username]).first
-            if found_student
-              student_id = Student.authenticate( params[:username],params[:password])
-              if student_id
-                flash[:notice] = "Welcome! You are LoggedIn"
-                session[:id] = student_id
-                $restrict = 'student'
-                $user_role = 'student'
-                redirect_to(:action => 'student_index')
-                return
-              end
-            end
-          found_instructor = Instructor.where(:username => params[:username]).first
-            if found_instructor
-              instructor_id = Instructor.authenticate( params[:username],params[:password])
-              if instructor_id
-                flash[:notice] = "Welcome! You are LoggedIn"
-                session[:id] = instructor_id
-                $restrict = 'instructor'
-                $user_role = 'instructor'
-                redirect_to(:action => 'instructor_index')
-                return
-              end 
-            end
-          flash[:notice] = "Invalid username/Password combination."
-          redirect_to(:action => 'login')
-      end
+        found_instructor = Instructor.where(:username => params[:username]).first
+          if found_instructor
+            instructor_id = Instructor.authenticate( params[:username],params[:password])
+            if instructor_id
+              flash[:notice] = "Welcome! You are LoggedIn"
+              session[:id] = instructor_id
+              $restrict = 'instructor'
+              $user_role = 'instructor'
+              redirect_to(:action => 'instructor_index')
+              return
+            end 
+          end
+        flash[:notice] = "Invalid username/Password combination."
+        redirect_to(:action => 'login')
     end
+  end
   
   
   def logout
@@ -169,51 +159,50 @@ class UsersController < ApplicationController
     redirect_to(:action => "login")
   end
   
-  
-    def restrict_entry
-      if $restrict == 'admin'
-        return true
+  def restrict_entry
+    if $restrict == 'admin'
+      return true
+    else
+      flash[:notice] = "You are not authorized to view this page"
+      if $restrict== 'student'
+        redirect_to :action => 'student_index'
+        return false
       else
-        flash[:notice] = "You are not authorized to view this page"
-        if $restrict== 'student'
-          redirect_to :action => 'student_index'
-          return false
-        else
+        redirect_to :action => 'instructor_index'
+        return false
+      end
+    end 
+  end
+  
+  
+  def for_student
+    if $restrict == 'student'
+      return true
+    else
+      flash[:notice] = "You are not authorized to view this page"
+      # redirect_to :root
+      if $restrict== 'instructor'
           redirect_to :action => 'instructor_index'
           return false
-        end
-      end 
-    end
-    
-    
-    def for_student
-      if $restrict == 'student'
-        return true
       else
-        flash[:notice] = "You are not authorized to view this page"
-        # redirect_to :root
-        if $restrict== 'instructor'
-            redirect_to :action => 'instructor_index'
-            return false
-        else
-            redirect_to :action => 'index'
-            return false
-        end
-      end
-    end
-
-    def for_instructor
-      if $restrict == 'instructor'
-        return true
-      else
-        flash[:notice] = "You are not authorized to view this page"
-        if $restrict== 'student'
-          redirect_to :action => 'student_index'
-          return false
-        else
           redirect_to :action => 'index'
           return false
-        end
       end
     end
+  end
+
+  def for_instructor
+    if $restrict == 'instructor'
+      return true
+    else
+      flash[:notice] = "You are not authorized to view this page"
+      if $restrict== 'student'
+        redirect_to :action => 'student_index'
+        return false
+      else
+        redirect_to :action => 'index'
+        return false
+      end
+    end
+  end
 end

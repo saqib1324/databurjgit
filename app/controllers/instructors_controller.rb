@@ -20,6 +20,10 @@ class InstructorsController < ApplicationController
       end
       send_data package.to_stream.read, :filename => "instructors.xlsx"
   end
+  def import
+    Instructor.import(params[:file])
+    redirect_to users_path(:admin => "instructors_view"), notice: "Instructors imported."
+  end
   def show
       @instructor=Instructor.find(params[:id])
   end
