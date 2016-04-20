@@ -1,6 +1,5 @@
 class Section < ActiveRecord::Base
     require 'roo'
-    has_many :students
     def self.to_csv(options = {})
        CSV.generate(options) do |csv|
            csv << column_names
@@ -28,8 +27,8 @@ class Section < ActiveRecord::Base
       else raise "Unknown file type: #{file.original_filename}"
       end
     end   
-    validates :section_id, presence: true, length: { minimum: 1 }
+ 
     validates :room_location, presence: true, length: { minimum: 1 }
-    validates :section, presence: true
+    validates :section_name, presence: true
 
 end

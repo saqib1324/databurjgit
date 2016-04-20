@@ -416,8 +416,7 @@
       <div class="form-wrapper">
         <%= bootstrap_form_for Section.new do |f| %>
           <%= f.errors_on :section %>
-          <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <%= f.text_field :section, label: "Section Name", :required => true%>
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
           <%= f.text_field :room_location, label: 'Room Location', :required => true %>
           
           <div class="clearfix" type = "submit">
@@ -454,7 +453,6 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Section ID</th>
                 <th>Section Name</th>
                 <th>Room Location</th>
                 <th>Actions</th>
@@ -463,8 +461,7 @@
             <tbody>
               <% @sections.each do |section| %>
                 <tr>
-                  <td><%= section.section_id %></td>
-                  <td><%= section.section %></td>
+                  <td><%= section.section_name %></td>
                   <td><%= section.room_location %> </td>
                   <td>
                     <%= link_to 'Edit', users_path(:id => section , :admin => "section_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
@@ -482,7 +479,78 @@
   </div>
 <% end %>
 <% if @link == "section_view" %>
-  <h5>here all students of this section should be listed nicely please</h5>
+ <div class = "animated fadeIn">
+    <div id="dashboard-con">
+      <div>
+        <div class="dashboard-left-cell">
+          <div class="admin-content-con">
+            <header class="clearfix">
+              <div class = "divider pull-left">
+                <!--<%= form_tag users_path, :method => 'get' do %>-->
+                <!--  <p>-->
+                <!--    <%= text_field_tag :search, params[:search] %>-->
+                <!--    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>-->
+                <!--  </p>-->
+                <!--<% end %>-->
+                <%= form_tag import_students_path, multipart: true do %>
+                  <%= file_field_tag :file %>
+                  <%= submit_tag "Import" %>
+                <% end %>
+              </div>
+              <strong><h5 class="pull-left page_title">All Students</h5></strong>
+              
+              
+              <div class = "divider pull-right">
+                <%= form_tag :controller => :students, :action => :export do %>
+                <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
+                <% end %> 
+              </div>
+              <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+            </header>
+            <table class="table table-striped">
+            <thead>
+              <tr>
+                
+                <th><%=  link_to :sort => "name", :admin => "students_view" do %>
+                <strong><font size="3"> Name </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                <th><%=  link_to :sort => "tracking_id", :admin => "students_view" do %>
+                <strong><font size="3"> Tracking ID </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "matric_percentage", :admin => "students_view" do %>
+                <strong><font size="3"> Matric %age </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "monthly_income", :admin => "students_view" do %>
+                <strong><font size="3"> Income </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
+                <th><%=  link_to :sort => "section", :admin => "students_view" do %>
+                <strong><font size="3"> Section </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                
+                <th>Gender</th>
+                <th>City</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @students.each do |student| %>
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= student.tracking_id %></td>
+                  <td><%= student.matric_percentage %></td>
+                  <td><%= student.monthly_income %></td>
+                  <td><%= student.section %></td>
+                  <td><%= student.SEX%></td>
+                  <td><%= student.city%></td>
+                  <td>
+                    <%= link_to 'Edit', users_path(:id => student.id,:admin => "student_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'View', users_path(:id => student.id,:admin => "student_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+                  </td>
+                </tr>
+              <% end %> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 <% end %>
 <% if @link == "section_edit" %>
  <div class = "animated fadeIn">
@@ -494,8 +562,7 @@
       <div class="form-wrapper">
         <%= bootstrap_form_for @section do |f| %>
           <%= f.errors_on :section %>
-          <%= f.text_field :section_id, label: 'Section ID', :required => true %>
-          <%= f.text_field :section, label: "Section Name", :required => true%>
+          <%= f.text_field :section_name, label: "Section Name", :required => true%>
           <%= f.text_field :room_location, label: 'Room Location', :required => true %>
           
           <div class="clearfix" type = "submit">

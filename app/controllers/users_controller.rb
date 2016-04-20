@@ -30,6 +30,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Nothing more to show"
     elsif params[:admin] == "section_view"
       @link = "section_view"
+      @section = Section.find(params[:id])
+      @students = Student.where(:section => @section.section_name).all
       # @students = Student.find(params[:id])
     elsif params[:admin]=="sections_view"
       @sections=Section.order(params[:sort])

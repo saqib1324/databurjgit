@@ -1,6 +1,5 @@
 class Student < ActiveRecord::Base
     require 'roo'
-    belongs_to :sections
     # validates :section, :presence => true
     has_secure_password
     def self.authenticate(user,pass)

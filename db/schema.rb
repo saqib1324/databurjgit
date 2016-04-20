@@ -26,14 +26,13 @@ ActiveRecord::Schema.define(version: 20160407170455) do
   end
 
   create_table "sections", force: :cascade do |t|
-    t.string   "section_id",    limit: 255, null: false
-    t.string   "section",       limit: 50
+    t.string   "section_name",  limit: 50
     t.string   "room_location", limit: 255, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
 
-  add_index "sections", ["section"], name: "index_sections_on_section", using: :btree
+  add_index "sections", ["section_name"], name: "index_sections_on_section_name", using: :btree
 
   create_table "students", force: :cascade do |t|
     t.string   "name",                   limit: 255
