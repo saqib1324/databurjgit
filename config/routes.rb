@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   get 'welcome/admin_index' => 'welcome#admin_index'
-  match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
+  
   # get 'users/index' => 'users#index'
  #get 'students/index'
   root 'users#login'
+  
+  get 'users/logout'=> "users#logout"
+    resources :users
+
   resources :instructors do
     collection { post :import }
   end
@@ -12,9 +16,9 @@ Rails.application.routes.draw do
   end
   resources :sections do
     collection { post :import }
-    resources :students
+    # resources :students
   end
-  resources :users
+  # match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
