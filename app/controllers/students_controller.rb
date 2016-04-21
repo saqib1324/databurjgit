@@ -22,10 +22,10 @@ class StudentsController < ApplicationController
     package = Axlsx::Package.new
     workbook = package.workbook
     workbook.add_worksheet(name: "Basic work sheet") do |sheet|
-      sheet.add_row ["Name", "Tracking ID", "Father Name", "Date of Birth", "Gender", "Email ID","City","Phone Number", "Secondary Phone Number", "Mailing Address", "Username", "Password"]
+      sheet.add_row ["name", "tracking_id", "father_name", "DOB", "SEX", "city","email","phone_number", "secondary_phone_number", "mailing_address", "username"]
       @students=Student.all
       @students.each do |st|
-        sheet.add_row [st.name, st.tracking_id, st.father_name, st.DOB, st.SEX, st.city,st.email, st.phone_number, st.secondary_phone_number, st.mailing_address, st.username, st.password_digest]
+        sheet.add_row [st.name, st.tracking_id, st.father_name, st.DOB, st.SEX, st.city,st.email, st.phone_number, st.secondary_phone_number, st.mailing_address, st.username]
       end
     end
     send_data package.to_stream.read, :filename => "students.xlsx"

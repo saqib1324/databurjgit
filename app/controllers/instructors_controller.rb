@@ -12,7 +12,7 @@ class InstructorsController < ApplicationController
       package = Axlsx::Package.new
       workbook = package.workbook
       workbook.add_worksheet(name: "Basic work sheet") do |sheet|
-        sheet.add_row ["Instructor Id", "Instructor Name", "Email", "Subject Name", "Username"]
+        sheet.add_row ["instructor_id", "instructor_name", "email", "subject_name", "username"]
         @instructors=Instructor.all
         @instructors.each do |st|
           sheet.add_row [st.instructor_id, st.instructor_name, st.email, st.subject_name, st.username]

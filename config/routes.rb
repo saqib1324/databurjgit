@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get '/users/instructor_index'=> "users#instructor_index"
   get '/users' => "users#index"
 
-  get 'users/logout'=> "users#logout"
-  get "users/student_index/logout"=>"users#logout"
-get "users/instructor_index/logout"=> "users#logout"  
+  get 'users/logout'=> "require_login"
+  get "users/student_index/logout"=>"require_login"
+get "users/instructor_index/logout"=> "require_login"  
   
     resources :users
 
@@ -27,6 +27,7 @@ get "users/instructor_index/logout"=> "users#logout"
     collection { post :import }
     # resources :students
   end
+  
   # match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

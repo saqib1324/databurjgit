@@ -11,10 +11,10 @@ class SectionsController < ApplicationController
       package = Axlsx::Package.new
       workbook = package.workbook
       workbook.add_worksheet(name: "Basic work sheet") do |sheet|
-        sheet.add_row ["Section Id", "Section Name", "Instructor Id"]
+        sheet.add_row ["section_name", "room_location"]
         @sections=Section.all
         @sections.each do |st|
-          sheet.add_row [st.section_id, st.section_name, st.room_location]
+          sheet.add_row [st.section_name, st.room_location]
         end
       end
       send_data package.to_stream.read, :filename => "sections.xlsx"

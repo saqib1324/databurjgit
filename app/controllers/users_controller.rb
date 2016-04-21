@@ -70,6 +70,9 @@ class UsersController < ApplicationController
     if params[:std]=="student_profile"
       @link = "student_profile"
       @student=Student.find(session[:id])
+    elsif params[:std] == "undertaking"
+      @link = "undertaking"
+      @student=Student.find(session[:id])
     elsif params[:std]=="std_settings"
       @link = "std_settings"
       @student = Student.find(session[:id])
