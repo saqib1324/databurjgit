@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
  
   def require_login
       unless session[:id]
-          flash[:notice] = "You are not Logged In"
+          flash[:notice] = "Logged Out"
           redirect_to :root
           return false
       else
