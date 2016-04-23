@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 get "users/instructor_index/logout"=> "require_login"  
   
     resources :users
+    resources :undertakings do
+    collection { post :import }
+  end
 
   resources :instructors do
     collection { post :import }

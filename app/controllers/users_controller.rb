@@ -72,6 +72,12 @@ class UsersController < ApplicationController
       @student=Student.find(session[:id])
     elsif params[:std] == "undertaking"
       @link = "undertaking"
+      @undertaking = Undertaking.new
+      @file = Undertaking.where(:tracking_id => session[:id]).take
+      if (@file)
+        send_data( @file.data , :type => @file.mime_type, :filename => "#{@file.file_name}", :disposition => "inline")
+      end
+      @session_id = session[:id]
       @student=Student.find(session[:id])
     elsif params[:std]=="std_settings"
       @link = "std_settings"

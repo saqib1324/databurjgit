@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407170455) do
+ActiveRecord::Schema.define(version: 20160423170638) do
 
   create_table "instructors", force: :cascade do |t|
     t.string   "instructor_id",   limit: 255
@@ -32,9 +32,8 @@ ActiveRecord::Schema.define(version: 20160407170455) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "students", force: :cascade do |t|
+  create_table "students", primary_key: "tracking_id", force: :cascade do |t|
     t.string   "name",                   limit: 255
-    t.string   "tracking_id",            limit: 255
     t.float    "matric_percentage",      limit: 24
     t.integer  "monthly_income",         limit: 4
     t.string   "SEX",                    limit: 1
@@ -53,6 +52,16 @@ ActiveRecord::Schema.define(version: 20160407170455) do
   end
 
   add_index "students", ["section"], name: "index_students_on_section", using: :btree
+
+  create_table "undertakings", primary_key: "tracking_id", force: :cascade do |t|
+    t.boolean  "status"
+    t.boolean  "admin_status"
+    t.string   "file_name",    limit: 255,      null: false
+    t.binary   "data",         limit: 16777215
+    t.string   "mime_type",    limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        limit: 25

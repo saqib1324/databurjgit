@@ -194,9 +194,24 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
                     <li>Obtain a photocopy of the paid voucher.</li>
                     <li>Submit the scanned copy of that voucher here before the specified deadline.</li>
                   </ol>
-                  
+                  <!--<%= link_to "Show File", student_index(:std => "undertaking"), :target => "_blank" %>-->
                     &nbsp;
-                    <%= link_to "Upload Fee Receipt", users_path, :class => "btn btn-primary pull-left", :role => "button" %>
+                    <!--<%= link_to "Upload Fee Receipt", users_path, :class => "btn btn-primary pull-left", :role => "button" %>-->
+                    <%= form_for(@undertaking, :html => {:multipart => true}) do |f| %>
+                      <div class="field">
+                        <%= f.label :name %>
+                        <%= f.text_field :file_name %>
+                      </div>
+                      <div class="field">
+                        <%= f.label :data %>
+                        <%= f.file_field :data %>
+                      </div>
+                      <% tracking_id = @session_id %>
+                      <div class="actions">
+                        <%= f.submit "Upload" %>
+                      </div>
+                    <% end %>
+                    
                   <br/>
                   <br/>
                   </div>

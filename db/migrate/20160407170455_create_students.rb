@@ -1,6 +1,6 @@
 class CreateStudents < ActiveRecord::Migration
   def up
-    create_table :students do |t|
+    create_table :students,id: false do |t|
       t.string "name"
       t.string "tracking_id"
       t.float "matric_percentage"
@@ -18,6 +18,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string "password_digest"
       t.timestamps null: false
     end
+    execute "ALTER TABLE students ADD PRIMARY KEY (tracking_id);"
   end
   def down
     drop_table :students
