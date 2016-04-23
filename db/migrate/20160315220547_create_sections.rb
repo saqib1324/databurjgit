@@ -1,7 +1,7 @@
 class CreateSections < ActiveRecord::Migration
   def up
     create_table :sections do |t|
-      t.string "section_name" , index: true, primary_key: true, :limit => 50
+      t.string "section_name" , :limit => 50
       t.string "room_location", :null => false
       t.timestamps null: false
     end

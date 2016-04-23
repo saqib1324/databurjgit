@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(version: 20160407170455) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "sections", ["section_name"], name: "index_sections_on_section_name", using: :btree
-
   create_table "students", force: :cascade do |t|
     t.string   "name",                   limit: 255
     t.string   "tracking_id",            limit: 255

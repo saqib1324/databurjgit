@@ -15,6 +15,9 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree
+//= require angular
+//= require angular-animate
+//= require angular-resource
 
 
 // $(document).ready(function() {
@@ -37,3 +40,8 @@ $(document).ready(function() {
   });
  }, 4000);
 });
+
+
+
+
+
