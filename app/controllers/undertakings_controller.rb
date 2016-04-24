@@ -21,6 +21,7 @@ class UndertakingsController < ApplicationController
         t.data      = params[:undertaking][:data].read
         t.file_name  = params[:undertaking][:data].original_filename
         t.mime_type = params[:undertaking][:data].content_type
+        t.admin_status = false
         t.status = true
       end
     end

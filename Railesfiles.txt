@@ -136,13 +136,7 @@ Fix routing of links like (show, edit)and enable all model validations (which sh
 Solved: instructors wala masla hal
 
 Saqib:
-the password field is not downloaded while downloading excel of instructors 
-excel link in sections is not working
-has_secure_password is written in seciton.rb also 
-Uncomment timeout and login check on all pages  which you commented while writing test code
-admin can only visit databurj.com/users, student can only visit databurj.com/users/student_index and instructor can only visit databurj.com/users/instructor_index
-BDD and TDD
-add instructor routing and make front end
+khali file ko upload accept na kare
 
 Later for Saqib:
 If a user is logged in, he cannot see a login page (redirect to dashboard)

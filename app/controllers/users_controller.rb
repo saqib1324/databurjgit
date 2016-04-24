@@ -76,16 +76,16 @@ class UsersController < ApplicationController
       @file = Undertaking.find_by(:tracking_id => params[:id])
       if (@file)
         @file.update(:admin_status => true)
-        flash[:notice] = "File accepted."
+        flash[:notice] = "File accepted"
       end
       redirect_to users_path(:admin => "pundertakings")
     elsif params[:admin] == "reject_file"
       @file = Undertaking.find_by(:tracking_id => params[:id])
       if (@file)
         @file.update(:admin_status => false)
-        flash[:notice] = "File Rejected."
+        flash[:notice] = "File Rejected"
       else
-        flash[:notice] = "File not found."
+        flash[:notice] = "File not found"
       end
       redirect_to users_path(:admin => "undertakings")
     end
@@ -111,13 +111,12 @@ class UsersController < ApplicationController
        @undertaking = Undertaking.new
       end
     elsif params[:std] == "view_file"
-      @link = "view_file"
       # @file = Undertaking.where(:tracking_id => session[:id]).take
       @file = Undertaking.find_by(:tracking_id => params[:id])
       if (@file)
         send_data( @file.data , :type => @file.mime_type, :filename => "#{@file.file_name}", :disposition => "inline")
       else
-        flash[:notice] = "No file uploaded yet."
+        flash[:notice] = "No file uploaded yet"
       end
     elsif params[:std]=="std_settings"
       @link = "std_settings"
