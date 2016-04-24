@@ -72,13 +72,26 @@ class UsersController < ApplicationController
       @student=Student.find(session[:id])
     elsif params[:std] == "undertaking"
       @link = "undertaking"
-      @undertaking = Undertaking.new
+      @session_id = session[:id]
+      @student=Student.find(session[:id])
+    elsif params[:std]=="download"
+      @link = "download"
+    elsif params[:std] == "upload"
+      @link = "upload"
+       @file = Undertaking.where(:tracking_id => session[:id]).take
+      if (@file)
+        @undertaking = "already_uploaded"
+      else
+       @undertaking = Undertaking.new
+      end
+    elsif params[:std] == "view_file"
+      @link = "view_file"
       @file = Undertaking.where(:tracking_id => session[:id]).take
       if (@file)
         send_data( @file.data , :type => @file.mime_type, :filename => "#{@file.file_name}", :disposition => "inline")
+      else
+        flash[:notice] = "No file uploaded yet."
       end
-      @session_id = session[:id]
-      @student=Student.find(session[:id])
     elsif params[:std]=="std_settings"
       @link = "std_settings"
       @student = Student.find(session[:id])

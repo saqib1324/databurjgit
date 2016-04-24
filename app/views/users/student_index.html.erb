@@ -26,11 +26,37 @@
                 <span class="hidden-sm hidden-xs">My Profile</span>
               </a>
             </li>
-            <li class="link">
-              <a href="/users/student_index?std=<%="undertaking"%>">
+            <!--<li class="link">-->
+            <!--  <a href="/users/student_index?std=<%="undertaking"%>">-->
+            <!--    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>-->
+            <!--    <span class="hidden-sm hidden-xs">Undertaking</span>-->
+            <!--  </a>-->
+            <!--</li>-->
+             <li class="link">
+              <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Undertaking</span>
               </a>
+              <ul class="collapse collapseable" id="collapse-post">
+                <li>
+                  <a href="/users/student_index?std=<%="undertaking"%>">View Undertaking</a>
+                  <!--show undertaking checkbox proceed button-->
+                </li>
+                <li>
+                  <a href="/users/student_index?std=<%="download"%>">Download Fee Voucher</a>
+                  <!--download instructions and download button-->
+                </li>
+                <li>
+                  <a href="/users/student_index?std=<%="upload"%>">Upload Fee Voucher</a>
+                  <!--download instructions and download button-->
+                </li>
+                <li>
+                  <!--<a href="/users/student_index?std=<%="view_file"%>" TARGET="_blank">View Uploaded Fee Voucher</a>-->
+                  <a href="#" onClick="window.open('/users/student_index?std=<%="view_file"%>', '_blank')">View Uploaded Fee Voucher</a>
+                   
+                  <!--Render a new page for viewing uploaded fee voucher-->
+                </li>
+              </ul>
             </li>
               <li class="link">
               <a href="/users/index">
@@ -175,12 +201,17 @@
 I am fully aware that my admission is conditional subject to passing my pre-requisite Degree with a minimum of 45% marks. Incase, I fail to clear my examination (in which I have already appeared in), as per Iqra University requirement, I shall withdraw my admission otherwise the university has the right to cancel my admission at any point. Fee will be refunded as per Iqra University’s fee refund policy.
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox"> I agree with all terms and conditions
+                     <form action= ""  onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
+
+<input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
+<input type="submit" name="submit" value="submit" />
+
+</form>
                       
                     </label>
                     </div>
                     &nbsp;
-                    <%= link_to "Proceed and Download Voucher", users_path, :class => "btn btn-primary pull-left", :role => "button" %>
+                    <%= link_to "Proceed and Download Voucher", :controller => "users", :action => "student_index", :std => "download", :class => "btn btn-primary pull-left", :role => "button" %>
                   
                   <hr/>
                   <strong> Instructions: </strong>
@@ -194,24 +225,19 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
                     <li>Obtain a photocopy of the paid voucher.</li>
                     <li>Submit the scanned copy of that voucher here before the specified deadline.</li>
                   </ol>
-                  <!--<%= link_to "Show File", student_index(:std => "undertaking"), :target => "_blank" %>-->
+                  
                     &nbsp;
-                    <!--<%= link_to "Upload Fee Receipt", users_path, :class => "btn btn-primary pull-left", :role => "button" %>-->
-                    <%= form_for(@undertaking, :html => {:multipart => true}) do |f| %>
-                      <div class="field">
-                        <%= f.label :name %>
-                        <%= f.text_field :file_name %>
-                      </div>
-                      <div class="field">
-                        <%= f.label :data %>
-                        <%= f.file_field :data %>
-                      </div>
-                      <% tracking_id = @session_id %>
-                      <div class="actions">
-                        <%= f.submit "Upload" %>
-                      </div>
-                    <% end %>
                     
+                  <p><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf") %></p>
+  
+                    <!--OWAIS WILL WRITE CODE HERE-->
+                    <!--PUT A "DOWNLOAD VOUCHER BUTTON AND DOWLOAD PDF"-->
+                    
+                    
+                    
+                    
+                    <!--<%= link_to "Upload Fee Receipt", users_path, :class => "btn btn-primary pull-left", :role => "button" %>-->
+                  
                   <br/>
                   <br/>
                   </div>
@@ -225,6 +251,39 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
 
 
 <% end %>
+<% if @link == "download" %>
+download code goes here
+yr neechy wale button pr click kr k voucher download kr le
+aur sath wale bank mein jama kra de
+<% end %>
+
+<% if @link == "upload" %>
+  <% if @undertaking == "already_uploaded" %> 
+    Instructions: Yaar aik bar hi sahi dfa daal deta
+    <p><%= link_to "Upload File again", :controller => "undertakings", :action => "destroy" %></p>
+  <% else %>
+    <%= form_for(@undertaking, :html => {:multipart => true}) do |f| %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :file_name %>
+      </div>
+      <div class="field">
+        <%= f.label :data %>
+        <%= f.file_field :data %>
+      </div>
+      <% tracking_id = @session_id %>
+      <div class="actions">
+        <%= f.submit "Upload" %>
+      </div>
+    <% end %>
+  <% end %>
+  <br/><br/>
+<% end %>
+
+<% if @link == "view_file" %>
+
+<% end %>
+
 
             <!--########################################-->
 

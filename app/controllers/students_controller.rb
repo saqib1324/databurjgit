@@ -51,9 +51,9 @@ class StudentsController < ApplicationController
     respond_to do |format|
         format.html
         format.pdf do
-            pdf=Prawn::Document.new
-            pdf.text "Hello World"+@student.name
-        
+            # pdf = Prawn::Document.new
+            # pdf.text "sdfsdf"            
+            pdf = StudentVoucherPdf.new(@student)
             send_data pdf.render, filename: "#{@student.name}.pdf", type: "application/pdf", disposition: "inline"
         end
     end
@@ -75,7 +75,7 @@ class StudentsController < ApplicationController
   end
   def destroy
     @student=Student.find(params[:id])
-              @student.destroy
+    @student.destroy
     respond_to do |format|
       # format.html { redirect_to students_url}
       format.html { redirect_to url_for(:controller => :users, :action => :index, :admin => "students_view") }

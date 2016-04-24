@@ -13,7 +13,6 @@ class UndertakingsController < ApplicationController
   end
 
   def create
-    
     # build a photo and pass it into a block to set other attributes
     @undertaking = Undertaking.new(set_params) do |t|
       t.tracking_id = session[:id]
@@ -22,6 +21,7 @@ class UndertakingsController < ApplicationController
         t.data      = params[:undertaking][:data].read
         t.file_name  = params[:undertaking][:data].original_filename
         t.mime_type = params[:undertaking][:data].content_type
+        t.status = true
       end
     end
     
@@ -34,11 +34,20 @@ class UndertakingsController < ApplicationController
       render :action => "new"
     end
   end
-  
+  def update
+    @undertaking = Undertaking.where(:tracking_id => session[:id])
+    if @undertaking.update(set_params)
+      flash[:notice] = "New File Uploaded Successfully"
+      redirect_to :controller => "users", :action => "student_index"
+    end
+  end
   def destroy
-    @photo = Undertaking.find(params[:id])
-    @undertaking.destroy
-    redirect_to(photos_url)
+    @undertaking = Undertaking.where(:tracking_id => session[:id]).take
+    if @undertaking.present?
+      @undertaking.destroy
+      flash[:notice] = "file destroyed successfully"
+    end
+    redirect_to(:controller => "users", :action => "student_index", :std => "upload")
   end
   private
   def set_params

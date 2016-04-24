@@ -14,10 +14,9 @@ Rails.application.routes.draw do
   get 'users/logout'=> "require_login"
   get "users/student_index/logout"=>"require_login"
 get "users/instructor_index/logout"=> "require_login"  
-  
+  get 'undertakings/destroy' => "undertakings#destroy"
     resources :users
     resources :undertakings do
-    collection { post :import }
   end
 
   resources :instructors do
