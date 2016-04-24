@@ -72,10 +72,15 @@
               </a>
             </li>
             <li class="link">
-              <a href="tags.html">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <a href="#">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Undertakings</span>
               </a>
+            </li>
+            <li class="link">
+              <%= link_to 'Accepted', users_path(:admin => "undertakings") %>
+              <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
+                
             </li>
             <li class="link active">
               <a href="/users?admin=settings">
@@ -205,17 +210,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             <tbody>
               <% @students.each do |student| %>
                 <tr>
@@ -586,6 +581,81 @@
   </div>
   </div>
 <% end %>
+
+<% if @link == "undertakings" %>
+ <div class = "animated fadeIn">
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left">Students who have uploaded their Fee Vouchers</h5>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Tracking ID </th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @students.each do |undertaking| %>
+                <tr>
+                  <td><%= undertaking.tracking_id %></td>
+                  <td>Accepted</td>
+                  <td>
+                    <%= link_to 'View', users_path(:admin => "view_file", :id => undertaking.tracking_id),target: "_blank", :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'Reject', users_path(:admin => "reject_file", :id => undertaking.tracking_id), :class => 'btn btn-xs btn-danger', :role => "button" %>
+                  </td>
+                </tr>
+              <% end %>                
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<% end %>
+<% if @link == "pundertakings" %>
+ <div class = "animated fadeIn">
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left">Students who have uploaded their Fee Vouchers</h5>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Tracking ID </th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @students.each do |undertaking| %>
+                <tr>
+                  <td><%= undertaking.tracking_id %></td>
+                  <td>Not Accepted</td>
+                  <td>
+                    <%= link_to 'View', users_path(:admin => "view_file", :id => undertaking.tracking_id),target: "_blank", :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'Accept', users_path(:admin => "accept_file", :id => undertaking.tracking_id), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                  </td>
+                </tr>
+              <% end %>                
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<% end %>
+
+
 <% if @link == "settings" %>
             <div id="content">
 	            <header class="clearfix">

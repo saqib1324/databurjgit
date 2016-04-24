@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'users#login'
   
   
-  
+  get 'student_index_users_path' => "users#student_index"
   get '/users/student_index'=> "users#student_index"
   get '/users/instructor_index'=> "users#instructor_index"
   get '/users' => "users#index"
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "users/student_index/logout"=>"require_login"
 get "users/instructor_index/logout"=> "require_login"  
   get 'undertakings/destroy' => "undertakings#destroy"
-    resources :users
+  resources :users
     resources :undertakings do
   end
 

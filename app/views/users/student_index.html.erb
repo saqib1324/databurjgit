@@ -51,10 +51,10 @@
                   <!--download instructions and download button-->
                 </li>
                 <li>
-                  <!--<a href="/users/student_index?std=<%="view_file"%>" TARGET="_blank">View Uploaded Fee Voucher</a>-->
-                  <a href="#" onClick="window.open('/users/student_index?std=<%="view_file"%>', '_blank')">View Uploaded Fee Voucher</a>
-                   
-                  <!--Render a new page for viewing uploaded fee voucher-->
+                  <!--<a target="_blank" href="/users/student_index?std=<%="view_file"%>">View Uploaded Fee Voucher</a>-->
+                  <!--<a href="#" onClick="window.open('/users/student_index?std=<%="view_file"%>', '_blank')">View Uploaded Fee Voucher</a>-->
+                  <%= link_to "View Uploaded Fee Voucher", student_index_users_path_path(:std => "view_file", :id => @session_id), target: '_blank' %>
+                    <!--Render a new page for viewing uploaded fee voucher-->
                 </li>
               </ul>
             </li>

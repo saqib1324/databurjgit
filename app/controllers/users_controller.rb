@@ -6,13 +6,14 @@ class UsersController < ApplicationController
   before_action :for_instructor, :only => [:instructor_index]
 
   def index
+    @session_id = session[:id]
     if params[:admin]=="dashboard"
       @link="a"
     end
-    if params[:search]
-      @link= "students_view"
-      @students= Student.order(params[:sort])
-    end
+    # if params[:search]
+    #   @link= "students_view"
+    #   @students= Student.order(params[:sort])
+    # end
     if params[:admin]=="students_view"
       @link= "students_view"
       if params[:search]
@@ -24,7 +25,6 @@ class UsersController < ApplicationController
       elsif params[:admin]=="settings"
       @link = "settings"
     elsif params[:admin] == "instructors_notice"
-      
       @instructors=Instructor.order(params[:sort])
       @link = "instructors_view"
       flash[:notice] = "Nothing more to show"
@@ -39,16 +39,12 @@ class UsersController < ApplicationController
     elsif params[:admin]=="instructors_view"
       @instructors=Instructor.order(params[:sort])
       @link = "instructors_view"
-      
-      
     elsif params[:admin] == "student_add"
       @link = "student_add"
     elsif params[:admin] == "instructor_add"
       @link = "instructor_add"
     elsif params[:admin]=="section_add"
        @link = "section_add"
- 
- 
     elsif params[:admin] == "student_edit"
       @link = "student_edit"
       @student= Student.find(params[:id])
@@ -62,11 +58,41 @@ class UsersController < ApplicationController
       @link = "student_view"
       @student=Student.find(params[:id])
       # @students = Student.find(params[:id])
-      
+    elsif params[:admin] == "undertakings"
+      @link = "undertakings"
+      @students = Undertaking.where(:status => true,:admin_status => true).all
+    elsif params[:admin] == "pundertakings"
+      @link = "pundertakings"
+      @students = Undertaking.where(:status => true,:admin_status => false).all
+    elsif params[:admin] == "view_file"
+      # @file = Undertaking.where(:tracking_id => session[:id]).take
+      @file = Undertaking.find_by(:tracking_id => params[:id])
+      if (@file)
+        send_data( @file.data , :type => @file.mime_type, :filename => "#{@file.file_name}", :disposition => "inline")
+      else
+        flash[:notice] = "No file uploaded yet."
+      end
+    elsif params[:admin] == "accept_file"
+      @file = Undertaking.find_by(:tracking_id => params[:id])
+      if (@file)
+        @file.update(:admin_status => true)
+        flash[:notice] = "File accepted."
+      end
+      redirect_to users_path(:admin => "pundertakings")
+    elsif params[:admin] == "reject_file"
+      @file = Undertaking.find_by(:tracking_id => params[:id])
+      if (@file)
+        @file.update(:admin_status => false)
+        flash[:notice] = "File Rejected."
+      else
+        flash[:notice] = "File not found."
+      end
+      redirect_to users_path(:admin => "undertakings")
     end
   end
 
   def student_index
+    @session_id = session[:id]
     if params[:std]=="student_profile"
       @link = "student_profile"
       @student=Student.find(session[:id])
@@ -86,7 +112,8 @@ class UsersController < ApplicationController
       end
     elsif params[:std] == "view_file"
       @link = "view_file"
-      @file = Undertaking.where(:tracking_id => session[:id]).take
+      # @file = Undertaking.where(:tracking_id => session[:id]).take
+      @file = Undertaking.find_by(:tracking_id => params[:id])
       if (@file)
         send_data( @file.data , :type => @file.mime_type, :filename => "#{@file.file_name}", :disposition => "inline")
       else
