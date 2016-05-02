@@ -22,7 +22,7 @@
             </li>
             <li class="link">
               <a href="/users/instructor_index?ins=<%="instructor_profile"%>">
-                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">My Profile</span>
               </a>
             </li>
@@ -33,13 +33,13 @@
               </a>
             </li>
             <li class="link">
-              <a href="/users/index">
+              <a href="/users/instructor_index?ins=attendance">
                 <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">My Sections</span>
               </a>
             </li>
               <li class="link">
-              <a href="/users/index">
+              <a href="/users/instructor_index?ins=attendance">
                 <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Attendance</span>
               </a>
@@ -98,9 +98,38 @@
     </div>
 
 <!--######################################################-->
+ 
+<% if @link == "attendance" %>
+           <div id="content">
+	            <header class="clearfix">
+	              <h3 class="page_title">Manage Attendance</h3>
+	            </header>
 
+	            <div class="content-inner">
+	              <div class="row">
+	              	<div class="col-md-6">
+	              		<form>
+	              			<div class="settings-row">
+	              				<div class="form-group">
 
-hey you there
+	              				</div>
+	              				<h5>Date</h5>
+	              				<div class="form-group">
+	              					<!--<input type="text" id="input" class="form-control"required="required" title="">-->
+	              					 <%= Date.today.to_s %>
+	              				</div>
+	              				<h5>Confirm new Password</h5>
+	              				<div class="form-group">
+	              					<input type="text" id="input" class="form-control"required="required" title="">
+	              				</div>
+	              			</div>
+	              			<button type="submit" class="btn btn-primary">Proceed</button>
+	              		</form>
+	              	</div>
+	              </div>
+	            </div>
+<% end %>
+
 
 
             <!--########################################-->

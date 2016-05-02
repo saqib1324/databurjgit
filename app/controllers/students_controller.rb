@@ -52,9 +52,10 @@ class StudentsController < ApplicationController
         format.html
         format.pdf do
             # pdf = Prawn::Document.new
-            # pdf.text "sdfsdf"            
+            # pdf.text "sdfsdf" 
+            # pdf = Prawn::Document.new(:page_size => "A4", :page_layout => :landscape)
             pdf = StudentVoucherPdf.new(@student)
-            send_data pdf.render, filename: "#{@student.name}.pdf", type: "application/pdf", disposition: "inline"
+            send_data pdf.render, filename: "#{@student.name}'s voucher'.pdf", type: "application/pdf", disposition: "inline"
         end
     end
   end

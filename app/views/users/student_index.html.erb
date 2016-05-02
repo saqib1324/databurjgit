@@ -42,10 +42,7 @@
                   <a href="/users/student_index?std=<%="undertaking"%>">View Undertaking</a>
                   <!--show undertaking checkbox proceed button-->
                 </li>
-                <li>
-                  <a href="/users/student_index?std=<%="download"%>">Download Fee Voucher</a>
-                  <!--download instructions and download button-->
-                </li>
+
                 <li>
                   <a href="/users/student_index?std=<%="upload"%>">Upload Fee Voucher</a>
                   <!--download instructions and download button-->
@@ -189,7 +186,7 @@
 <% end %>
 <% if @link == "undertaking" %>
 
-<!--<p><%= link_to "Download Fee Voucher", users_path(:std => "std_undertaking", format: "pdf") %></p>-->
+<!--<p><%= link_to "Download Fee Voucher", users_path(:std => "std_undertaking", format: "pdf", target: "_blank") %></p>-->
 <div class = "animated fadeIn">
   <div id="dashboard-con">
       <div class="dashboard-left-cell">
@@ -228,13 +225,11 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
                   
                     &nbsp;
                     
-                  <p><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf") %></p>
+                  <p><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf"), target: "_blank" %></p>
   
                     <!--OWAIS WILL WRITE CODE HERE-->
                     <!--PUT A "DOWNLOAD VOUCHER BUTTON AND DOWLOAD PDF"-->
-                    
-                    
-                    
+          
                     
                     <!--<%= link_to "Upload Fee Receipt", users_path, :class => "btn btn-primary pull-left", :role => "button" %>-->
                   
@@ -251,11 +246,7 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
 
 
 <% end %>
-<% if @link == "download" %>
-download code goes here
-yr neechy wale button pr click kr k voucher download kr le
-aur sath wale bank mein jama kra de
-<% end %>
+
 
 <% if @link == "upload" %>
   <% if @undertaking == "already_uploaded" %> 

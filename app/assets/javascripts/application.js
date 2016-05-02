@@ -10,14 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular
+//= require angular-rails-templates
+//= require angular-animate
+//= require angular-resource
+//= require_tree
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree
-//= require angular
-//= require angular-animate
-//= require angular-resource
+
 
 
 // $(document).ready(function() {
@@ -33,6 +35,8 @@
 //     }, 1500);
 // });
 
+/* global $*/
+
 $(document).ready(function() {
  setTimeout(function(){
   $('#notice_wrapper').fadeOut(("slow"), function() {
@@ -40,8 +44,6 @@ $(document).ready(function() {
   });
  }, 4000);
 });
-
-
 
 
 

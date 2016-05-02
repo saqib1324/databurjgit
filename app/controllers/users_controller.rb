@@ -58,6 +58,8 @@ class UsersController < ApplicationController
       @link = "student_view"
       @student=Student.find(params[:id])
       # @students = Student.find(params[:id])
+    elsif params[:admin] == "admin_attendance"
+      @link = "admin_attendance"
     elsif params[:admin] == "undertakings"
       @link = "undertakings"
       @students = Undertaking.where(:status => true,:admin_status => true).all
@@ -100,8 +102,6 @@ class UsersController < ApplicationController
       @link = "undertaking"
       @session_id = session[:id]
       @student=Student.find(session[:id])
-    elsif params[:std]=="download"
-      @link = "download"
     elsif params[:std] == "upload"
       @link = "upload"
        @file = Undertaking.where(:tracking_id => session[:id]).take
@@ -130,8 +130,8 @@ class UsersController < ApplicationController
     if params[:ins]=="instructor_profile"
       @link = "instructor_profile"
       @instructor=Instructor.find(session[:id])
-      # @found3 = params[:found2]
-      # @found3=Student.find(params[:found2])
+    elsif params[:ins] == "attendance"
+      @link = "attendance"
     end
   end
 

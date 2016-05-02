@@ -1,20 +1,71 @@
 <!DOCTYPE html>
-              <% unless params[:action] == 'login' %>
-                      <% if flash[:notice] %>
-                      <div id = "notice_wrapper" >
-                      <p class = "notice pull-right"><%= flash[:notice] %></p>
-                      </div>
-                    <% end %>
-                <% end %>
+<% unless params[:action] == 'login' %>
+  <% if flash[:notice] %>
+    <div id = "notice_wrapper" >
+      <p class = "notice pull-right"><%= flash[:notice] %></p>
+    </div>
+  <% end %>
+<% end %>
+
 <html>
 <head>
   <title>Databurjproject</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
 </head>
 <body>
 <%= yield %>
 
 </body>
 </html>
+
+<script>
+  var stdMod = angular.module('Studentsr', []); 
+  stdMod.controller('StudentCtrl', function ($scope) {
+    $scope.students = []
+    <% if @students!=nil%>
+      <% @students.each do |student| %>
+        $scope.students.push({
+          id: '<%= student.id %>',
+          name:'<%= student.name %>',
+          tracking_id: '<%= student.tracking_id %>',
+          matric_percentage: '<%= student.matric_percentage %>',
+          monthly_income: '<%= student.monthly_income %>',
+          section: '<%= student.section %>',
+          SEX: '<%= student.SEX%>',
+          city: '<%= student.city%>'
+        })
+      <% end %>
+    <% end %>
+  });
+  stdMod.filter('searchFor', function(){
+    return function(arr, searchString){
+      if(!searchString){
+        return arr;
+      }
+      var result = [];
+      searchString = searchString.toLowerCase();
+      angular.forEach(arr, function(item){
+        if(item.name.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.tracking_id.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.matric_percentage.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.monthly_income.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.section.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.SEX.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }else if(item.city.toLowerCase().indexOf(searchString) !== -1){
+          result.push(item);
+        }
+      });
+      return result;
+    };
+  });
+</script>
