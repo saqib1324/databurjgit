@@ -20,6 +20,14 @@ class InstructorsController < ApplicationController
       end
       send_data package.to_stream.read, :filename => "instructors.xlsx"
   end
+  def export_sample
+      package = Axlsx::Package.new
+      workbook = package.workbook
+      workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+        sheet.add_row ["instructor_id", "instructor_name", "email", "subject_name", "username","password"]
+      end
+      send_data package.to_stream.read, :filename => "instructors.xlsx"
+  end
   def import
     Instructor.import(params[:file])
     redirect_to users_path(:admin => "instructors_view"), notice: "Instructors imported."

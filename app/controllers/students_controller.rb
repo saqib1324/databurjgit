@@ -30,6 +30,14 @@ class StudentsController < ApplicationController
     end
     send_data package.to_stream.read, :filename => "students.xlsx"
   end
+  def export_sample
+    package = Axlsx::Package.new
+    workbook = package.workbook
+    workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+      sheet.add_row ["name", "tracking_id", "father_name", "DOB", "SEX", "city","email","phone_number", "secondary_phone_number", "mailing_address", "username","password"]
+    end
+    send_data package.to_stream.read, :filename => "students.xlsx"
+  end
   def create
     @student = Student.new(student_params)
     # @student.id=student_params[:tracking_id]

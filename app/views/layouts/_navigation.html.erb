@@ -160,7 +160,7 @@
     </div>
   </div>
 <% end %>
-<!--########################### FAIZI YAHAN CODE LIKH MAR LE #####################################-->
+
 <% if @link == "students_view" %>
  <div class = "animated fadeIn" ng-app="Studentsr" ng-controller="StudentCtrl">
     <div id="dashboard-con">
@@ -169,24 +169,15 @@
         <div class="dashboard-left-cell">
           <div class="admin-content-con">
             <header class="clearfix">
-              <div class = "divider pull-left">
-                <!--<%= form_tag users_path, :method => 'get' do %>-->
-                <!--  <p>-->
-                <!--    <%= text_field_tag :search, params[:search] %>-->
-                <!--    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>-->
-                <!--  </p>-->
-                <!--<% end %>-->
-                <!--<%= form_tag import_students_path, multipart: true do %>-->
-                <!--  <%= file_field_tag :file %>-->
-                <!--  <%= submit_tag "Import" %>-->
-                <!--<% end %>-->
-              </div>
               <strong><h5 class="pull-left page_title">All Students</h5></strong>
               <input type="text" ng-model="searchString" placeholder="Search Students"/>
               <div class = "divider pull-right">
                 <%= form_tag :controller => :students, :action => :export do %>
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
                 <% end %> 
+              </div>
+              <div class = "divider pull-right">
+                <%= link_to "Import from Excel", users_path( :admin => "students_import" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %> 
               </div>
               <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
             </header>
@@ -204,7 +195,6 @@
                 <strong><font size="3"> Income </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
                 <th><%=  link_to :sort => "section", :admin => "students_view" do %>
                 <strong><font size="3"> Section </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
-                
                 <th>Gender</th>
                 <th>City</th>
                 <th>Actions</th>
@@ -233,7 +223,6 @@
   </div>
   </div>
 <% end %>
-<!--################################ YOUR BOPRDER ENDS HERE ########################################-->
 <% if @link == "student_edit" %>
  <div class = "animated fadeIn">
   <div id="content">
@@ -300,6 +289,18 @@
     </div>
   
 <% end %>
+<% if @link == "students_import" %>
+<br>
+  <%= form_tag :controller => :students, :action => :export_sample do %>
+    <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
+  <% end %> 
+  <br><br>
+  <%= form_tag import_students_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <br>
+    <%= submit_tag "Import" %>
+  <% end %>
+<% end %>
 <!--################################ INSTRUCTORS #############################################-->
 <% if @link == "instructor_add" %>
  <div class = "animated fadeIn">
@@ -341,10 +342,9 @@
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
               <% end %>
             </div>
-            <%= form_tag import_instructors_path, multipart: true do %>
-              <%= file_field_tag :file %>
-              <%= submit_tag "Import" %>
-            <% end %>
+            <div class = "divider pull-right">
+              <%= link_to "Import from Excel", users_path( :admin => "instructors_import" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %> 
+            </div>
             <%= link_to "Add new Instructor", users_path(:admin => "instructor_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
           </header>
           <table class="table table-striped">
@@ -408,6 +408,18 @@
     </div>
   </div>
 <% end %>
+<% if @link == "instructors_import" %>
+<br>
+  <%= form_tag :controller => :instructors, :action => :export_sample do %>
+    <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
+  <% end %> 
+  <br><br>
+  <%= form_tag import_instructors_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <br>
+    <%= submit_tag "Import" %>
+  <% end %>
+<% end %>
 <!--#################################### SECTIONS ##################################################-->
 <% if @link == "section_add" %>
  <div class = "animated fadeIn">
@@ -447,10 +459,9 @@
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
               <% end %>
             </div>
-            <%= form_tag import_sections_path, multipart: true do %>
-              <%= file_field_tag :file %>
-              <%= submit_tag "Import" %>
-            <% end %>
+            <div class = "divider pull-right">
+              <%= link_to "Import from Excel", users_path( :admin => "sections_import" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %> 
+            </div>
             <%= link_to "Add new Section", users_path(:admin => "section_add"), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
           </header>
           <table class="table table-striped">
@@ -579,7 +590,19 @@
   </div>
   </div>
 <% end %>
-
+<% if @link == "sections_import" %>
+<br>
+  <%= form_tag :controller => :sections, :action => :export_sample do %>
+    <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
+  <% end %> 
+  <br><br>
+  <%= form_tag import_sections_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <br>
+    <%= submit_tag "Import" %>
+  <% end %>
+<% end %>
+<!--##################### Other Things ##################-->
 <% if @link == "undertakings" %>
  <div class = "animated fadeIn">
   <div id="dashboard-con">
@@ -664,8 +687,6 @@
             <h5 class="pull-left page_title">Mark Attendance</h5>
             <div class = "divider pull-right">
             </div>
-
-
           </header>
           <table class="table table-striped">
             <thead>
@@ -686,7 +707,6 @@
     </div>
   </div>
   </div>
-
 <% end %>
 <% if @link == "settings" %>
 
@@ -730,7 +750,5 @@
       </div>
       </div>
     </div>
-
-
   </body>
 </html>

@@ -5,15 +5,16 @@ Rails.application.routes.draw do
  #get 'students/index'
   root 'users#login'
   
-  
+  get '/users' => "users#index"
   get 'student_index_users_path' => "users#student_index"
   get '/users/student_index'=> "users#student_index"
   get '/users/instructor_index'=> "users#instructor_index"
-  get '/users' => "users#index"
+  
+  get '/users/index' => "users#index"
 
   get 'users/logout'=> "require_login"
   get "users/student_index/logout"=>"require_login"
-get "users/instructor_index/logout"=> "require_login"  
+  get "users/instructor_index/logout"=> "require_login"  
   get 'undertakings/destroy' => "undertakings#destroy"
   resources :users
     resources :undertakings do

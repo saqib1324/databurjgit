@@ -19,6 +19,14 @@ class SectionsController < ApplicationController
       end
       send_data package.to_stream.read, :filename => "sections.xlsx"
     end
+    def export_sample
+      package = Axlsx::Package.new
+      workbook = package.workbook
+      workbook.add_worksheet(name: "Basic work sheet") do |sheet|
+        sheet.add_row ["section_name", "room_location"]
+      end
+      send_data package.to_stream.read, :filename => "sections.xlsx"
+    end
     def create
         @section = Section.new(section_params)
        # @section.id=Section_params[:tracking_id]

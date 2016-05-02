@@ -95,7 +95,7 @@ How to create a copy of project
 3.	Mysql-ctl start
 4.	Mysqladmin –u root password ‘bharwa007’
 5.	Mysql –u root –p
-6.	Create database databurjproject_development (in SQL terminal)
+6.	Rake db:create
 7.	Rake db:migrate
 8.	Rake db:seed
 9.	Login to databurj using following credentials username: databurj password: windows787!

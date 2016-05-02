@@ -90,6 +90,12 @@ class UsersController < ApplicationController
         flash[:notice] = "File not found"
       end
       redirect_to users_path(:admin => "undertakings")
+    elsif params[:admin] == "students_import"
+      @link = "students_import"
+    elsif params[:admin] == "instructors_import"
+      @link = "instructors_import"
+    elsif params[:admin] == "sections_import"
+      @link = "sections_import"
     end
   end
 
