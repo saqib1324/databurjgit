@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'welcome/admin_index' => 'welcome#admin_index'
   
   # get 'users/index' => 'users#index'
@@ -30,7 +32,7 @@ Rails.application.routes.draw do
     collection { post :import }
     # resources :students
   end
-  
+  resources :associations
   # match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

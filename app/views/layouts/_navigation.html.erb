@@ -65,21 +65,38 @@
               </ul>
             </li>
             <li class="link">
+              <a href="#collapse-association" data-toggle="collapse" aria-controls="collapse-association">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Associations</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-association">
+                <li>
+                  <%= link_to 'View Associations',  users_path(:admin => "view_associations") %>
+                </li>
+                <li>
+                  <%= link_to 'Set Associations', users_path(:admin => "add_associations") %>
+                </li>
+              </ul>
+            </li>
+            <li class="link">
               <a href="/users?admin=admin_attendance">
                 <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Attendance</span>
               </a>
             </li>
             <li class="link">
-              <a href="#">
-                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+              <a href="#collapse-undertaking" data-toggle="collapse" aria-controls="collapse-undertaking">
+                <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Undertakings</span>
               </a>
-            </li>
-            <li class="link">
-              <%= link_to 'Accepted', users_path(:admin => "undertakings") %>
-              <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
-                
+              <ul class="collapse collapseable" id="collapse-undertaking">
+                <li>
+                  <%= link_to 'Accepted',  users_path(:admin => "undertakings") %>
+                </li>
+                <li>
+                  <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
+                </li>
+              </ul>
             </li>
             <li class="link active">
               <a href="/users?admin=settings">
@@ -452,7 +469,7 @@
       <div class="dashboard-left-cell">
         <div class="admin-content-con">
           <header class="clearfix">
-            <h5 class="pull-left">All Sections</h5>
+            <strong><h5 class="pull-left">All Sections</h5></strong>
 
             <div class = "divider pull-right">
               <%= form_tag :controller => :instructors, :action => :export do %>
@@ -500,32 +517,11 @@
         <div class="dashboard-left-cell">
           <div class="admin-content-con">
             <header class="clearfix">
-              <div class = "divider pull-left">
-                <!--<%= form_tag users_path, :method => 'get' do %>-->
-                <!--  <p>-->
-                <!--    <%= text_field_tag :search, params[:search] %>-->
-                <!--    <%= submit_tag "Search", :name => nil,:admin => "students_view" %>-->
-                <!--  </p>-->
-                <!--<% end %>-->
-                <%= form_tag import_students_path, multipart: true do %>
-                  <%= file_field_tag :file %>
-                  <%= submit_tag "Import" %>
-                <% end %>
-              </div>
-              <strong><h5 class="pull-left page_title">All Students</h5></strong>
-              
-              
-              <div class = "divider pull-right">
-                <%= form_tag :controller => :students, :action => :export do %>
-                <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
-                <% end %> 
-              </div>
-              <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+              <strong><h5 class="pull-left page_title">All Students of Section <%= @section.section_name %></h5></strong>
             </header>
             <table class="table table-striped">
             <thead>
-              <tr>
-                
+              <tr> 
                 <th><%=  link_to :sort => "name", :admin => "students_view" do %>
                 <strong><font size="3"> Name </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
                 <th><%=  link_to :sort => "tracking_id", :admin => "students_view" do %>
@@ -536,7 +532,6 @@
                 <strong><font size="3"> Income </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
                 <th><%=  link_to :sort => "section", :admin => "students_view" do %>
                 <strong><font size="3"> Section </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
-                
                 <th>Gender</th>
                 <th>City</th>
                 <th>Actions</th>
@@ -708,6 +703,68 @@
   </div>
   </div>
 <% end %>
+
+<% if @link == "add_associations" %>
+ <div class = "animated fadeIn">
+  <div id="dashboard-con">
+    <div>
+      <div class="dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left page_title">Set Associations</h5>
+            <div class = "divider pull-right">
+              <%= form_tag :controller => :instructors, :action => :export do %>
+              <% end %>
+            </div>
+            <div class = "divider pull-right">
+            </div>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Instructor ID</th>
+                <th>Instructor Name</th>
+                <th>Subject Name</th>
+                <th>Select Section</th>
+              </tr>
+            </thead>
+            <tbody>
+<% i=1 %>
+             <%= form_tag :controller => :association, :action => :create do  %>
+
+              <% @instructors.each do |instructor| %>
+                <tr>
+                  <td><%= instructor.instructor_id %></td>
+                  <td><%= instructor.instructor_name %></td>
+                  <td><%= instructor.subject_name %> </td>
+                  
+                  <td>
+                    
+                    <%= select_tag "associations[]", options_for_select(@sections.collect{ |x| [x.section_name]  }), {:multiple => :multiple, :size => 3} %>
+                  </td>
+                </tr>
+                      
+              <% end %>
+            </tbody>
+          </table>
+          
+            <% end %>
+            <%= submit_tag "Set Associations", class: "btn btn-primary pull-left", id: "export" %>
+
+            <br/><br/>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+ 
+<% end %>
+
+<% if @link == "view_associations" %>
+
+<% end %>
+
+
 <% if @link == "settings" %>
 
             <div id="content">

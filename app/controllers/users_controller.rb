@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       @link = "instructors_view"
       flash[:notice] = "Nothing more to show"
     elsif params[:admin] == "section_view"
+      @association = Association.new
       @link = "section_view"
       @section = Section.find(params[:id])
       @students = Student.where(:section => @section.section_name).all
@@ -96,6 +97,12 @@ class UsersController < ApplicationController
       @link = "instructors_import"
     elsif params[:admin] == "sections_import"
       @link = "sections_import"
+    elsif params[:admin] == "view_associations"
+      @link = "view_associations"
+    elsif params[:admin] == "add_associations"
+      @link = "add_associations"
+      @instructors = Instructor.all
+       @sections = Section.all
     end
   end
 
