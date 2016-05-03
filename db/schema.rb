@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502165134) do
+ActiveRecord::Schema.define(version: 20160503071937) do
 
   create_table "associations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20160502165134) do
     t.string   "password_digest", limit: 255
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "lms", force: :cascade do |t|
+    t.string   "instructor_id", limit: 255
+    t.string   "section_id",    limit: 255
+    t.string   "subject_name",  limit: 255
+    t.string   "file_name",     limit: 255,      null: false
+    t.binary   "data",          limit: 16777215
+    t.string   "mime_type",     limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "sections", force: :cascade do |t|

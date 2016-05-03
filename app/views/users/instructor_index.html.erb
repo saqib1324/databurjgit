@@ -44,14 +44,14 @@
                 <span class="hidden-sm hidden-xs">Attendance</span>
               </a>
             </li>
-            <li class="link">
-              <a href="/users/index">
-                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+            <li class="link active">
+              <a href="/users/instructor_index?ins=lms_view">
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Learning Management System</span>
               </a>
             </li>
             <li class="link active">
-              <a href="settings.html">
+              <a href="/users/instructor_index?ins=ins_settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Settings</span>
               </a>
@@ -131,6 +131,114 @@
 <% end %>
 
 
+
+<% if @link == "instructor_profile" %>
+  <% if @instructor %>
+    <div class = "animated fadeIn">
+      <div id="dashboard-con">
+        <div>
+          <div class="dashboard-left-cell">
+            <div class="admin-content-con">
+              <header class="clearfix">
+                <strong><h3 class="pull-left page_title"><%= @instructor.instructor_name %>'s details</h3></strong>
+                <div class = "divider pull-right">
+                <%= link_to "All Instructors", users_path( :admin => "instructors_view" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
+              </header>
+                  <strong>Tracking ID:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.instructor_id %><hr/>
+                  <strong>Name:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.instructor_name %><hr/>
+                  <strong>Email:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.email %><hr/>
+                  <strong>Phone Number:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.phone_number %><hr/>
+                  <strong>Subject Name:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.subject_name%><hr/>
+                  <strong>DataBurj Username:</strong>&nbsp;&nbsp;&nbsp;<%= @instructor.username %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>
+
+<% if @link == "lms_view" %>
+  <div class="admin-content-con">
+    <header class="clearfix">
+      <strong><h5 class="pull-left page_title">Upload New File </h5></strong>
+    </header>
+    <%= form_for(@lms, :html => {:multipart => true}) do |f| %>
+      <%= f.label "Section" %>
+      <%= f.select :section_id, [["Select:", "?"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
+      <div class="field">
+        <%= f.label :data %>
+        <%= f.file_field :data %>
+      </div>
+      <br>
+      <% instructor_id = @session_id %>
+      <div class="actions">
+        <%= f.submit "Upload" %>
+      </div>
+    <% end %>
+    <!--################-->
+    <br/>
+    <header class="clearfix">
+      <strong><h5 class="pull-left page_title">All Files </h5></strong>
+    </header>
+    <table class="table table-striped">
+      <thead>
+        <tr> 
+          <th>Subject</th>
+          <th>File name</th>
+          <th>Uploaded At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @files %>
+          <% @files.each do |file| %>
+            <tr>
+              <td><%= file.subject_name %></td>
+              <td><%= file.file_name %></td>
+              <td><%= file.updated_at %></td>
+              <td>
+                <%= link_to 'View', lms_path(:id => file.id ), target: '_blank', :class => 'btn btn-xs btn-primary', :role => "button" %>
+                <%= link_to 'Delete', file, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>
+<% if @link == "ins_settings" %>
+<div id="content">
+  <header class="clearfix">
+    <b><h3 class="page_title">Change your password</h3></b>
+  </header>
+
+  <div class="content-inner">
+    <div class="row">
+    	<div class="col-md-6">
+    		<form>
+    			<div class="settings-row">
+    				<div class="form-group">
+    					  <%= bootstrap_form_for(@instructor) do |f| %>
+    					    <%= f.password_field :password, label: "Current Password", :required => true %>
+    				</div>
+    				<div class="form-group">
+    				  <%= f.password_field :password, label: "New Password", :required => true %>
+    				</div>
+    				<div class="form-group">
+    				  <%= f.password_field :password, label: "Confirm New Password", :required => true %>
+    				</div>
+    					<% end %>
+    			</div>
+    			<button type="submit" class="btn btn-primary">Save Changes</button>
+    		</form>
+    	</div>
+    </div>
+  </div>
+
+<% end %>
 
             <!--########################################-->
 

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     # resources :students
   end
   resources :associations
+  resources :lms
   # match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

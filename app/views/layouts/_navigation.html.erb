@@ -78,12 +78,7 @@
                 </li>
               </ul>
             </li>
-            <li class="link">
-              <a href="/users?admin=admin_attendance">
-                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Attendance</span>
-              </a>
-            </li>
+
             <li class="link">
               <a href="#collapse-undertaking" data-toggle="collapse" aria-controls="collapse-undertaking">
                 <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>
@@ -97,6 +92,18 @@
                   <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
                 </li>
               </ul>
+            </li>
+            <li class="link">
+              <a href="/users?admin=hostel">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Hostel Management System</span>
+              </a>
+            </li>
+            <li class="link">
+              <a href="/users?admin=admin_attendance">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Attendance</span>
+              </a>
             </li>
             <li class="link active">
               <a href="/users?admin=settings">
@@ -433,7 +440,7 @@
   <br><br>
   <%= form_tag import_instructors_path, multipart: true do %>
     <%= file_field_tag :file %>
-    <br>
+    <br>;
     <%= submit_tag "Import" %>
   <% end %>
 <% end %>
@@ -729,17 +736,15 @@
               </tr>
             </thead>
             <tbody>
-<% i=1 %>
-             <%= form_tag :controller => :association, :action => :create do  %>
+
+
 
               <% @instructors.each do |instructor| %>
                 <tr>
                   <td><%= instructor.instructor_id %></td>
                   <td><%= instructor.instructor_name %></td>
                   <td><%= instructor.subject_name %> </td>
-                  
                   <td>
-                    
                     <%= select_tag "associations[]", options_for_select(@sections.collect{ |x| [x.section_name]  }), {:multiple => :multiple, :size => 3} %>
                   </td>
                 </tr>
@@ -748,8 +753,9 @@
             </tbody>
           </table>
           
-            <% end %>
+             <%= form_tag :controller => :association, :action => :create do  %>
             <%= submit_tag "Set Associations", class: "btn btn-primary pull-left", id: "export" %>
+            <% end %>
 
             <br/><br/>
         </div>
@@ -761,10 +767,12 @@
 <% end %>
 
 <% if @link == "view_associations" %>
-
+view associations area
 <% end %>
 
-
+<% if @link == "hostel" %>
+here is hostel view
+<% end %>
 <% if @link == "settings" %>
 
             <div id="content">
@@ -777,7 +785,14 @@
 	              	<div class="col-md-6">
 	              		<form>
 	              			<div class="settings-row">
-	              				<h5>Current Password</h5>
+	              				<!--<h5>Current Password</h5>-->
+	              				
+	              				<%= bootstrap_form_for @user do |f| %>
+	              				<%= f.text_field :password, label: "Current Password", :required => true%>
+	              				<% if @user.password == :password_digest %>
+	              				yes
+	              				<% end %>
+	              				<% end %>
 	              				<div class="form-group">
 
 	              				</div>

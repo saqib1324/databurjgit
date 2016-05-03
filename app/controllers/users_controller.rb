@@ -10,10 +10,6 @@ class UsersController < ApplicationController
     if params[:admin]=="dashboard"
       @link="a"
     end
-    # if params[:search]
-    #   @link= "students_view"
-    #   @students= Student.order(params[:sort])
-    # end
     if params[:admin]=="students_view"
       @link= "students_view"
       if params[:search]
@@ -22,8 +18,9 @@ class UsersController < ApplicationController
       else
           @students= Student.order(params[:sort])
       end
-      elsif params[:admin]=="settings"
+    elsif params[:admin]=="settings"
       @link = "settings"
+      @user = User.find(session[:id])
     elsif params[:admin] == "instructors_notice"
       @instructors=Instructor.order(params[:sort])
       @link = "instructors_view"
@@ -103,6 +100,8 @@ class UsersController < ApplicationController
       @link = "add_associations"
       @instructors = Instructor.all
        @sections = Section.all
+    elsif params[:admin] == "hostel"
+      @link = "hostel"   
     end
   end
 
@@ -137,6 +136,10 @@ class UsersController < ApplicationController
       # unauthorized! if cannot? :read, @instructor
       # @found3 = params[:found2]
       # @found3=Student.find(params[:found2])
+    elsif params[:std] == "lms_view"
+      @link = "lms_view"
+      @student = Student.find(session[:id])
+      @files = Lm.where(:section_id => @student.section)
     end
   end
   def instructor_index
@@ -145,6 +148,13 @@ class UsersController < ApplicationController
       @instructor=Instructor.find(session[:id])
     elsif params[:ins] == "attendance"
       @link = "attendance"
+    elsif params[:ins] == "lms_view"
+      @link = "lms_view"
+      @lms = Lm.new
+      @files = Lm.where(:instructor_id => session[:id])
+    elsif params[:ins]=="ins_settings"
+      @link = "ins_settings"
+      @instructor = Instructor.find(session[:id])
     end
   end
 
@@ -179,6 +189,8 @@ class UsersController < ApplicationController
           authorized_user = found_user.authenticate(params[:password])
           if authorized_user
             flash[:notice] = "Welcome! You are LoggedIn"
+            # cookies[:auth_token] = authorized_user.auth_token
+
             session[:id] = authorized_user.id
             $restrict = 'admin'
             $user_role = 'admin'
@@ -219,6 +231,7 @@ class UsersController < ApplicationController
   def logout
     flash[:notice]="Logged out"
     session[:id] = nil
+    # cookies.delete(:auth_token)
     redirect_to(:action => "login")
   end
   

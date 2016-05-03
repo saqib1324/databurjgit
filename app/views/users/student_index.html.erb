@@ -26,12 +26,6 @@
                 <span class="hidden-sm hidden-xs">My Profile</span>
               </a>
             </li>
-            <!--<li class="link">-->
-            <!--  <a href="/users/student_index?std=<%="undertaking"%>">-->
-            <!--    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>-->
-            <!--    <span class="hidden-sm hidden-xs">Undertaking</span>-->
-            <!--  </a>-->
-            <!--</li>-->
              <li class="link">
               <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
@@ -40,16 +34,12 @@
               <ul class="collapse collapseable" id="collapse-post">
                 <li>
                   <a href="/users/student_index?std=<%="undertaking"%>">View Undertaking</a>
-                  <!--show undertaking checkbox proceed button-->
                 </li>
 
                 <li>
                   <a href="/users/student_index?std=<%="upload"%>">Upload Fee Voucher</a>
-                  <!--download instructions and download button-->
                 </li>
                 <li>
-                  <!--<a target="_blank" href="/users/student_index?std=<%="view_file"%>">View Uploaded Fee Voucher</a>-->
-                  <!--<a href="#" onClick="window.open('/users/student_index?std=<%="view_file"%>', '_blank')">View Uploaded Fee Voucher</a>-->
                   <%= link_to "View Uploaded Fee Voucher", student_index_users_path_path(:std => "view_file", :id => @session_id), target: '_blank' %>
                     <!--Render a new page for viewing uploaded fee voucher-->
                 </li>
@@ -62,7 +52,7 @@
               </a>
             </li>
             <li class="link">
-              <a href="/users/index">
+              <a href="/users/student_index?std=lms_view">
                 <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Learning Management System</span>
               </a>
@@ -271,10 +261,40 @@ I am fully aware that my admission is conditional subject to passing my pre-requ
   <br/><br/>
 <% end %>
 
-<% if @link == "view_file" %>
+<% if @link == "lms_view" %>
+  <div class="admin-content-con">
+    <header class="clearfix">
+      <strong><h5 class="pull-left page_title">All Files </h5></strong>
+    </header>
+    <table class="table table-striped">
+      <thead>
+        <tr> 
+          <th>Section</th>
+          <th>Subject</th>
+          <th>File name</th>
+          <th>Uploaded At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @files %>
+          <% @files.each do |file| %>
+            <tr>
+              <td><%= file.section_id %></td>
+              <td><%= file.subject_name %></td>
+              <td><%= file.file_name %></td>
+              <td><%= file.updated_at %></td>
+              <td>
+                <%= link_to 'View', lms_path(:id => file.id ), target: '_blank', :class => 'btn btn-xs btn-primary', :role => "button" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 <% end %>
-
 
             <!--########################################-->
 
