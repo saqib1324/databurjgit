@@ -40,8 +40,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'prawn'
 gem 'prawn-table', '~> 0.1.0'
 gem 'cancan'
-gem 'ransack', github: 'activerecord-hackery/ransack'
-
 # Use Unicorn as the app server
 # gem 'unicorn'
 
