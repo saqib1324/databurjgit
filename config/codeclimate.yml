@@ -8,8 +8,12 @@ engines:
     exclude_fingerprints:
     - 46f2a7752363f6e197a854db6b6b2844
 # ... CONFIG CONTENT ...
+ratings:
 exclude_paths:
 - bower_components/**/*
 - app/assets/**/*
 - spec/**/*
+- public/**/*
 - "**/vendor/**/*"
+- "bower_components/sweetalert/dist/sweetalert-dev.js"
+- "bower_components/**/*"
