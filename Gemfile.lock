@@ -268,7 +268,6 @@ DEPENDENCIES
   prawn-table (~> 0.1.0)
   rails (= 4.2.5.1)
   rails_12factor
-  ransack
   roo (= 2.3.2)
   rspec-rails (~> 3.0.0)
   sass-rails (~> 5.0)
