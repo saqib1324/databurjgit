@@ -1,7 +1,7 @@
 ---
 engines:
   brakeman:
-    enabled: true
+    enabled: false
   bundler-audit:
     enabled: true
   csslint:
@@ -46,3 +46,8 @@ exclude_paths:
 - spec/
 - test/
 - vendor/
+- public
+- public/
+- bower_components/
+- app/assets/
+- app/helpers/
