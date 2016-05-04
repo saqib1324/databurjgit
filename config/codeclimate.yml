@@ -3,8 +3,13 @@ engines:
   brakeman:
     enabled: false
   duplication:
-    enabled: true
+    enabled: false
     # ... CONFIG CONTENT ...
     exclude_fingerprints:
     - 46f2a7752363f6e197a854db6b6b2844
 # ... CONFIG CONTENT ...
+exclude_paths:
+- bower_components/**/*
+- app/assets/**/*
+- spec/**/*
+- "**/vendor/**/*"

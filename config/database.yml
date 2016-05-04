@@ -14,7 +14,7 @@ defaults: &defaults
   encoding: utf8
   pool: 5
   username: root
-  password: 
+  password: windows787!
   host: localhost
 
 development:

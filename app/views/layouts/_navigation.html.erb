@@ -314,6 +314,7 @@
   
 <% end %>
 <% if @link == "students_import" %>
+<div class="admin-content-con">
 <br>
   <%= form_tag :controller => :students, :action => :export_sample do %>
     <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
@@ -324,6 +325,7 @@
     <br>
     <%= submit_tag "Import" %>
   <% end %>
+  </div>
 <% end %>
 <!--################################ INSTRUCTORS #############################################-->
 <% if @link == "instructor_add" %>
@@ -433,6 +435,7 @@
   </div>
 <% end %>
 <% if @link == "instructors_import" %>
+<div class="admin-content-con">
 <br>
   <%= form_tag :controller => :instructors, :action => :export_sample do %>
     <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
@@ -443,6 +446,7 @@
     <br>;
     <%= submit_tag "Import" %>
   <% end %>
+  </div>
 <% end %>
 <!--#################################### SECTIONS ##################################################-->
 <% if @link == "section_add" %>
@@ -593,6 +597,7 @@
   </div>
 <% end %>
 <% if @link == "sections_import" %>
+<div class="admin-content-con">
 <br>
   <%= form_tag :controller => :sections, :action => :export_sample do %>
     <%= submit_tag "Download sample file", class: "btn btn-xs btn-primary pull-left", id: "export" %>
@@ -603,6 +608,7 @@
     <br>
     <%= submit_tag "Import" %>
   <% end %>
+</div>
 <% end %>
 <!--##################### Other Things ##################-->
 <% if @link == "undertakings" %>
@@ -788,11 +794,7 @@ here is hostel view
 	              				<!--<h5>Current Password</h5>-->
 	              				<%= bootstrap_form_for @user do |f| %>
 	              				<%= f.text_field :password, label: "Current Password", :required => true%>
-	              				
-	              				
-	              				
-	              				
-	              				
+
 	              				<% if @user.password == :password %>
 	              				
 	              				<% end %>
