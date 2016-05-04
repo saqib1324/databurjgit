@@ -1,28 +1,24 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For set-Up
 
-Things you may want to cover:
+1) gem install bundler
+2) bundle install
+3) mysql-ctl start
+4) mysql-admin -u root password "root"
+5) rake db:create
+6) rake db:migrate
+7) rake db:seed
+8) You are done now!!
 
-* Ruby version
+ADMIN:
+username : databurj
+password : windows787!
 
-* System dependencies
+Students :
+username : std1
+password : std1
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Instructor :
+username : inst1
+password : inst1

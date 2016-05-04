@@ -1,5 +1,7 @@
 engines:
   # ... CONFIG CONTENT ...
+  brakeman:
+    enabled: false
   duplication:
     enabled: true
     # ... CONFIG CONTENT ...

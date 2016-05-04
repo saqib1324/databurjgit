@@ -786,12 +786,21 @@ here is hostel view
 	              		<form>
 	              			<div class="settings-row">
 	              				<!--<h5>Current Password</h5>-->
-	              				
 	              				<%= bootstrap_form_for @user do |f| %>
 	              				<%= f.text_field :password, label: "Current Password", :required => true%>
-	              				<% if @user.password == :password_digest %>
-	              				yes
+	              				
+	              				
+	              				
+	              				
+	              				
+	              				<% if @user.password == :password %>
+	              				
 	              				<% end %>
+	              				
+	              				
+	              				
+	              				
+	              				
 	              				<% end %>
 	              				<div class="form-group">
 
