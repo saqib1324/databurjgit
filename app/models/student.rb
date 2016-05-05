@@ -23,7 +23,7 @@ class Student < ActiveRecord::Base
       header = spreadsheet.row(1)
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        student = find_by_id(row["tracking_id"]) || new
+        student = find_by_tracking_id(row["tracking_id"]) || new
         student.attributes = row.to_hash.slice(*row.to_hash.keys)
         student.save!
       end

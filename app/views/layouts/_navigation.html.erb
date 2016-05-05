@@ -186,23 +186,27 @@
 <% end %>
 
 <% if @link == "students_view" %>
- <div class = "animated fadeIn" ng-app="Studentsr" ng-controller="StudentCtrl">
+  <div class = "animated fadeIn">
     <div id="dashboard-con">
       <div>
-        <ng-view></ng-view>
         <div class="dashboard-left-cell">
           <div class="admin-content-con">
             <header class="clearfix">
+              <div class = "divider pull-left">
+              </div>
               <strong><h5 class="pull-left page_title">All Students</h5></strong>
-              <input type="text" ng-model="searchString" placeholder="Search Students"/>
+              
+              
               <div class = "divider pull-right">
                 <%= form_tag :controller => :students, :action => :export do %>
                 <%= submit_tag "Download in Excel", class: "btn btn-xs btn-primary pull-right", id: "export" %>
                 <% end %> 
               </div>
               <div class = "divider pull-right">
-                <%= link_to "Import from Excel", users_path( :admin => "students_import" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %> 
+              <%= link_to "Import from Excel", users_path( :admin => "students_import" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %> 
               </div>
+              
+
               <%= link_to "Add new Student", users_path( :admin => "student_add" ), :class => "btn btn-xs btn-primary pull-right", :role => "button" %>
             </header>
             <table class="table table-striped">
@@ -219,26 +223,29 @@
                 <strong><font size="3"> Income </font></strong></span><span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"><% end %></th>            
                 <th><%=  link_to :sort => "section", :admin => "students_view" do %>
                 <strong><font size="3"> Section </font></strong></span><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"><% end %></th>
+                
                 <th>Gender</th>
                 <th>City</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="student in students | searchFor:searchString">
-                  <td>{{student.name}}</td>
-                  <td>{{student.tracking_id}}</td>
-                  <td>{{student.matric_percentage}}</td>
-                  <td>{{student.monthly_income}}</td>
-                  <td>{{student.section}}</td>
-                  <td>{{student.SEX}}</td>
-                  <td>{{student.city}}</td>
+              <% @students.each do |student| %>
+                <tr>
+                  <td><%= student.name %></td>
+                  <td><%= student.tracking_id %></td>
+                  <td><%= student.matric_percentage %></td>
+                  <td><%= student.monthly_income %></td>
+                  <td><%= student.section %></td>
+                  <td><%= student.SEX%></td>
+                  <td><%= student.city%></td>
                   <td>
-                    <%= link_to 'Edit', URI::unescape(users_path(:id => '{{student.id}}',:admin => "student_edit")), :class => 'btn btn-xs btn-warning', :role => "button" %>
-                    <%= link_to 'View', URI::unescape(users_path(:id => '{{student.id}}',:admin => "student_view")), :class => 'btn btn-xs btn-primary', :role => "button" %>
-                    <%= link_to 'Delete', URI::unescape('students/{{student.id}}'), method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+                    <%= link_to 'Edit', users_path(:id => student.id,:admin => "student_edit"), :class => 'btn btn-xs btn-warning', :role => "button" %>
+                    <%= link_to 'View', users_path(:id => student.id,:admin => "student_view"), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', student, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
                   </td>
-              </tr>
+                </tr>
+              <% end %> 
             </tbody>
           </table>
         </div>
@@ -259,7 +266,7 @@
           <%= bootstrap_form_for @student do |f| %>
             <%= f.errors_on :name %>
             <%= f.text_field :name, label: "Name", :required => true%>
-            <%= f.text_field :tracking_id, label: 'NOP Tracking ID', value: "2016-N-", :required => true %>
+            <%= f.text_field :tracking_id, label: 'NOP Tracking ID',  :required => true %>
             <%= f.select :section, [["Select:"],["Section A", "A"], ["Section B", "B"],["Section C", "C"],["Section D", "D"],["Section E", "E"],["Section F", "F"],["Section G", "G"], ["Section H", "H"], ["Section I", "I"], ["Section J", "J"], ["Section K", "K"], ["Section L", "L"]], { label: "Section" },{ class: "selectpicker" } %>
             <%= f.text_field :father_name, label: 'Father Name', :required => true %>
             <%= f.text_field :DOB, label: 'Date of Birth', :required => true, help: "Be Careful! Enter date in dd/mm/yyyy pattern only" %>
