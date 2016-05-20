@@ -1,6 +1,4 @@
 class LmsController < ApplicationController
-
-
     def new
         @lms = Lm.new
     end

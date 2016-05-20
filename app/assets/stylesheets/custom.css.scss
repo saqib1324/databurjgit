@@ -15,6 +15,27 @@ html, body {
 	border: 1px red dotted;
 }
 
+#utext {
+    background-color: #bcf6e8;
+    width: full;
+    padding: 25px;
+    margin: 25px;
+	color: black;
+}
+
+.form-wrapper {
+	background-color: #eee;
+	padding: 20px;
+}
+
+.note-editable {
+	background-color: #fff;
+}
+
+.chosen-container, .chosen-container-multi {
+	width: 100% !important;
+}
+
 #side-menu {
 	background-color: #2f4050;
 	padding: 0px;

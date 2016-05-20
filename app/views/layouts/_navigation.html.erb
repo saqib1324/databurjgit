@@ -23,6 +23,12 @@
               
             </li>
             
+            <li class="link">
+              <a href="/users?admin=coaching_view">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Session Management</span>
+              </a>
+            </li>
             
             <li class="link">
               <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
@@ -86,11 +92,15 @@
               </a>
               <ul class="collapse collapseable" id="collapse-undertaking">
                 <li>
+                  <%= link_to 'Add Undertaking text', users_path(:admin => "undertaking_text") %>
+                </li>
+                <li>
                   <%= link_to 'Accepted',  users_path(:admin => "undertakings") %>
                 </li>
                 <li>
                   <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
                 </li>
+
               </ul>
             </li>
             <li class="link">
@@ -785,9 +795,10 @@ view associations area
 
 <% if @link == "hostel" %>
 here is hostel view
-<% end %>
-<% if @link == "settings" %>
 
+
+  <% end %>
+<% if @link == "settings" %>
             <div id="content">
 	            <header class="clearfix">
 	              <h3 class="page_title">Change your password</h3>
@@ -805,10 +816,6 @@ here is hostel view
 	              				<% if @user.password == :password %>
 	              				
 	              				<% end %>
-	              				
-	              				
-	              				
-	              				
 	              				
 	              				<% end %>
 	              				<div class="form-group">
@@ -828,6 +835,158 @@ here is hostel view
 	              	</div>
 	              </div>
 	            </div>
+<% end %>
+<% if @link == "undertaking_text" %>
+ <div class = "animated fadeIn">
+  <div id="content">
+    <header>
+      <strong><class="page_title">Edit Undertaking Text</strong>
+    </header>
+    <div class="content-inner">
+      <div class="form-wrapper">
+          <%= bootstrap_form_for (@utext) do |f| %>
+            <%= f.errors_on :display_text %>
+           <%= f.text_area :display_text, label: "Undertaking text and Instructions for Students", :rows => 15 %>
+            <!--<textarea class="form-control summernote" placeholder="Article" name="article"></textarea>-->
+              <div class="form-group">
+  </div>
+            <div class="clearfix" type = "submit">
+              <%= f.submit  %>
+              <% end %>
+            </div>
+<!--<%= simple_form_for(@utext) do |f| %>-->
+<!--  <%= f.error_notification %>-->
+
+<!--  <div class="form-group">-->
+<!--    <%= f.input :display_text, input_html:{class:'form-control'} %>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <%= f.input :display_text, class:'summernote' %>-->
+<!--  </div>-->
+
+<!--  <div class="form-group">-->
+<!--    <%= f.button :submit, class:'btn btn-default' %>-->
+<!--  </div>-->
+<!--<% end %>-->
+        </form>
+      </div>
+    </div>
+  </div> 
+<% end %>
+
+<% if @link == "coaching_view" %>
+ <div id="dashboard-con">
+    <div class="row">
+      <div class="col-md-6 dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left">All Sessions</h5>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @coaching_sessions.each do |coaching_session| %>
+                <tr>
+                  <td><%= coaching_session.name %></td>
+                  <td><%= coaching_session.status %></td>
+                  <td>
+                    <%= link_to 'Activate', activate_coaching_sessions_path( :id => coaching_session.id), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <%= link_to 'Delete', coaching_session, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 dashboard-right-cell">
+        <div class="admin-content-con">
+          <header>
+            <h5>Add New Session</h5>
+          </header>
+          <div class="content-inner">
+            <div class="form-wrapper">
+              <%= bootstrap_form_for CoachingSession.new do |f| %>
+                <%= f.errors_on :coaching_session %>
+                <%= f.text_field :name, label: "Session Year", :required => true%>
+                <div class="clearfix" type = "submit">
+                  <%= f.submit %>
+                  <% end %>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="admin-content-con clearfix">
+          <header>
+            <strong><h5>Active Session</h5></strong>
+          </header>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Kingsley Ijomah</td>
+                <td>kingsley.ijomah@example.com</td>
+                <td><a href="#" class="label label-default">pending</a></td>
+                <td>Today 5:60pm - 14/09/2015</td>
+                <td><a href="#" class="label label-danger">Delete</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Kingsley Ijomah</td>
+                <td>kingsley.ijomah@example.com</td>
+                <td><a href="#" class="label label-success">active</a></td>
+                <td>Today 5:60pm - 14/09/2015</td>
+                <td><a href="#" class="label label-danger">Delete</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Kingsley Ijomah</td>
+                <td>kingsley.ijomah@example.com</td>
+                <td><a href="#" class="label label-success">active</a></td>
+                <td>Today 5:60pm - 14/09/2015</td>
+                <td><a href="#" class="label label-danger">Delete</a></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Kingsley Ijomah</td>
+                <td>kingsley.ijomah@example.com</td>
+                <td><a href="#" class="label label-success">active</a></td>
+                <td>Today 5:60pm - 14/09/2015</td>
+                <td><a href="#" class="label label-danger">Delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 <!--################################################################################################-->
 

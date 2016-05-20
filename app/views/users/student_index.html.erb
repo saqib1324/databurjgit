@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
+
   </head>
   <body>
     <div class="container-fluid display-table">
@@ -185,21 +186,38 @@
             <strong><h3 class="pull-left page_title"><%= @student.name %>'s Summer Coaching Session Undertaking</h3></strong>
             <div class = "divider pull-right">
           </header>
-I am fully aware that my admission is conditional subject to passing my pre-requisite Degree with a minimum of 45% marks. Incase, I fail to clear my examination (in which I have already appeared in), as per Iqra University requirement, I shall withdraw my admission otherwise the university has the right to cancel my admission at any point. Fee will be refunded as per Iqra University’s fee refund policy.
-                  <div class="checkbox">
+          <div id = "utext"><%= UndertakingText.find(1).display_text %></div><hr/>
+            <input type="checkbox" id="check" unchecked="unchecked"/>
+    <label for="check" id="checkLabel">Show Details</label><p/>
+    <!--<p hidden id="hideMe"><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf"), target: "_blank" %><p>-->
+      <p hidden id="hideMe"><%= link_to "Download Fee Voucher", student_path(@student, format: "pdf"), target: "_blank", :class => "btn btn-primary", :role => "button" %><p>
+                 
+                     <script language="javascript" type="text/javascript">
+var hideTest = {
+  hidePara: function() {
+    if ( $(this).is(':checked') ) {
+      $('p#hideMe').slideDown('slow');
+    } else {
+      $('p#hideMe').slideUp('slow');
+    }
+  },
+  setup: function() {
+    $('#check').change(hideTest.hidePara);
+  }
+};
+$(hideTest.setup);
+    </script>
+                 
+                 <div class="checkbox">
                     <label>
                      <form action= ""  onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }">
-
-<input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
-<!--<input type="submit" name="submit" value="submit" />-->
 
 </form>
                       
                     </label>
                     </div>
                     &nbsp;
-                    <!--<%= link_to "Proceed and Download Voucher", :controller => "users", :action => "student_index", :std => "download", :class => "btn btn-primary pull-left", :role => "button" %>-->
-                  
+
                   <hr/>
                   <strong> Instructions: </strong>
                   <br>

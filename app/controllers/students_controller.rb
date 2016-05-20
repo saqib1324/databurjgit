@@ -93,6 +93,16 @@ class StudentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # def search
+  #   @student = Student.new
+  # end
+  
+  # def search2
+  #   @student=Student.find(params[:tracking_id])
+  #   redirect_to url_for(:controller => :users, :action => :index, :admin => "hostel", :student => @student)
+  # end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student

@@ -7,6 +7,17 @@ gem 'rails_12factor'
 # Use mysql as the database for Active Record
 # gem 'mysql2', '>= 0.3.13', '< 0.5'
 # Use SCSS for stylesheets
+gem 'simple_form'
+
+# You'll need to include the following dependencies of Summernote
+gem "font-awesome-rails"
+
+# This is the right gem to use summernote editor in Rails projects.
+gem 'summernote-rails', '~> 0.8.1'
+gem 'codemirror-rails'
+
+# To solve the problems on the turbolinks
+gem 'jquery-turbolinks'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 gem 'angular-rails-templates'

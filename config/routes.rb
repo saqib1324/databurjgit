@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get "users/student_index/logout"=>"require_login"
   get "users/instructor_index/logout"=> "require_login"  
   get 'undertakings/destroy' => "undertakings#destroy"
+  get 'students/search' => "students#search" 
+  post 'students/search' => "students#search2"
+  get "activate_coaching_sessions" => "coaching_sessions#activate"
+  resources :coaching_sessions
+  # , :via  => 'get'
   resources :users
     resources :undertakings do
   end
@@ -34,6 +39,7 @@ Rails.application.routes.draw do
   end
   resources :associations
   resources :lms
+  resources :undertaking_texts
   # match 'students/new' => 'students#new', :via => [:get, :post], as: :new_student
   # get 'users' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.

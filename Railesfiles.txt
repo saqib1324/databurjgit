@@ -114,6 +114,8 @@ stop server from everywhere: kill -INT $(cat tmp/pids/server.pid)
 To Do List:
 
 Sohail:
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+removed following line from application.html.erb line 14
 if we need to add columns in database model, so do it now, and finalize it first
 in 'add student' Name field should have length at least 3
 phone number length must be 15 in bootstrap_form (because it is written in model validation)
@@ -126,12 +128,18 @@ pdf download and upload optional
 student form editings:
 1. tracking id uniquness validation removal
 
+front end of undertaking text(reorder instructions)
+
+tab remove and remove from routes.rb also: LMS, attendance, hostel (keep the database tables and controllers etc)
+
+
+Highly Important: fix student footer
+
 Owais:
 
 Association of models
 Fix routing of links like (show, edit)and enable all model validations (which should also be implemented in form)
-
-
+Voucher table, editable by admin
 
 Solved: instructors wala masla hal
 
@@ -142,6 +150,7 @@ Later for Saqib:
 If a user is logged in, he cannot see a login page (redirect to dashboard)
 'add new element' forms must have good look
 
+tab remove and remove from routes.rb also: LMS, attendance, hostel (keep the database tables and controllers etc)
 Solved: Student login, instructor login
 Solved: excel download (data from tables of students)
 
@@ -159,3 +168,9 @@ Later To DO list:
 List before completing:
 4. Our app will also work when following commands are  commented in routes.rb
 resources 
+
+
+TOP PRIORITY:
+1. Session ids issue
+2. App Security
+3. Deployment (alongwith pushing any time we want)

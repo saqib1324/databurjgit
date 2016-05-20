@@ -102,9 +102,23 @@ class UsersController < ApplicationController
        @sections = Section.all
     elsif params[:admin] == "hostel"
       @link = "hostel"   
+      if params[:student]
+        @student = params[:student]
+      else @student =[]
+      end
+    elsif params[:admin] == "undertaking_text"
+      @link = "undertaking_text"
+      @utext = UndertakingText.find(1)
+    elsif params[:admin] == "coaching_view"
+      @link = "coaching_view"
+      @coaching_sessions = CoachingSession.all
     end
   end
-
+  # def create
+  #   @student = Student.find(student_params)
+  #   @link = "hostel"
+  #   redirect_to(:action => :index) 
+  # end
   def student_index
     @session_id = session[:id]
     if params[:std]=="student_profile"
@@ -263,3 +277,8 @@ class UsersController < ApplicationController
     end
   end
 end
+
+  # private
+  # def student_params
+  #     params.permit( :tracking_id )
+  # end

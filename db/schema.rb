@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503071937) do
+ActiveRecord::Schema.define(version: 20160520155119) do
 
   create_table "associations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20160503071937) do
     t.boolean  "attendance_status"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "coaching_sessions", force: :cascade do |t|
+    t.string   "name",       limit: 50
+    t.boolean  "status",                default: false, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "instructors", force: :cascade do |t|
@@ -78,6 +85,12 @@ ActiveRecord::Schema.define(version: 20160503071937) do
   end
 
   add_index "students", ["section"], name: "index_students_on_section", using: :btree
+
+  create_table "undertaking_texts", force: :cascade do |t|
+    t.text     "display_text", limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "undertakings", primary_key: "tracking_id", force: :cascade do |t|
     t.boolean  "status"
