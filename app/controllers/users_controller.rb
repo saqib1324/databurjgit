@@ -12,12 +12,9 @@ class UsersController < ApplicationController
     end
     if params[:admin]=="students_view"
       @link= "students_view"
-      if params[:search]
-        @students= Student.order(params[:sort])
-        # @students= Student.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
-      else
-          @students= Student.order(params[:sort])
-      end
+      @students= Student.order(params[:sort])
+      @active_session = CoachingSession.where(:status => true).take
+      @students = @students.where(:session => @active_session.name)
     elsif params[:admin]=="settings"
       @link = "settings"
       @user = User.find(session[:id])
@@ -112,6 +109,7 @@ class UsersController < ApplicationController
     elsif params[:admin] == "coaching_view"
       @link = "coaching_view"
       @coaching_sessions = CoachingSession.all
+      @current_session = CoachingSession.where(:status => true).take
     end
   end
   # def create

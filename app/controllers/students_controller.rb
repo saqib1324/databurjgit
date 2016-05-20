@@ -7,7 +7,6 @@ class StudentsController < ApplicationController
   end
   def new
     @student = Student.new
-    # redirect_to users_path(:admin => "students_view")
   end
   def index
     if params[:sort]
@@ -41,6 +40,8 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     # @student.id=student_params[:tracking_id]
+    @active_session = CoachingSession.where(:status => true).take
+    @student.session = @active_session.name
     respond_to do |format|
       if @student.save
         flash[:notice] = 'Student was successfully created.'

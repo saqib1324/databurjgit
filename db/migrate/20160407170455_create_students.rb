@@ -3,6 +3,7 @@ class CreateStudents < ActiveRecord::Migration
     create_table :students,id: false do |t|
       t.string "name"
       t.string "tracking_id"
+      t.string "session"
       t.float "matric_percentage"
       t.integer "monthly_income"
       t.column "SEX", 'CHAR(1)'

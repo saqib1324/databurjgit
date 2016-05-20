@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
 
   create_table "students", primary_key: "tracking_id", force: :cascade do |t|
     t.string   "name",                   limit: 255
+    t.string   "session",                limit: 255
     t.float    "matric_percentage",      limit: 24
     t.integer  "monthly_income",         limit: 4
     t.string   "SEX",                    limit: 1

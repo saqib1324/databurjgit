@@ -5,7 +5,7 @@ class CreateLms < ActiveRecord::Migration
       t.string "section_id"
       t.string "subject_name"
       t.string "file_name", :null => false
-      t.column "data","bytea" 
+      t.column "data","MEDIUMBLOB" 
       t.string "mime_type"
       t.timestamps null: false
     end
