@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_action :require_login, :only => [:attempt_login, :login]
+  skip_before_action :require_session, :only => [:attempt_login, :login,:coaching,:logout]
   before_action :restrict_entry, :only => [:index]
   before_action :for_student, :only => [:student_index]
   before_action :for_instructor, :only => [:instructor_index]
@@ -106,11 +107,15 @@ class UsersController < ApplicationController
     elsif params[:admin] == "undertaking_text"
       @link = "undertaking_text"
       @utext = UndertakingText.find(1)
-    elsif params[:admin] == "coaching_view"
-      @link = "coaching_view"
-      @coaching_sessions = CoachingSession.all
-      @current_session = CoachingSession.where(:status => true).take
+    # elsif params[:admin] == "coaching_view"
+    #   @link = "coaching_view"
+    #   @coaching_sessions = CoachingSession.all
+    #   @current_session = CoachingSession.where(:status => true).take
     end
+  end
+  def coaching
+    @coaching_sessions = CoachingSession.all
+    @current_session = CoachingSession.where(:status => true).take
   end
   # def create
   #   @student = Student.find(student_params)

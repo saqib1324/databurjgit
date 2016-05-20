@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'students/search' => "students#search" 
   post 'students/search' => "students#search2"
   get "activate_coaching_sessions" => "coaching_sessions#activate"
+  get "users/coaching" => "users#coaching"
   resources :coaching_sessions
   # , :via  => 'get'
   resources :users

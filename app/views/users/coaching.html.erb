@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+  </head>
+  <body>
+    <div class="container-fluid display-table">
+      <div class="row display-table-row">
+        <!-- side menu -->
+        <div class="col-md-2 col-sm-1  hidden-xs display-table-cell valign-top" id="side-menu">
+          <h1><span>Data<span><b>Burj</b></span></span></h1>
+          <ul>
+            <!--    <%= link_to "Dashboards", :controller => "users", :action => "index",:class => "hidden-sm hidden-xs glyphicon glyphicon-th" %></span>-->
+            <li class="link settings-btn">
+              <a href="/users">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Dashboard</span>
+                <!--<%= link_to 'Dashboard', users_path(:admin => "dashboard") %> </span>-->
+              </a>
+              
+            </li>
+            
+            <li class="link">
+              <a href="/users?admin=coaching_view">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Session Management</span>
+              </a>
+            </li>
+            
+            <li class="link">
+              <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Students</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-post">
+                <li>
+                  <%= link_to 'View Students', users_path(:admin => "students_view") %>
+                </li>
+                <li>
+                  <%= link_to 'Add Students', users_path( :admin => "student_add" ) %>
+                </li>
+              </ul>
+            </li>
+
+            <li class="link">
+              <a href="#collapse-comments" data-toggle="collapse" aria-controls="collapse-comments">
+                <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Instructors</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-comments">
+                <li><%= link_to 'View Instructors', users_path(:admin => "instructors_view")%></li>
+                <li><%= link_to 'Add Instructors', users_path(:admin => "instructor_add") %></li>
+              </ul>
+            </li>
+            
+            <li class="link">
+              <a href="#collapse-sections" data-toggle="collapse" aria-controls="collapse-sections">
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Sections</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-sections">
+                <li>
+                  <%= link_to 'View Sections',  users_path(:admin => "sections_view") %>
+                </li>
+                <li>
+                  <%= link_to 'Add Sections', users_path(:admin => "section_add") %>
+                </li>
+              </ul>
+            </li>
+            <li class="link">
+              <a href="#collapse-association" data-toggle="collapse" aria-controls="collapse-association">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Associations</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-association">
+                <li>
+                  <%= link_to 'View Associations',  users_path(:admin => "view_associations") %>
+                </li>
+                <li>
+                  <%= link_to 'Set Associations', users_path(:admin => "add_associations") %>
+                </li>
+              </ul>
+            </li>
+
+            <li class="link">
+              <a href="#collapse-undertaking" data-toggle="collapse" aria-controls="collapse-undertaking">
+                <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Undertakings</span>
+              </a>
+              <ul class="collapse collapseable" id="collapse-undertaking">
+                <li>
+                  <%= link_to 'Add Undertaking text', users_path(:admin => "undertaking_text") %>
+                </li>
+                <li>
+                  <%= link_to 'Accepted',  users_path(:admin => "undertakings") %>
+                </li>
+                <li>
+                  <%= link_to 'Pending', users_path(:admin => "pundertakings") %>
+                </li>
+
+              </ul>
+            </li>
+            <li class="link">
+              <a href="/users?admin=hostel">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Hostel Management System</span>
+              </a>
+            </li>
+            <li class="link">
+              <a href="/users?admin=admin_attendance">
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Attendance</span>
+              </a>
+            </li>
+            <li class="link active">
+              <a href="/users?admin=settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-10 col-sm-11 display-table-cell valign-top">
+          <div class="row">
+            <header id="nav-header" class="clearfix">
+              <div class="col-md-5">
+                <nav class="navbar-default pull-left">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </nav>
+              </div>
+              <div class="col-md-7">
+                <ul class="pull-right">
+                  <li id="welcome" class="hidden-xs">DataBurj administrator area</li>
+                  <li class="fixed-width">
+                    <a href="#">
+                    </a>
+                  </li>
+                  <li>
+                      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                      <a class="logout"><%= link_to "Log out", :controller => 'users', :action => 'logout' %></a>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </div>
+<!--######################################################-->
+<div id="dashboard-con">
+    <div class="row">
+      <div class="col-md-6 dashboard-left-cell">
+        <div class="admin-content-con">
+          <header class="clearfix">
+            <h5 class="pull-left">All Sessions</h5>
+          </header>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @coaching_sessions.each do |coaching_session| %>
+                <tr>
+                  <td><%= coaching_session.name %></td>
+                  <td><%= coaching_session.status %></td>
+                  <td>
+                    <% if coaching_session.status %>
+                    <%= link_to 'Deactivate', activate_coaching_sessions_path( :id => coaching_session.id), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <% else %>
+                     <%= link_to 'Activate', activate_coaching_sessions_path( :id => coaching_session.id), :class => 'btn btn-xs btn-primary', :role => "button" %>
+                    <% end %>
+                    <%= link_to 'Delete', coaching_session, method: :delete, :class => 'btn btn-xs btn-danger', :role => "button", :data => {confirm: 'Are you sure you want to delete this?'} %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div class="col-md-6 dashboard-right-cell">
+        <div class="admin-content-con">
+          <header>
+            <h5>Add New Session</h5>
+          </header>
+          <div class="content-inner">
+            <div class="form-wrapper">
+              <%= bootstrap_form_for CoachingSession.new do |f| %>
+                <%= f.errors_on :coaching_session %>
+                <%= f.text_field :name, label: "Session Year", :required => true%>
+                <div class="clearfix" type = "submit">
+                  <%= f.submit %>
+                  <% end %>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="admin-content-con clearfix">
+          <header>
+            <strong><h5>Active Session</h5></strong>
+          </header>
+          <% if @current_session %>
+            Current Active session is <%= @current_session.name %>
+          <% else %>
+            Currently no session is active.
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<!--################################################################################################-->
+
+          <div class="row">
+            <footer id="admin-footer" class="clearfix">
+              <div class="pull-left"><b>Copyright </b>&copy; 2016. Lahore University of Management Sciences (LUMS), Pakistan - All Rights Reserved</div>
+              <div class="pull-right"><a href = "https://www.facebook.com/groups/1717841335126709/" target="_blank">DataBurj Developers</a></div>
+            </footer>
+          </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
