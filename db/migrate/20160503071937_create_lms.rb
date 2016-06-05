@@ -7,6 +7,7 @@ class CreateLms < ActiveRecord::Migration
       t.string "file_name", :null => false
       t.column "data","MEDIUMBLOB" 
       t.string "mime_type"
+      t.string :session
       t.timestamps null: false
     end
   end

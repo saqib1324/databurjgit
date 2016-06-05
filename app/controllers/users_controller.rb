@@ -10,58 +10,75 @@ class UsersController < ApplicationController
     @session_id = session[:id]
     if params[:admin]=="dashboard"
       @link="a"
-    end
-    if params[:admin]=="students_view"
+    ##STUDENTS
+    elsif params[:admin]=="students_view"
       @link= "students_view"
       @students= Student.order(params[:sort])
       @active_session = CoachingSession.where(:status => true).take
       @students = @students.where(:session => @active_session.name)
-    elsif params[:admin]=="settings"
-      @link = "settings"
-      @user = User.find(session[:id])
-    elsif params[:admin] == "instructors_notice"
-      @instructors=Instructor.order(params[:sort])
-      @link = "instructors_view"
-      flash[:notice] = "Nothing more to show"
-    elsif params[:admin] == "section_view"
-      @association = Association.new
-      @link = "section_view"
-      @section = Section.find(params[:id])
-      @students = Student.where(:section => @section.section_name).all
-      # @students = Student.find(params[:id])
-    elsif params[:admin]=="sections_view"
-      @sections=Section.order(params[:sort])
-      @link = "sections_view"
-    elsif params[:admin]=="instructors_view"
-      @instructors=Instructor.order(params[:sort])
-      @link = "instructors_view"
     elsif params[:admin] == "student_add"
       @link = "student_add"
-    elsif params[:admin] == "instructor_add"
-      @link = "instructor_add"
-    elsif params[:admin]=="section_add"
-       @link = "section_add"
     elsif params[:admin] == "student_edit"
       @link = "student_edit"
       @student= Student.find(params[:id])
-    elsif params[:admin] == "instructor_edit"
-      @link = "instructor_edit"
-      @instructor = Instructor.find(params[:id])
-    elsif params[:admin] == "section_edit"
-      @link = "section_edit"
-      @section = Section.find(params[:id])
     elsif params[:admin] == "student_view"
       @link = "student_view"
       @student=Student.find(params[:id])
       # @students = Student.find(params[:id])
-    elsif params[:admin] == "admin_attendance"
-      @link = "admin_attendance"
+    elsif params[:admin] == "students_import"
+      @link = "students_import"
+    ##INSTRUCTORS
+    elsif params[:admin] == "instructors_notice"
+      @instructors=Instructor.order(params[:sort])
+      @link = "instructors_view"
+      flash[:notice] = "Nothing more to show"
+    elsif params[:admin]=="instructors_view"
+      @instructors=Instructor.order(params[:sort]).where(:session => (CoachingSession.where(:status => true).take.name))
+      @link = "instructors_view"
+    elsif params[:admin] == "instructor_add"
+      @link = "instructor_add"
+    elsif params[:admin] == "instructor_edit"
+      @link = "instructor_edit"
+      @instructor = Instructor.find(params[:id])
+    elsif params[:admin] == "instructors_import"
+      @link = "instructors_import"
+    ##SECTIONS
+    elsif params[:admin] == "section_view"
+      @association = Association.new
+      @link = "section_view"
+      @section = Section.find(params[:id])
+      @students = Student.where(:section => @section.section_name, :session => CoachingSession.where(:status => true).take.name)
+    elsif params[:admin]=="sections_view"
+      @sections=Section.order(params[:sort]).where(:session => (CoachingSession.where(:status => true).take.name))
+      @link = "sections_view"
+    elsif params[:admin]=="section_add"
+       @link = "section_add"
+    elsif params[:admin] == "section_edit"
+      @link = "section_edit"
+      @section = Section.find(params[:id])
+    elsif params[:admin] == "sections_import"
+      @link = "sections_import"
+    ##UNDERTAKINGS
     elsif params[:admin] == "undertakings"
       @link = "undertakings"
       @students = Undertaking.where(:status => true,:admin_status => true).all
     elsif params[:admin] == "pundertakings"
       @link = "pundertakings"
-      @students = Undertaking.where(:status => true,:admin_status => false).all
+      # @students = Undertaking.where(:status => true,:admin_status => false).all
+      @session = CoachingSession.where(:status => true).take.name
+      @in_students = Undertaking.where(:status => true, :session => @session).take.tracking_id
+      @students = Student.where.not(tracking_id: @in_students).where(:session => @session)
+      
+    elsif params[:admin] == "undertaking_text"
+      @link = "undertaking_text"
+      @utext = UndertakingText.find(1)
+    elsif params[:admin] == "manage_undertakings"
+      @link = "manage_undertakings"
+      # @projects = Student.where(:tracking_id => params[:search])
+      @active_session = CoachingSession.where(:status => true).take.name
+      @studentsp = Undertaking.where(:status => true,:admin_status => false,:session => @active_session).all
+      @students = Undertaking.where(:status => true,:admin_status => true,:session => @active_session).all
+    ##FILES
     elsif params[:admin] == "view_file"
       # @file = Undertaking.where(:tracking_id => session[:id]).take
       @file = Undertaking.find_by(:tracking_id => params[:id])
@@ -76,52 +93,55 @@ class UsersController < ApplicationController
         @file.update(:admin_status => true)
         flash[:notice] = "File accepted"
       end
-      redirect_to users_path(:admin => "pundertakings")
+      redirect_to users_path(:admin => "manage_undertakings")
     elsif params[:admin] == "reject_file"
       @file = Undertaking.find_by(:tracking_id => params[:id])
       if (@file)
         @file.update(:admin_status => false)
         flash[:notice] = "File Rejected"
+        @student = Student.find_by_tracking_id(@file.tracking_id)
+        #AdminMailer.sample_email(@student).deliver
       else
         flash[:notice] = "File not found"
       end
-      redirect_to users_path(:admin => "undertakings")
-    elsif params[:admin] == "students_import"
-      @link = "students_import"
-    elsif params[:admin] == "instructors_import"
-      @link = "instructors_import"
-    elsif params[:admin] == "sections_import"
-      @link = "sections_import"
+      redirect_to users_path(:admin => "manage_undertakings")
+    ##Associations
     elsif params[:admin] == "view_associations"
       @link = "view_associations"
     elsif params[:admin] == "add_associations"
       @link = "add_associations"
       @instructors = Instructor.all
        @sections = Section.all
+    ##Other Views
     elsif params[:admin] == "hostel"
       @link = "hostel"   
       if params[:student]
         @student = params[:student]
       else @student =[]
       end
-    elsif params[:admin] == "undertaking_text"
-      @link = "undertaking_text"
-      @utext = UndertakingText.find(1)
-    # elsif params[:admin] == "coaching_view"
-    #   @link = "coaching_view"
-    #   @coaching_sessions = CoachingSession.all
-    #   @current_session = CoachingSession.where(:status => true).take
+    elsif params[:admin] == "admin_attendance"
+      @link = "admin_attendance"
+    elsif params[:admin]=="settings"
+      @link = "settings"
+      @user = User.find(session[:id])
+  
+  
+    elsif params[:admin] == "bankvoucher"
+      @link = "bankvoucher"
+      @bankdetail = Bankdetails.find(1)
     end
+  
+  
+  
   end
-  def coaching
+  
+  
+  
+  def coaching    ##for Coaching sessions Management
     @coaching_sessions = CoachingSession.all
     @current_session = CoachingSession.where(:status => true).take
   end
-  # def create
-  #   @student = Student.find(student_params)
-  #   @link = "hostel"
-  #   redirect_to(:action => :index) 
-  # end
+
   def student_index
     @session_id = session[:id]
     if params[:std]=="student_profile"

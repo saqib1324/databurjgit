@@ -25,6 +25,7 @@ class Student < ActiveRecord::Base
         row = Hash[[header, spreadsheet.row(i)].transpose]
         student = find_by_tracking_id(row["tracking_id"]) || new
         student.attributes = row.to_hash.slice(*row.to_hash.keys)
+        student.session = CoachingSession.where(:status => true).take.name
         student.save!
       end
     end

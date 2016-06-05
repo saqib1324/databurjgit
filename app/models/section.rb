@@ -15,6 +15,7 @@ class Section < ActiveRecord::Base
         row = Hash[[header, spreadsheet.row(i)].transpose]
         section = find_by_id(row["section_id"]) || new
         section.attributes = row.to_hash.slice(*row.to_hash.keys)
+        section.session = CoachingSession.where(:status => true).take.name
         section.save!
       end
     end

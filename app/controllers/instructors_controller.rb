@@ -12,10 +12,10 @@ class InstructorsController < ApplicationController
       package = Axlsx::Package.new
       workbook = package.workbook
       workbook.add_worksheet(name: "Basic work sheet") do |sheet|
-        sheet.add_row ["instructor_id", "instructor_name", "email", "subject_name", "username"]
+        sheet.add_row ["instructor_id", "instructor_name", "session", "email", "subject_name", "username"]
         @instructors=Instructor.all
         @instructors.each do |st|
-          sheet.add_row [st.instructor_id, st.instructor_name, st.email, st.subject_name, st.username]
+          sheet.add_row [st.instructor_id, st.instructor_name, st.session, st.email, st.subject_name, st.username]
         end
       end
       send_data package.to_stream.read, :filename => "instructors.xlsx"
@@ -66,6 +66,7 @@ class InstructorsController < ApplicationController
   end
   def create
     @instructor = Instructor.new(instructor_params)
+    @instructor.session = CoachingSession.where(:status => true).take.name
     respond_to do |format|
       if @instructor.save
         format.html { redirect_to users_path(admin: "instructors_view"), notice: 'Instructor was successfully created.' }
@@ -85,7 +86,7 @@ class InstructorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instructor_params
-      params.require(:instructor).permit(:instructor_id, :phone_number, :instructor_name, :email, :subject_name, :username, :password )
+      params.require(:instructor).permit(:instructor_id, :session, :phone_number, :instructor_name, :email, :subject_name, :username, :password )
     end
     
     def restrict_entry

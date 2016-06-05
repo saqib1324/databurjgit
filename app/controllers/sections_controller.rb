@@ -11,10 +11,10 @@ class SectionsController < ApplicationController
       package = Axlsx::Package.new
       workbook = package.workbook
       workbook.add_worksheet(name: "Basic work sheet") do |sheet|
-        sheet.add_row ["section_name", "room_location"]
+        sheet.add_row ["section_name", "session" "room_location"]
         @sections=Section.all
         @sections.each do |st|
-          sheet.add_row [st.section_name, st.room_location]
+          sheet.add_row [st.section_name, st.session, st.room_location]
         end
       end
       send_data package.to_stream.read, :filename => "sections.xlsx"
@@ -29,8 +29,7 @@ class SectionsController < ApplicationController
     end
     def create
         @section = Section.new(section_params)
-       # @section.id=Section_params[:tracking_id]
-       # @instructor.save
+        @section.session = CoachingSession.where(:status => true).take.name
         respond_to do |format|
           if @section.save
             format.html { redirect_to users_path(:admin => "sections_view"), notice: 'section was successfully created.' }
@@ -78,7 +77,7 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:section_name, :room_location)
+      params.require(:section).permit(:section_name, :session, :room_location)
     end
 
 end

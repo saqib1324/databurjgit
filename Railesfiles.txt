@@ -16,9 +16,10 @@ Running a SQL server:
 mysql-ctl start
 mysql-ctl stop
 creating root user
-mysqladmin –u root password ‘_password_’   (admin creation)
+SET PASSWORD FOR 'bob'@'%.example.org' = PASSWORD('auth_string');
 or
 mysql –u root -p (login)
+
 
 then
 https://docs.c9.io/docs/setting-up-mysql
@@ -174,3 +175,11 @@ TOP PRIORITY:
 1. Session ids issue
 2. App Security
 3. Deployment (alongwith pushing any time we want)
+4. summernote
+5. search
+
+Editings required on student end as discussed with sharjeel:
+1) Section is going to be added later
+2) email address, phone number and secondary phone number should be editable on student end
+3) remove monthly income option
+4) change the design, it should be user friendly.

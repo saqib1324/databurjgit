@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/users/instructor_index'=> "users#instructor_index"
   
   get '/users/index' => "users#index"
-
+  get '/users/create' => 'users#index'
   get 'users/logout'=> "require_login"
   get "users/student_index/logout"=>"require_login"
   get "users/instructor_index/logout"=> "require_login"  

@@ -25,6 +25,7 @@ class Instructor < ActiveRecord::Base
         row = Hash[[header, spreadsheet.row(i)].transpose]
         instructor = find_by_id(row["instructor_id"]) || new
         instructor.attributes = row.to_hash.slice(*row.to_hash.keys)
+        instructor.session = CoachingSession.where(:status => true).take.name
         instructor.save!
       end
     end

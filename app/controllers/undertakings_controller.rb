@@ -21,6 +21,7 @@ class UndertakingsController < ApplicationController
         t.data      = params[:undertaking][:data].read
         t.file_name  = params[:undertaking][:data].original_filename
         t.mime_type = params[:undertaking][:data].content_type
+        t.session = CoachingSession.where(:status => true).take.name
         t.admin_status = false
         t.status = true
       end
@@ -52,6 +53,6 @@ class UndertakingsController < ApplicationController
   end
   private
   def set_params
-    params.require(:undertaking).permit( :tracking_id, :status, :admin_status, :file_name, :data, :mime_type)
+    params.require(:undertaking).permit( :tracking_id, :status,:session, :admin_status, :file_name, :data, :mime_type)
   end
 end

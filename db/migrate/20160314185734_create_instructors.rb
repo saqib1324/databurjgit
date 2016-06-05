@@ -3,6 +3,7 @@ class CreateInstructors < ActiveRecord::Migration
     create_table :instructors do |t|
       t.string :instructor_id
       t.string :instructor_name
+      t.string :session
       t.string :email
       t.string :phone_number
       t.string :subject_name

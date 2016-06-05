@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520155119) do
+ActiveRecord::Schema.define(version: 20160526105715) do
 
   create_table "associations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,8 +24,23 @@ ActiveRecord::Schema.define(version: 20160520155119) do
     t.date     "date"
     t.string   "tracking_id",       limit: 255
     t.boolean  "attendance_status"
+    t.string   "session",           limit: 255
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "bankdetails", force: :cascade do |t|
+    t.string   "bankname",      limit: 255
+    t.string   "deadline",      limit: 255
+    t.string   "programme",     limit: 255
+    t.string   "ntn",           limit: 255
+    t.string   "accountnumber", limit: 255
+    t.string   "year",          limit: 255
+    t.string   "date",          limit: 255
+    t.string   "hostelfee",     limit: 255
+    t.string   "securityfee",   limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "coaching_sessions", force: :cascade do |t|
@@ -38,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
   create_table "instructors", force: :cascade do |t|
     t.string   "instructor_id",   limit: 255
     t.string   "instructor_name", limit: 255
+    t.string   "session",         limit: 255
     t.string   "email",           limit: 255
     t.string   "phone_number",    limit: 255
     t.string   "subject_name",    limit: 255
@@ -54,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
     t.string   "file_name",     limit: 255,      null: false
     t.binary   "data",          limit: 16777215
     t.string   "mime_type",     limit: 255
+    t.string   "session",       limit: 255
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
@@ -61,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
   create_table "sections", force: :cascade do |t|
     t.string   "section_name",  limit: 50
     t.string   "room_location", limit: 255, null: false
+    t.string   "session",       limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -89,6 +107,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
 
   create_table "undertaking_texts", force: :cascade do |t|
     t.text     "display_text", limit: 65535
+    t.string   "session",      limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
@@ -99,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160520155119) do
     t.string   "file_name",    limit: 255,      null: false
     t.binary   "data",         limit: 16777215
     t.string   "mime_type",    limit: 255
+    t.string   "session",      limit: 255
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

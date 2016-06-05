@@ -6,6 +6,7 @@ class CreateAttendances < ActiveRecord::Migration
     t.date "date"
     t.string "tracking_id"
     t.boolean "attendance_status"
+    t.string :session
       t.timestamps null: false
     end
   end

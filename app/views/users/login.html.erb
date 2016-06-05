@@ -7,12 +7,6 @@
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
-
-	<!--<link rel="stylesheet" href="css/animate.css">-->
-	<!-- Custom Stylesheet -->
-	<!--<link rel="stylesheet" href="css/style.css">-->
-
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
 </head>
 
 <body background = "pic.jpg">
@@ -31,37 +25,23 @@
             <table>
             	<center>
                 <tr>
-                	
                     <label for="username">Username</label>
 					<br/>
-					
-                 	<!--#<br></br>-->
-                 	<!--<%= label_tag(:username) %>-->
                     <center><%= text_field_tag(:username)  %></center>
-                    
                 </tr>
                 <tr>
                 	<label for="password">Password</label>
 					<br/>
 					<center><%= password_field_tag(:password) %></center>
 				</tr>
-				
-
-                    <center class = "vakhri"><%= submit_tag("Log In") %></center>
+                <center class = "vakhri"><%= submit_tag("Log In") %></center>
                 </center>
             </table>
-            
             <% end %>
             <% if flash[:notice] %>
     			<div><font color = "#1ab394"><%= flash[:notice] %></font></div>
   			<% end %>
-
-
-			<!--<a href="#"><p class="small">Forgot your password?</p></a>-->
-			
 		</div>
-		
-		<!--</div>-->
 	</center>
 </body>
 
