@@ -18,7 +18,7 @@ gem 'codemirror-rails'
 
 # To solve the problems on the turbolinks
 gem 'jquery-turbolinks'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sass-rails', '~> 5.0'
 gem 'angular-rails-templates'
 gem 'angularjs-rails'
